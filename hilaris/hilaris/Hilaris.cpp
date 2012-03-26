@@ -46,11 +46,6 @@ bool Hilaris::loaded() const
 	return this->loadSuccess == SUCCESS;
 }
 
-/**
- *  @brief Get a Camera instance.
- *
- *  @return camera Returns a camera object.
- */
 Camera* Hilaris::getCamera()
 {
 	if(this->camera == NULL)

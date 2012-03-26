@@ -10,6 +10,12 @@ class Hilaris {
 		void setFrameBufferSize(int size);
 		void setConsoleLogLevel(const enum EnOscLogLevel level) const;
 		void setFileLogLevel(const enum EnOscLogLevel level) const;
+		
+		/**
+		 *  @brief Get a Camera instance.
+		 *
+		 *  @return camera Returns a camera object.
+		 */
 		Camera* getCamera();
 		
 		bool getFrameBufferSize();
