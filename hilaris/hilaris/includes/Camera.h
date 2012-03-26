@@ -2,6 +2,8 @@
 #define _CAMERA_H_
 
 #include "Hilaris.h"
+#include "Image.h"
+
 #include <vector>
 
 struct AreaOfInterest {
