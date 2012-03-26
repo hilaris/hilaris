@@ -2,9 +2,9 @@
 #define _CAMERA_H_
 
 #include "Hilaris.h"
-#include "Image.h"
 
 #include <vector>
+#include <stdio.h>
 
 struct AreaOfInterest {
 	uint16 posX;
@@ -39,7 +39,7 @@ class Camera {
 		void createFrameBuffer();
 		void createMultiBuffer(int numOfBuf = 2);
 		
-		Image* Camera::captureImage();
+		Image* captureImage();
 		
 		bool   getAutoExposure() const;
 		uint16 getBlackLevelOffset();
@@ -55,7 +55,7 @@ class Camera {
 	private:
 		Camera();
 		
-		vector<uint8*> buffers;
+		std::vector<uint8*> buffers;
 		struct AreaOfInterest aoi;
 		
 		void removeBuffers();

@@ -1,6 +1,4 @@
 #include "Hilaris.h"
-#include "Camera.h"
-#include "Image.h"
 
 Hilaris::Hilaris()
 {
@@ -15,28 +13,28 @@ Hilaris::Hilaris()
 	  &OscModule_gpio
 	);
 	
-	this->load_success = err;
+	this->loadSuccess = err;
 		
 	OscLogSetConsoleLogLevel(DEBUG);
 	OscLogSetFileLogLevel(DEBUG);
 }
 
-void setConsoleLogLevel(const enum EnOscLogLevel level) const
+void Hilaris::setConsoleLogLevel(const enum EnOscLogLevel level) const
 {
 	OscLogSetConsoleLogLevel(level);
 }
 
-void setFileLogLevel(const enum EnOscLogLevel level) const
+void Hilaris::setFileLogLevel(const enum EnOscLogLevel level) const
 {
 	OscLogSetFileLogLevel(level);
 }
 
-void setFrameBufferSize(int size)
+void Hilaris::setFrameBufferSize(int size)
 {
 	this->frameBufferSize = size;
 }
 
-int getFrameBufferSize() const
+int Hilaris::getFrameBufferSize() const
 {
 	return this->frameBufferSize;
 }

@@ -1,8 +1,17 @@
 #ifndef _HILARIS_H_
 #define _HILARIS_H_
 
+#include <stdio.h>
+#include <string.h>
+
+class Camera;
+class Image;
+class DeviceIO;
+
 #include "oscar.h"
 #include "Camera.h"
+#include "Image.h"
+#include "DeviceIO.h"
 
 class Hilaris {
 	public:
@@ -18,14 +27,14 @@ class Hilaris {
 		 */
 		Camera* getCamera();
 		
-		bool getFrameBufferSize();
-		bool loaded();
+		int getFrameBufferSize() const;
+		bool loaded() const;
 		
 	private:
 		int loadSuccess;
 		int frameBufferSize;
 		
-		Camera* camera = NULL;
+		Camera* camera;
 };
 
 #endif 
