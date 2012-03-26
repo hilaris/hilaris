@@ -81,14 +81,14 @@ class Hilaris {
 		 *
 		 *  @return The number of Framebuffers
 		 */
-		bool getFrameBufferSize();
+		int getFrameBufferSize() const;
 		
 		/**
 		 *  @brief Returns true if the Hilaris has successfully loaded, false otherwise
 		 *
 		 *  @return Has Hilaris successfully loaded?
 		 */
-		bool loaded();
+		bool loaded() const;
 		
 	private:
 		int loadSuccess;
