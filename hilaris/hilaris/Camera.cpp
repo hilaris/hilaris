@@ -117,67 +117,25 @@ void Camera::setPerspective(enum EnOscCamPerspective p)
  */
 void Camera::setAreaOfInterest(uint16 lowX, uint16 lowY, uint16 width, uint16 height)
 {
-	if(((lowX + width) <= OSC_CAM_MAX_IMAGE_WIDTH) &&
-		(lowY + height) <= OSC_CAM_MAX_IMAGE_HEIGHT)
-	{
-		this->aoi.width = width;
-		this->aoi.height = height;
-		this->aoi.posX = lowX;
-		this->aoi.posY = lowY;
-	
-		OscCamSetAreaOfInterest(lowX, lowY, width, height);
-		
-		this->createFrameBuffer();
-	}
-	else
-	{
-		throw "illegal Area of Interest!";
-	}
+
 }
 
 void Camera::createFrameBuffer()
 {
-	if(this->buffers.size() > 0)
-	{
-		this->removeBuffers();
-	}
-	
-	uint8* b = (uint8*) malloc(this->aoi.width * this->aoi.height);
-	this->buffers.push_back(b);
-	
-	OscCamSetFrameBuffer(0, this->aoi.width * this->aoi.height, b, TRUE);	
+
 }
 
 void Camera::createMultiBuffer(int numOfBuf)
 {
-	//TODO
-	//doubleBufferIDs[0] = 0;
-	//doubleBufferIDs[1] = 1;
-	//OscCamCreateMultiBuffer(2, doubleBufferIDs);
+
 }
 
 void Camera::removeBuffers()
 {
-	while(!this->buffers.empty())
-	{
-		uint8* pB = this->buffers.back();
-		free(pB);
-		
-		this->buffers.pop_back();
-	}
+
 }
 
 Image* Camera::captureImage()
 {
-	Image* img = new Image(this->aoi.width, this->aoi.height);
-	
-	uint8* rawPic = NULL;
-	
-	OscCamSetupCapture(0);
-	OscGpioTriggerImage();	
-	OscCamReadPicture(0, &rawPic, 0, 0);
-
-	memcpy(img->rawData, rawPic, this->aoi.width * this->aoi.height);	
-		
-	return img;
+	return new Image();
 }
