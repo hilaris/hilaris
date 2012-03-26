@@ -76,17 +76,17 @@ bool Camera::getAutoExposure() const {
 }
 
 /**
- *  A wrapper function for OscCamPresetRegs(). Will setup the camera with some sane values.
+ *  @brief A wrapper function for OscCamPresetRegs(). Will setup the camera with some sane values.
  *
- *  The following things will be performed on the camera:
- *     Reset frame capture and AGC/Exposure logic.
- *     Set snapshot mode, simultaneous readout.
- *     Mark image as colorfull, linear taken.
- *     Disable AGC/AEC.
- *     Set black level offset to 13.
- *     Set shutter width to 15000.
- *     Setup region of interest as full sized image.
- *     Setup a default perspective.
+ *  @description The following things will be performed on the camera:
+ *     @li Reset frame capture and AGC/Exposure logic.
+ *     @li Set snapshot mode, simultaneous readout.
+ *     @li Mark image as colorfull, linear taken.
+ *     @li Disable AGC/AEC.
+ *     @li Set black level offset to 13.
+ *     @li Set shutter width to 15000.
+ *     @li Setup region of interest as full sized image.
+ *     @li Setup a default perspective.
  */
 void Camera::presetRegisters()
 {
