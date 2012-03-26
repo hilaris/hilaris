@@ -94,7 +94,7 @@ class Hilaris {
 		int loadSuccess;
 		int frameBufferSize;
 		
-		Camera* camera = NULL;
+		Camera* camera;
 };
 
 #endif
