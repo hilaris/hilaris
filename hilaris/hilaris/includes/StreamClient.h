@@ -3,7 +3,7 @@
 
 class StreamClinet {
 	public:
-		bool connect(char* ip, uint16 port);
+		bool connect(char* ip, int port);
 		bool disconnect(); 
 		int send();
 		int recieve();

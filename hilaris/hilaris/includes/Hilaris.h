@@ -6,6 +6,6 @@ class Hilaris {
 	
 	private:
 	
-}
+};
 
 #endif 
