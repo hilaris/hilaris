@@ -2,6 +2,7 @@
 #define _HILARIS_H_
 
 #include "oscar.h"
+#include "Camera.h"
 
 class Hilaris {
 	public:

@@ -2,8 +2,8 @@
 CC_HOST = g++
 CC_TARGET = bfin-uclinux-g++
 
-CCFLAG_T = -Wall -c -Ihilaris/oscar/include -Ihilaris/includes -DOSC_TARGET
-CCFLAG_H = -Wall -c -Ihilaris/oscar/include -Ihilaris/includes -DOSC_HOST
+CCFLAG_T = -Wall -c -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_TARGET
+CCFLAG_H = -Wall -c -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_HOST
 
 AR_HOST := ar -rcs
 AR_TARGET := bfin-uclinux-ar -rcs
@@ -24,7 +24,7 @@ host: $(addsuffix .o, $(addprefix hilaris/build/host_, $(SOURCES)))
 	@ mkdir -p app/includes
 	@ mkdir -p app/includes/oscar
 	@ cp -R hilaris/includes/* app/includes/
-	@ cp -R hilaris/oscar/include/* app/includes/oscar/
+	@ cp -R hilaris/oscar/includes/* app/includes/oscar/
 	@ cp $(OSCAR_HOST_LIB) app/library/
 
 target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES)))
@@ -32,7 +32,7 @@ target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES)))
 	@ mkdir -p app/includes
 	@ mkdir -p app/includes/oscar
 	@ cp -R hilaris/includes/* app/includes/
-	@ cp -R hilaris/oscar/include/* app/includes/oscar/
+	@ cp -R hilaris/oscar/includes/* app/includes/oscar/
 	@ cp $(OSCAR_TARGET_LIB) app/library/
 	
 hilaris/build/target_%.o: hilaris/%.cpp
