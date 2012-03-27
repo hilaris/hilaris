@@ -10,6 +10,7 @@ class StreamServer {
 		bool start();
 		static void *sendData(void* arg);
 		bool stop();
+		char* message;
 	private:
 		pthread_t thread;
 		

@@ -4,7 +4,8 @@
 
 bool StreamServer::start()
 {
-	pthread_create(&this->thread, NULL, sendData, (void*) "blabla");
+	message = "blubb";
+	pthread_create(&this->thread, NULL, sendData, (void*) this);
 	return true;
 }
 
@@ -12,8 +13,8 @@ void* StreamServer::sendData(void* arg)
 {
 	while(1)
 	{
-		char* msg = (char*)arg;
-		printf("message: %s\n", msg);
+		StreamServer* s = (StreamServer*)arg;
+		printf("message: %s\n", s->message);
 	}
 	
 	return arg;
