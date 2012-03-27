@@ -1,14 +1,18 @@
 #ifndef _STREAM_SERVER_H_
 #define _STREAM_SERVER_H_
 
+
+#include "Hilaris.h"
+#include <pthread.h>
+
 class StreamServer {
 	public:
-		bool listen();
-		bool accept();
-		int send();
-		int recieve();
+		bool start();
+		static void *sendData(void* arg);
 		bool stop();
 	private:
+		pthread_t thread;
+		
 };
 
 #endif 
