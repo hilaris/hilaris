@@ -18,6 +18,11 @@ class Image {
 		OSC_PICTURE getOscarContext();
 		void save(char* path, enum ImageEncoding enc = BMP);
 		bool filter(struct OSC_VIS_FILTER_KERNEL *kernel);
+		bool dilate(struct OSC_VIS_STREL *strel, uint8 repetitions);
+		bool erode(struct OSC_VIS_STREL *strel, uint8 repetitions);
+		
+		bool toBinary(uint8 thresold = 64, bool invert = false);
+		bool toGreyscale();
 	
 	private:
 		uint8* rawData;
