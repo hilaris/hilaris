@@ -2,6 +2,8 @@
 
 Hilaris::Hilaris()
 {
+	this->camera = NULL;
+	
 	OSC_ERR err;
 	
 	err = OscCreate(

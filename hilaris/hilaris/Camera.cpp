@@ -80,7 +80,6 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum En
 	else
 	{
 		this->lastError = EINVALID_PARAMETER;
-		
 		return false;
 	}
 	
