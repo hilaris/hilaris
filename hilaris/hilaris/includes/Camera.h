@@ -33,32 +33,41 @@ class Camera {
 	friend class Hilaris;
 	
 	public:
+		Camera();
+		Camera(enum EnOscPictureType type);
+		Camera(uint8 bufferSize);
+		Camera(uint16 width, uint16 height);
+		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height);
+		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type);
+		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize);
+		
 		~Camera();
 		
-		void presetRegisters();
-		void createFrameBuffer();
-		void createMultiBuffer(int numOfBuf = 2);
+		bool presetRegisters();
 		
 		Image* captureImage();
 		
-		bool   getAutoExposure() const;
-		uint16 getBlackLevelOffset();
-		uint32 getShutterWidth();
+		bool    getAutoExposure() const;
+		uint16  getBlackLevelOffset();
+		OSC_ERR getLastError();
+		uint32  getShutterWidth();
 		
-		void setAreaOfInterest(uint16 lowX, uint16 lowY, uint16 width, uint16 height);
-		void setAutoExposure(bool enabled);
-		void setBlackLevelOffset(uint16 offset);
-		void setMultipleBuffer(uint32 num);
-		void setPerspective(enum EnOscCamPerspective p);
-		void setShutterWidth(uint32 width);
+		bool setAutoExposure(bool enabled);
+		bool setBlackLevelOffset(uint16 offset);
+		bool setPerspective(enum EnOscCamPerspective p);
+		bool setShutterWidth(uint32 width);
 
 	private:
-		Camera();
-		
-		std::vector<uint8*> buffers;
+	
+		enum EnOscPictureType type;
 		struct AreaOfInterest aoi;
+		OSC_ERR lastError;
+		bool initialized;
+		bool isMultiBuffered;
+		Image* image;
 		
-		void removeBuffers();
+		bool createBuffers(uint8 bufferSize);
+		bool init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize);
 };
 
 #endif 

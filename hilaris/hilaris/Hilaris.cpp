@@ -50,11 +50,6 @@ Camera* Hilaris::getCamera()
 	{
 		Camera* camera = new Camera();
 		
-		// set some camera settings to sane default values
-		camera->presetRegisters();
-		camera->setPerspective(OSC_CAM_PERSPECTIVE_180DEG_ROTATE);
-		camera->setAreaOfInterest(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT);
-		
 		this->camera = camera;
 	}
 	
