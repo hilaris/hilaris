@@ -3,6 +3,11 @@
 
 #include "Hilaris.h"
 
+enum ImageEncoding 
+{
+	BMP, JPG
+};
+
 class Image {
 	friend class Camera;
 
@@ -11,6 +16,7 @@ class Image {
 		~Image();
 		
 		OSC_PICTURE getOscarContext();
+		void save(char* path, enum ImageEncoding enc);
 	
 	private:
 		uint8* rawData;
@@ -19,6 +25,7 @@ class Image {
 		uint16 height;
 		enum EnOscPictureType type;
 		
+		bool debayer();
 };
 
 #endif 
