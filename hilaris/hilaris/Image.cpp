@@ -36,27 +36,16 @@ OSC_PICTURE Image::getOscarContext()
  */
 void Image::save(char* path, enum ImageEncoding enc)
 {
-	struct OSC_PICTURE pic;
-	pic = this->getOscarContext();
-	
-	if(enc==BMP)
+	struct OSC_PICTURE pic = this->getOscarContext();
+
+	if(enc == BMP)
 	{
 		OSC_ERR err;
-		err = OscBmpWrite(&pic, path);
-		if(err!=SUCCESS)
-			OscLog(DEBUG, "Error: %d\n", err);
-		else
-			OscLog(DEBUG, "Saved to: %s\n", path);
-	}
-	else if(enc==JPG)
-	{
-		//TODO JPG Encoding
-		OscBmpWrite(&pic, path);
-	}
-	else
-	{
-		//TODO throw appropriate exception
-		throw 1;
+		
+		if((err = OscBmpWrite(&pic, path)) != SUCCESS)
+		{
+			OscLog(DEBUG, "Error saving file: %d\n", err);
+		}
 	}
 }
 
@@ -66,6 +55,26 @@ bool Image::debayer()
 	OscCamGetBayerOrder(&order,0,0);
 	
 	OscVisDebayer(this->rawData, this->width, this->height, order, this->data);
+	
+	return true;
+}
+
+bool Image::filter(struct OSC_VIS_FILTER_KERNEL *kernel)
+{
+	OSC_ERR err;
+	OSC_PICTURE picIn = this->getOscarContext();
+	OSC_PICTURE picOut;
+	uint8 outData[this->width * this->height * 3];
+	
+	picOut.data = outData;
+	uint8 pTemp[this->width * this->height * 3];
+	
+	if((err = OscVisFilter2D(&picIn, &picOut, pTemp, kernel)) != SUCCESS)
+	{
+		return false;
+	}
+	
+	memcpy(this->data, picOut.data, this->width * this->height * 3 * sizeof(uint8));
 	
 	return true;
 }

@@ -16,7 +16,8 @@ class Image {
 		~Image();
 		
 		OSC_PICTURE getOscarContext();
-		void save(char* path, enum ImageEncoding enc);
+		void save(char* path, enum ImageEncoding enc = BMP);
+		bool filter(struct OSC_VIS_FILTER_KERNEL *kernel);
 	
 	private:
 		uint8* rawData;
