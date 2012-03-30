@@ -7,6 +7,5 @@ CPPUNIT_TEST_SUITE_REGISTRATION(TestHilaris);
 
 void TestHilaris::testStartUp(void)
 {
-	CPPUNIT_ASSERT(true);
-	CPPUNIT_ASSERT(false);
+	Hilaris hilaris;
 }
