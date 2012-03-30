@@ -7,6 +7,10 @@ CPPUNIT_TEST_SUITE_REGISTRATION(TestHilaris);
 
 void TestHilaris::testStartUp(void)
 {
-	CPPUNIT_ASSERT(true);
-	CPPUNIT_ASSERT(false);
+	Hilaris hilaris;
+	
+	hilaris.setFileLogLevel(NONE);
+	hilaris.setConsoleLogLevel(NONE);
+	
+	CPPUNIT_ASSERT(hilaris.loaded());
 }
