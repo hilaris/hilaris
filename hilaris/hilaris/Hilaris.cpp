@@ -3,6 +3,17 @@
 Hilaris::Hilaris()
 {
 	this->camera = NULL;
+	this->setRemoveOnCleanup(true);
+	
+	// check wheter gpio-file exists
+	// if not, create it and fill it with
+	// a default text
+	FILE *file;
+	
+	file = fopen("gpio_in.txt","w");
+	
+	fprintf(file,"%s\n%s", "!	Time	IN1	IN2", "@	0	0	0");
+	fclose(file);
 	
 	OSC_ERR err;
 	
@@ -15,10 +26,39 @@ Hilaris::Hilaris()
 	  &OscModule_gpio
 	);
 	
+	#if defined(OSC_HOST)
+	
+	void *hFileNameReader;
+	
+	OscFrdCreateConstantReader(&hFileNameReader, "test.bmp");
+	OscCamSetFileNameReader(hFileNameReader);
+	
+	#endif
+	
 	this->loadSuccess = err;
 		
 	OscLogSetConsoleLogLevel(DEBUG);
 	OscLogSetFileLogLevel(DEBUG);
+}
+
+Hilaris::~Hilaris()
+{
+	// cleanup
+	// remove some files
+	if(this->removeOnCleanup)
+	{
+		remove("gpio_in.txt");
+		remove("gpio_out.txt");
+		remove("osc_log");
+		remove("osc_simlog");
+	}
+	
+	OscDestroy();
+}
+
+void Hilaris::setRemoveOnCleanup(bool remove)
+{
+	this->removeOnCleanup = remove;
 }
 
 void Hilaris::setConsoleLogLevel(const enum EnOscLogLevel level) const

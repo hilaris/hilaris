@@ -43,6 +43,7 @@ class DeviceIO;
 class Hilaris {
 	public:
 		Hilaris();
+		~Hilaris();
 		
 		/**
 		 *  @brief Set the number of frame buffers
@@ -99,9 +100,12 @@ class Hilaris {
 		 */
 		bool loaded() const;
 		
+		void setRemoveOnCleanup(bool remove);
+		
 	private:
 		int loadSuccess;
 		int frameBufferSize;
+		bool removeOnCleanup;
 		
 		Camera* camera;
 };
