@@ -13,7 +13,6 @@ class StreamServer {
 		char* message;
 	private:
 		pthread_t thread;
-		
 };
 
 #endif 

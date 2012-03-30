@@ -15,6 +15,7 @@ void* StreamServer::sendData(void* arg)
 	{
 		StreamServer* s = (StreamServer*)arg;
 		printf("message: %s\n", s->message);
+		usleep(100000);
 	}
 	
 	return arg;
