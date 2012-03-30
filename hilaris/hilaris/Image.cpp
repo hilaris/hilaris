@@ -12,6 +12,11 @@ Image::Image(uint16 width, uint16 height, enum EnOscPictureType type)
 	this->data    = new uint8[width * height * 3];
 }
 
+Image::~Image()
+{
+
+}
+
 /**
  *  @brief Save an image to the given path.
  *
