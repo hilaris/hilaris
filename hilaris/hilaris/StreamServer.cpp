@@ -105,7 +105,8 @@ void* StreamServer::sendData(void* arg)
 				if (err==0) {
 					printf("disconnecting client %d\n", i);
 					s->clients.erase(s->clients.begin() + i);
-					OscLog(DEBUG, "Client disconnected\n");
+					s->connected--;
+					printf("disconnected client %d\n", i);
 				}
 			}
 			
