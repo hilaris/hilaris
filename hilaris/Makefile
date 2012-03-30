@@ -1,4 +1,3 @@
-
 CC_HOST = g++
 CC_TARGET = bfin-uclinux-g++
 
@@ -17,7 +16,8 @@ OSCAR_TARGET_LIB = hilaris/oscar/library/libosc_target.a
 
 SOURCES := $(patsubst hilaris/%.cpp,%,$(wildcard hilaris/*.cpp))
 
-all: host target
+all: host target test
+notest: host target
 
 host: $(addsuffix .o, $(addprefix hilaris/build/host_, $(SOURCES)))
 	$(AR_HOST) $(addsuffix libhilaris_host.a, $(LIBRARY)) $^
@@ -34,6 +34,10 @@ target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES)))
 	@ cp -R hilaris/includes/* app/includes/
 	@ cp -R hilaris/oscar/includes/* app/includes/oscar/
 	@ cp $(OSCAR_TARGET_LIB) app/library/
+
+test: 
+	make -C hilaris/tests -f Makefile
+	./hilaris/tests/test
 	
 hilaris/build/target_%.o: hilaris/%.cpp
 	$(CC_TARGET) $(CCFLAG_T) $? -o $@

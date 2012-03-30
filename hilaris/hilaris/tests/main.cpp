@@ -1,7 +1,7 @@
 #include "Hilaris.h"
 #include "TestHilaris.h"
 
-#include <cppunit/CompilerOutputter.h>
+#include "HilarisOutputter.h"
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TextTestRunner.h>
 
@@ -16,8 +16,8 @@ int main(void)
 	runner.addTest(suite);
 
 	// Change the default outputter to a compiler error format outputter
-	runner.setOutputter( new CppUnit::CompilerOutputter( &runner.result(),
-		                                               std::cerr ) );
+	runner.setOutputter( new CppUnit::HilarisOutputter(&runner.result(),std::cerr));
+	
 	// Run the tests.
 	bool wasSucessful = runner.run();
 
