@@ -79,7 +79,7 @@ bool Image::filter(struct OSC_VIS_FILTER_KERNEL *kernel)
 		return false;
 	}
 	
-	memcpy(this->data, picOut.data, this->width * this->height * 3 * sizeof(uint8));
+	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
 	
 	return true;
 }
@@ -104,7 +104,7 @@ bool Image::erode(struct OSC_VIS_STREL *strel, uint8 repetitions)
 		return false;
 	}
 	
-	memcpy(this->data, picOut.data, this->width * this->height * 3 * sizeof(uint8));
+	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
 	
 	return true;
 }
@@ -129,7 +129,7 @@ bool Image::dilate(struct OSC_VIS_STREL *strel, uint8 repetitions)
 		return false;
 	}
 	
-	memcpy(this->data, picOut.data, this->width * this->height * 3 * sizeof(uint8));
+	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
 	
 	return true;
 }
@@ -164,7 +164,7 @@ bool Image::toBinary(uint8 threshold, bool invert)
 		}
 	}
 	
-	memcpy(this->data, picOut.data, this->width * this->height * 3 * sizeof(uint8));
+	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
 	this->type = picOut.type;
 	
 	return true;
@@ -177,11 +177,20 @@ bool Image::toGreyscale()
 		return true;
 	}
 	
+	// this is a little bit of a hack
+	// but due to bmp-save limitation of oscar
+	// its necessary
+	if(this->type == OSC_PICTURE_BINARY)
+	{
+		this->type = OSC_PICTURE_GREYSCALE;
+		return true;
+	}
+	
 	OSC_ERR err;
 	OSC_PICTURE picIn = this->getOscarContext();
 	OSC_PICTURE picOut;
 	
-	uint8 outData[this->width * this->height * 3];
+	uint8 outData[this->width * this->height * sizeof(uint8)];
 	picOut.data = outData;
 	
 	if(this->type == OSC_PICTURE_BGR_24)
@@ -192,7 +201,7 @@ bool Image::toGreyscale()
 		}
 	}
 	
-	memcpy(this->data, picOut.data, this->width * this->height * 3 * sizeof(uint8));
+	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
 	this->type = picOut.type;
 	
 	return true;
