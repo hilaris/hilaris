@@ -10,6 +10,7 @@ enum ImageEncoding
 
 class Image {
 	friend class Camera;
+	friend class StreamServer;
 
 	public:
 		Image(uint16 width, uint16 height, enum EnOscPictureType type);

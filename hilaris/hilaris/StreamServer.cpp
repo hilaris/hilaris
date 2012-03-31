@@ -75,7 +75,7 @@ void* StreamServer::sendData(void* arg)
 			}
 		}
 		Image* img = s->camera->captureImage();
-		OSC_PICTURE pic = img->getOscarContext();
+		//OSC_PICTURE pic = img->getOscarContext();
 		
 		//send data to all connected clients
 		//TODO read real image
@@ -87,7 +87,7 @@ void* StreamServer::sendData(void* arg)
 			if(s->writeable(s->clients.at(i)))
 			{
 				//send to client
-				len = send(s->clients.at(i), pic.data, pic.width * pic.height,0);
+				len = send(s->clients.at(i), img->rawData, img->width * img->height,0);
 				
 			}
 			else
@@ -115,7 +115,7 @@ void* StreamServer::sendData(void* arg)
 		}
 		
 		//printf("message: \n");
-		usleep(100000);
+		usleep(1000);
 	}
 	
 	return arg;
