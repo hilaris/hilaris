@@ -53,7 +53,7 @@ bool StreamServer::start()
 }
 
 void* StreamServer::sendData(void* arg)
-{
+{	
 	while(1)
 	{
 		StreamServer* s = (StreamServer*)arg;
@@ -74,6 +74,8 @@ void* StreamServer::sendData(void* arg)
 				s->connected++;
 			}
 		}
+		Image* img = s->camera->captureImage();
+		OSC_PICTURE pic = img->getOscarContext();
 		
 		//send data to all connected clients
 		//TODO read real image
@@ -85,7 +87,7 @@ void* StreamServer::sendData(void* arg)
 			if(s->writeable(s->clients.at(i)))
 			{
 				//send to client
-				len = send(s->clients.at(i), msg, sizeof(msg),0);
+				len = send(s->clients.at(i), pic.data, pic.width * pic.height,0);
 				
 			}
 			else
@@ -112,7 +114,6 @@ void* StreamServer::sendData(void* arg)
 			
 		}
 		
-		s->getImage();
 		//printf("message: \n");
 		usleep(100000);
 	}
@@ -132,10 +133,11 @@ bool StreamServer::insertImage(Image img)
 Image StreamServer::getImage()
 {
 	pthread_mutex_lock(&this->bufferLock);
-	sleep(1);
+	//sleep(1);
 	//get Image from buffer
+	Image i(*this->camera->captureImage());
 	pthread_mutex_unlock(&this->bufferLock);  
-	Image i(752, 480, OSC_PICTURE_BGR_24);
+	
 	return i;
 }
 
