@@ -24,8 +24,8 @@ class Image {
 		
 		virtual EnOscPictureType getType() = 0;
 		
-	protected:
 		uint8* data;
+	protected:
 		uint16 width;
 		uint16 height;
 		
