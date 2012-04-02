@@ -8,7 +8,7 @@ Image::Image(uint16 width, uint16 height)
 }
 
 Image::Image()  { }
-Image::~Image() { }
+Image::~Image() { }	
 
 uint16 Image::getWidth()
 {
@@ -18,11 +18,6 @@ uint16 Image::getWidth()
 uint16 Image::getHeight()
 {
 	return this->height;
-}
-
-uint8* Image::getDataPtr()
-{
-	return this->data;
 }
 
 /**
@@ -36,7 +31,7 @@ uint8* Image::getDataPtr()
 void Image::save(char* path, enum ImageEncoding enc)
 {
 	struct OSC_PICTURE pic = this->getOscarContext();
-
+	
 	if(enc == BMP)
 	{
 		OSC_ERR err;
@@ -57,7 +52,7 @@ OSC_PICTURE Image::getOscarContext()
 	pic.width = this->width;
 	pic.height = this->height;
 	pic.type = this->getType();
-	pic.data = this->data;
+	pic.data = this->getDataPtr();
 	
 	return pic;
 }

@@ -10,9 +10,10 @@ class RawImage : public Image
 		RawImage(uint16 width, uint16 height);
 		
 		EnOscPictureType getType();
+		uint8* getDataPtr();
 		
-		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
 	private:
+		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
 };
 
 #endif

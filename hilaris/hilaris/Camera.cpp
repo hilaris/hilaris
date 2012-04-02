@@ -266,7 +266,7 @@ RawImage* Camera::captureImage()
 		{
 			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
 			{
-				memcpy(image->data, rawPic, this->aoi.width * this->aoi.height);
+				memcpy(image->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
 	
 				return this->image;
 			}

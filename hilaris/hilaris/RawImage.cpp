@@ -6,6 +6,11 @@ RawImage::RawImage(uint16 width, uint16 height)
 	this->height = height;
 }
 
+uint8* RawImage::getDataPtr()
+{
+	return this->data;
+}
+
 EnOscPictureType RawImage::getType()
 {
 	// strunzwurscht

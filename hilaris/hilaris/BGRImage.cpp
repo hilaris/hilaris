@@ -10,3 +10,9 @@ EnOscPictureType BGRImage::getType()
 {
 	return OSC_PICTURE_BGR_24;
 }
+
+uint8* BGRImage::getDataPtr()
+{
+	return this->data;
+}
+

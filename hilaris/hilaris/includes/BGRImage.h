@@ -10,6 +10,7 @@ class BGRImage : public Image
 		BGRImage(uint16 width, uint16 height);
 		
 		EnOscPictureType getType();
+		uint8* getDataPtr();
 	
 	private:
 		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT * 3];

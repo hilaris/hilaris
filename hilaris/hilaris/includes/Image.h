@@ -20,11 +20,9 @@ class Image {
 		
 		uint16 getWidth();
 		uint16 getHeight();
-		uint8* getDataPtr();
 		
-		virtual EnOscPictureType getType() = 0;
-		
-		uint8* data;
+		virtual uint8* getDataPtr() = 0;
+		virtual EnOscPictureType getType() = 0;		
 	protected:
 		uint16 width;
 		uint16 height;

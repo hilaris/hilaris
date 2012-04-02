@@ -88,7 +88,7 @@ void* StreamServer::sendData(void* arg)
 			if(s->writeable(s->clients.at(i)))
 			{
 				//send to client
-				len = send(s->clients.at(i), img->data, img->getWidth() * img->getHeight(), 0);
+				len = send(s->clients.at(i), img->getDataPtr(), img->getWidth() * img->getHeight(), 0);
 				
 			}
 			else
