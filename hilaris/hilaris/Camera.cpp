@@ -1,6 +1,5 @@
 #include "Camera.h"
 
-
 Camera::~Camera() {}
 
 Camera::Camera()
@@ -99,7 +98,7 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum En
 	}
 	
 	// create an image
-	this->image = new Image(width, height, type);
+	this->image = new RawImage(width, height);
 	
 	// finished initializing
 	this->initialized = true;
@@ -254,7 +253,7 @@ bool Camera::setPerspective(enum EnOscCamPerspective p)
 /**
  *  @todo max age and timeout implementation
  */
-Image* Camera::captureImage()
+RawImage* Camera::captureImage()
 {
 	if(!this->initialized) return NULL;
 	
@@ -267,7 +266,7 @@ Image* Camera::captureImage()
 		{
 			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
 			{
-				memcpy(image->rawData, rawPic, this->aoi.width * this->aoi.height);
+				memcpy(image->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
 	
 				return this->image;
 			}

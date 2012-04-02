@@ -1,0 +1,4 @@
+#ifndef GREYSCALEIMAGE_H
+#define GREYSCALEIMAGE_H
+
+#endif

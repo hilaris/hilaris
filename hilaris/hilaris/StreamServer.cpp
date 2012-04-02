@@ -74,7 +74,7 @@ void* StreamServer::sendData(void* arg)
 				s->connected++;
 			}
 		}
-		Image* img = s->camera->captureImage();
+		RawImage* img = s->camera->captureImage();
 		//OSC_PICTURE pic = img->getOscarContext();
 		
 		//send data to all connected clients
@@ -87,7 +87,7 @@ void* StreamServer::sendData(void* arg)
 			if(s->writeable(s->clients.at(i)))
 			{
 				//send to client
-				len = send(s->clients.at(i), img->rawData, img->width * img->height,0);
+				len = send(s->clients.at(i), img->getDataPtr(), img->getWidth() * img->getHeight(), 0);
 				
 			}
 			else
@@ -121,7 +121,7 @@ void* StreamServer::sendData(void* arg)
 	return arg;
 }
 
-bool StreamServer::insertImage(Image img)
+bool StreamServer::insertImage(RawImage img)
 {
 	pthread_mutex_lock(&this->bufferLock);
 	sleep(1);
@@ -130,12 +130,12 @@ bool StreamServer::insertImage(Image img)
 	return false;
 }
 
-Image StreamServer::getImage()
+RawImage StreamServer::getImage()
 {
 	pthread_mutex_lock(&this->bufferLock);
 	//sleep(1);
 	//get Image from buffer
-	Image i(*this->camera->captureImage());
+	RawImage i(*this->camera->captureImage());
 	pthread_mutex_unlock(&this->bufferLock);  
 	
 	return i;

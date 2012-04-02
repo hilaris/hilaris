@@ -1,10 +1,13 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include "Hilaris.h"
-
 #include <vector>
 #include <stdio.h>
+#include <string.h>
+
+#include "oscar.h"
+#include "Image.h"
+#include "RawImage.h"
 
 struct AreaOfInterest {
 	uint16 posX;
@@ -45,7 +48,7 @@ class Camera {
 		
 		bool presetRegisters();
 		
-		Image* captureImage();
+		RawImage* captureImage();
 		
 		bool    getAutoExposure() const;
 		uint16  getBlackLevelOffset();
@@ -58,13 +61,12 @@ class Camera {
 		bool setShutterWidth(uint32 width);
 
 	private:
-	
 		enum EnOscPictureType type;
 		struct AreaOfInterest aoi;
 		OSC_ERR lastError;
 		bool initialized;
 		bool isMultiBuffered;
-		Image* image;
+		RawImage* image;
 		
 		bool createBuffers(uint8 bufferSize);
 		bool init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize);
