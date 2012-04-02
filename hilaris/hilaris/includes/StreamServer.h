@@ -4,7 +4,11 @@
 #define MAX_CLIENTS 5
 #define SOCK_ERROR -1
 
+#include "oscar.h"
 #include "Hilaris.h"
+#include "Camera.h"
+#include "RawImage.h"
+
 #include <pthread.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -23,8 +27,8 @@ class StreamServer {
 		bool start();
 		static void *sendData(void* arg);
 		bool stop();
-		bool insertImage(Image img);
-		Image getImage();
+		bool insertImage(RawImage img);
+		RawImage getImage();
 		bool readable(int fd);
 		bool writeable(int fd);
 		
@@ -32,7 +36,7 @@ class StreamServer {
 		pthread_t thread;
 		pthread_mutex_t bufferLock;
 		
-		Image* imgBuffer;
+		RawImage* imgBuffer;
 		int startBuffer;
 		int endBuffer;
 		

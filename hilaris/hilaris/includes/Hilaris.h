@@ -6,15 +6,28 @@
 #include <string.h>
 #include <unistd.h>
 
-class Camera;
-class Image;
-class DeviceIO;
-
 #include "oscar.h"
 #include "Camera.h"
-#include "Image.h"
-#include "DeviceIO.h"
 
+/*
+class Camera;
+class Image;
+class RawImage;
+class BGRImage;
+class BGRImageFactory;
+class DeviceIO;
+*/
+
+/*
+#include "Image.h"
+#include "RawImage.h"
+#include "BGRImage.h"
+#include "BGRImageFactory.h"
+
+#include "Camera.h"
+
+#include "DeviceIO.h"
+*/
 
 /**
  *  @mainpage

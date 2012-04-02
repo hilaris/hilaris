@@ -1,20 +1,28 @@
 #include "Image.h"
 
-Image::Image(uint16 width, uint16 height, enum EnOscPictureType type)
+Image::Image(uint16 width, uint16 height)
 {
 	// store data
 	this->width  = width;
 	this->height = height;
-	this->type   = type;
-	
-	// create arrays
-	this->rawData = new uint8[width * height];
-	this->data    = new uint8[width * height * 3];
 }
 
-Image::~Image()
-{
+Image::Image()  { }
+Image::~Image() { }
 
+uint16 Image::getWidth()
+{
+	return this->width;
+}
+
+uint16 Image::getHeight()
+{
+	return this->height;
+}
+
+uint8* Image::getDataPtr()
+{
+	return this->data;
 }
 
 /**
@@ -42,102 +50,19 @@ void Image::save(char* path, enum ImageEncoding enc)
 
 OSC_PICTURE Image::getOscarContext()
 {
-	this->debayer();
+	//this->debayer();
 	
 	struct OSC_PICTURE pic;
 	
 	pic.width = this->width;
 	pic.height = this->height;
-	pic.type = this->type;
+	pic.type = this->getType();
 	pic.data = this->data;
 	
 	return pic;
 }
 
-bool Image::debayer()
-{
-	enum EnBayerOrder order;
-	OscCamGetBayerOrder(&order,0,0);
-	
-	OscVisDebayer(this->rawData, this->width, this->height, order, this->data);
-	
-	return true;
-}
-
-bool Image::filter(struct OSC_VIS_FILTER_KERNEL *kernel)
-{
-	if(!this->toGreyscale())
-	{
-		return false;
-	}
-	
-	OSC_ERR err;
-	OSC_PICTURE picIn = this->getOscarContext();
-	OSC_PICTURE picOut;
-	uint8 outData[this->width * this->height * 3];
-	
-	picOut.data = outData;
-	uint8 pTemp[this->width * this->height * 3];
-	
-	if((err = OscVisFilter2D(&picIn, &picOut, pTemp, kernel)) != SUCCESS)
-	{
-		return false;
-	}
-	
-	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
-	
-	return true;
-}
-
-bool Image::erode(struct OSC_VIS_STREL *strel, uint8 repetitions)
-{
-	if(!this->toBinary())
-	{
-		return false;
-	}
-	
-	OSC_ERR err;
-	OSC_PICTURE picIn = this->getOscarContext();
-	OSC_PICTURE picOut;
-	uint8 outData[this->width * this->height * 3];
-	
-	picOut.data = outData;
-	uint8 pTemp[this->width * this->height * 3];
-	
-	if((err = OscVisErode(&picIn, &picOut, pTemp, strel, repetitions)) != SUCCESS)
-	{
-		return false;
-	}
-	
-	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
-	
-	return true;
-}
-
-bool Image::dilate(struct OSC_VIS_STREL *strel, uint8 repetitions)
-{
-	if(!this->toBinary())
-	{
-		return false;
-	}
-	
-	OSC_ERR err;
-	OSC_PICTURE picIn = this->getOscarContext();
-	OSC_PICTURE picOut;
-	uint8 outData[this->width * this->height * 3];
-	
-	picOut.data = outData;
-	uint8 pTemp[this->width * this->height * 3];
-	
-	if((err = OscVisDilate(&picIn, &picOut, pTemp, strel, repetitions)) != SUCCESS)
-	{
-		return false;
-	}
-	
-	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
-	
-	return true;
-}
+/*
 
 bool Image::toBinary(uint8 threshold, bool invert)
 {
@@ -211,3 +136,5 @@ bool Image::toGreyscale()
 	
 	return true;
 }
+
+*/
