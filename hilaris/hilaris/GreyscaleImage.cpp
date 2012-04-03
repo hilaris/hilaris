@@ -1,10 +1,25 @@
 #include "GreyscaleImage.h"
 
-/*
-bool GreyscaleImage::debayer()
+GreyscaleImage::GreyscaleImage(uint16 width, uint16 height)
 {
-	return true;
+	this->width = width;
+	this->height = height;
+	
+	this->setOscarContext();
 }
+
+EnOscPictureType GreyscaleImage::getType()
+{
+	return OSC_PICTURE_GREYSCALE;
+}
+
+uint8* GreyscaleImage::getDataPtr()
+{
+	return this->data;
+}
+
+
+/*
 
 bool GreyscaleImage::filter(struct OSC_VIS_FILTER_KERNEL *kernel)
 {
