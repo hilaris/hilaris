@@ -76,10 +76,9 @@ void* StreamServer::sendData(void* arg)
 		}
 		
 		RawImage* img = s->camera->captureImage();
-		//OSC_PICTURE pic = img->getOscarContext();
 		
 		//send data to all connected clients
-		//TODO read real image
+		//TODO read image from buffer s->getImage();
 		for(int i=0;i < s->connected;i++)
 		{
 			int len;
