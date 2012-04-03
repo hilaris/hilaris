@@ -17,6 +17,9 @@ class BinaryImage : public Image
 		// overriden save function
 		void save(char* path, enum ImageEncoding enc = BMP);
 		
+		bool erode(struct OSC_VIS_STREL *strel, uint8 repetitions = 1);
+		bool dilate(struct OSC_VIS_STREL *strel, uint8 repetitions = 1);
+		
 		// operators
 		// access via: image(x, y) = pixelvalue;
 		uint8& operator()(const uint16 x, const uint16 y);
