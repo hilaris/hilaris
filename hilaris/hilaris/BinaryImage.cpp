@@ -1,5 +1,23 @@
 #include "BinaryImage.h"
 
+BinaryImage::BinaryImage(uint16 width, uint16 height)
+{
+	this->width = width;
+	this->height = height;
+	
+	this->setOscarContext();
+}
+
+EnOscPictureType BinaryImage::getType()
+{
+	return OSC_PICTURE_BINARY;
+}
+
+uint8* BinaryImage::getDataPtr()
+{
+	return this->data;
+}
+
 /*
 bool BinaryImage::erode(struct OSC_VIS_STREL *strel, uint8 repetitions)
 {

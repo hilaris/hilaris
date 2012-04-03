@@ -13,7 +13,7 @@ class GreyscaleImage : public Image
 		uint8* getDataPtr();
 	
 	private:
-		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT * 3];
+		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
 };
 
 #endif
