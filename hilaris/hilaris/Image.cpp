@@ -45,8 +45,6 @@ void Image::save(char* path, enum ImageEncoding enc)
 
 OSC_PICTURE Image::getOscarContext()
 {
-	//this->debayer();
-	
 	struct OSC_PICTURE pic;
 	
 	pic.width = this->width;
