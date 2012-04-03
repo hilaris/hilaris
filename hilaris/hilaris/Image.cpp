@@ -31,7 +31,7 @@ uint16 Image::getHeight()
 void Image::save(char* path, enum ImageEncoding enc)
 {
 	struct OSC_PICTURE pic = this->getOscarContext();
-	
+		
 	if(enc == BMP)
 	{
 		OSC_ERR err;
@@ -43,18 +43,18 @@ void Image::save(char* path, enum ImageEncoding enc)
 	}
 }
 
-OSC_PICTURE Image::getOscarContext()
+OSC_PICTURE& Image::getOscarContext()
 {
-	//this->debayer();
-	
-	struct OSC_PICTURE pic;
-	
-	pic.width = this->width;
-	pic.height = this->height;
-	pic.type = this->getType();
-	pic.data = this->getDataPtr();
-	
-	return pic;
+	this->setOscarContext();
+	return this->oscarContext;
+}
+
+void Image::setOscarContext()
+{	
+	this->oscarContext.width  = this->getWidth();
+	this->oscarContext.height = this->getHeight();
+	this->oscarContext.type   = this->getType();
+	this->oscarContext.data   = this->getDataPtr();
 }
 
 /*
