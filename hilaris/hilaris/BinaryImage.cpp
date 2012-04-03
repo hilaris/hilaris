@@ -1,4 +1,6 @@
 #include "BinaryImage.h"
+#include "GreyscaleImage.h"
+#include "GreyscaleImageFactory.h"
 
 BinaryImage::BinaryImage(uint16 width, uint16 height)
 {
@@ -16,6 +18,23 @@ EnOscPictureType BinaryImage::getType()
 uint8* BinaryImage::getDataPtr()
 {
 	return this->data;
+}
+
+void BinaryImage::save(char* path, enum ImageEncoding enc)
+{
+	GreyscaleImage grey = GreyscaleImageFactory::getFromBinaryImage(*this);
+	
+	this->saveContext(grey.getOscarContext(), path);
+}
+
+uint8& BinaryImage::pixel(uint16 x, uint16 y)
+{
+	return this->data[x * this->getWidth() + y];
+}
+
+uint8& BinaryImage::operator()(const uint16 x, const uint16 y)
+{
+    return this->pixel(x, y);
 }
 
 /*

@@ -18,6 +18,15 @@ uint8* GreyscaleImage::getDataPtr()
 	return this->data;
 }
 
+uint8& GreyscaleImage::pixel(uint16 x, uint16 y)
+{
+	return this->data[x * this->getWidth() + y];
+}
+
+uint8& GreyscaleImage::operator()(const uint16 x, const uint16 y)
+{
+    return this->pixel(x, y);
+}
 
 /*
 

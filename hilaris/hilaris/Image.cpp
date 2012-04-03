@@ -31,15 +31,17 @@ uint16 Image::getHeight()
 void Image::save(char* path, enum ImageEncoding enc)
 {
 	struct OSC_PICTURE pic = this->getOscarContext();
-		
-	if(enc == BMP)
+	
+	this->saveContext(pic, path);
+}
+
+void Image::saveContext(struct OSC_PICTURE pic, char* path)
+{
+	OSC_ERR err;
+	
+	if((err = OscBmpWrite(&pic, path)) != SUCCESS)
 	{
-		OSC_ERR err;
-		
-		if((err = OscBmpWrite(&pic, path)) != SUCCESS)
-		{
-			OscLog(DEBUG, "Error saving file: %d\n", err);
-		}
+		OscLog(DEBUG, "Error saving file: %d\n", err);
 	}
 }
 
@@ -57,79 +59,3 @@ void Image::setOscarContext()
 	this->oscarContext.data   = this->getDataPtr();
 }
 
-/*
-
-bool Image::toBinary(uint8 threshold, bool invert)
-{
-	if(this->type == OSC_PICTURE_BINARY)
-	{
-		return true;
-	}
-	
-	OSC_ERR err;
-	OSC_PICTURE picIn = this->getOscarContext();
-	OSC_PICTURE picOut;
-	
-	uint8 outData[this->width * this->height * 3];
-	picOut.data = outData;
-	
-	if(this->type == OSC_PICTURE_GREYSCALE)
-	{
-		if((err = OscVisGrey2BW(&picIn, &picOut, threshold, invert)) != SUCCESS)
-		{
-			return false;
-		}
-	}
-	
-	if(this->type == OSC_PICTURE_BGR_24)
-	{
-		if((err = OscVisBGR2BW(&picIn, &picOut, threshold, invert)) != SUCCESS)
-		{
-			return false;
-		}
-	}
-	
-	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
-	this->type = picOut.type;
-	
-	return true;
-}
-
-bool Image::toGreyscale()
-{
-	if(this->type == OSC_PICTURE_GREYSCALE)
-	{
-		return true;
-	}
-	
-	// this is a little bit of a hack
-	// but due to bmp-save limitation of oscar
-	// its necessary
-	if(this->type == OSC_PICTURE_BINARY)
-	{
-		this->type = OSC_PICTURE_GREYSCALE;
-		return true;
-	}
-	
-	OSC_ERR err;
-	OSC_PICTURE picIn = this->getOscarContext();
-	OSC_PICTURE picOut;
-	
-	uint8 outData[this->width * this->height * sizeof(uint8)];
-	picOut.data = outData;
-	
-	if(this->type == OSC_PICTURE_BGR_24)
-	{
-		if((err = OscVisBGR2Grey(&picIn, &picOut)) != SUCCESS)
-		{
-			return false;
-		}
-	}
-	
-	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
-	this->type = picOut.type;
-	
-	return true;
-}
-
-*/

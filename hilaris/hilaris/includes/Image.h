@@ -20,13 +20,15 @@ class Image {
 		
 		OSC_PICTURE& getOscarContext();
 		void setOscarContext();
-		void save(char* path, enum ImageEncoding enc = BMP);
+		
+		// ie BinaryImage has to override this function
+		virtual void save(char* path, enum ImageEncoding enc = BMP);
 		
 		uint16 getWidth();
 		uint16 getHeight();
 		
 		virtual uint8* getDataPtr() = 0;
-		virtual EnOscPictureType getType() = 0;		
+		virtual EnOscPictureType getType() = 0;
 		
 	protected:		
 		uint16 width;
@@ -34,6 +36,8 @@ class Image {
 		
 		enum EnOscPictureType type;
 		OSC_PICTURE oscarContext;
+		
+		void saveContext(struct OSC_PICTURE pic, char* path);
 };
 
 #endif 
