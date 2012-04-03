@@ -14,11 +14,17 @@ class BinaryImage : public Image
 		
 		uint8& pixel(uint16 x, uint16 y);
 		
+		OSC_VIS_REGIONS& getRegions();
+		
 		// overriden save function
 		void save(char* path, enum ImageEncoding enc = BMP);
 		
 		bool erode(struct OSC_VIS_STREL *strel, uint8 repetitions = 1);
 		bool dilate(struct OSC_VIS_STREL *strel, uint8 repetitions = 1);
+		
+		bool label();
+		bool drawCentroid();
+		bool drawBoundingBox();
 		
 		// operators
 		// access via: image(x, y) = pixelvalue;
@@ -26,6 +32,7 @@ class BinaryImage : public Image
 	
 	private:
 		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
+		struct OSC_VIS_REGIONS regions;
 };
 
 #endif

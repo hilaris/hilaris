@@ -80,3 +80,41 @@ bool BinaryImage::dilate(struct OSC_VIS_STREL *strel, uint8 repetitions)
 	
 	return true;
 }
+
+
+OSC_VIS_REGIONS& BinaryImage::getRegions()
+{
+	return this->regions;
+}
+		
+bool BinaryImage::label()
+{
+	OSC_ERR err;
+	
+	if((err = OscVisLabelBinary(&this->getOscarContext(), &this->getRegions())) != SUCCESS)
+	{
+		return false;
+	}
+	
+	if((err = OscVisGetRegionProperties(&this->getRegions())) != SUCCESS)
+	{
+		return false;
+	}
+	
+	return true;
+}
+
+bool BinaryImage::drawCentroid()
+{
+	OSC_ERR err;
+	
+	return (err = OscVisDrawCentroidMarkers(&this->getOscarContext(), &this->getRegions())) != SUCCESS;
+ 
+}
+
+bool BinaryImage::drawBoundingBox()
+{
+	OSC_ERR err;
+	
+	return (err = OscVisDrawBoundingBox(&this->getOscarContext(), &this->getRegions())) != SUCCESS;
+}

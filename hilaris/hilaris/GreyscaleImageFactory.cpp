@@ -30,6 +30,8 @@ GreyscaleImage GreyscaleImageFactory::getHalfsizeDebayered(RawImage* raw)
 	return image;
 }
 
+
+// @TODO some bugs here.. it seems that the greyscale image out of the binary image has all its greyscales, not just 1 and 0, test that
 GreyscaleImage GreyscaleImageFactory::getFromBinaryImage(BinaryImage& binary)
 {
 	GreyscaleImage image(binary.getWidth(), binary.getHeight());
