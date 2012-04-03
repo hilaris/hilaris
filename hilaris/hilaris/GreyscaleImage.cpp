@@ -1,4 +1,5 @@
 #include "GreyscaleImage.h"
+#include <string.h>
 
 GreyscaleImage::GreyscaleImage(uint16 width, uint16 height)
 {
@@ -28,25 +29,24 @@ uint8& GreyscaleImage::operator()(const uint16 x, const uint16 y)
     return this->pixel(x, y);
 }
 
-/*
 
 bool GreyscaleImage::filter(struct OSC_VIS_FILTER_KERNEL *kernel)
 {
 	OSC_ERR err;
 	OSC_PICTURE picIn = this->getOscarContext();
 	OSC_PICTURE picOut;
-	uint8 outData[this->width * this->height * 3];
+	
+	uint8 outData[this->getWidth() * this->getHeight()];
 	
 	picOut.data = outData;
-	uint8 pTemp[this->width * this->height * 3];
+	uint8 pTemp[this->getWidth() * this->getHeight()];
 	
 	if((err = OscVisFilter2D(&picIn, &picOut, pTemp, kernel)) != SUCCESS)
 	{
 		return false;
 	}
 	
-	memcpy(this->data, picOut.data, this->width * this->height * sizeof(uint8));
+	memcpy(this->getDataPtr(), picOut.data, this->getWidth() * this->getHeight());
 	
 	return true;
 }
-*/

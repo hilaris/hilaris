@@ -15,6 +15,8 @@ class GreyscaleImage : public Image
 		
 		uint8& pixel(uint16 x, uint16 y);
 		
+		bool filter(struct OSC_VIS_FILTER_KERNEL *kernel);
+		
 		// operators
 		// access via: image(x, y) = pixelvalue;
 		uint8& operator()(const uint16 x, const uint16 y);
