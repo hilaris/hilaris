@@ -1,13 +1,13 @@
 #include "DebayerBGRFast.h"
-#include <string.h>
 
 EnOscPictureType DebayerBGRFast::getType()
 {
 	return OSC_PICTURE_BGR_24;
 }
 
-BGRImage* DebayerBGRFast::getObject(uint8 width, uint8 height)
+BGRImage* DebayerBGRFast::getObject(uint16 width, uint16 height)
 {
+	printf("getting object %d x %d\n", width, height);
 	return new BGRImage(width/2, height/2);
 }
 
