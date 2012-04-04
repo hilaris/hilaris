@@ -1,5 +1,5 @@
 #include "StreamServer.h"
-
+#if 0
 StreamServer::StreamServer(Camera* camera)
 {
 	this->clients.reserve(5); 
@@ -192,3 +192,4 @@ bool StreamServer::writeable(int fd)
 
 	return FALSE;
 }
+#endif

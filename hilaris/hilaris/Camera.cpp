@@ -253,7 +253,7 @@ bool Camera::setPerspective(enum EnOscCamPerspective p)
 /**
  *  @todo max age and timeout implementation
  */
-RawImage* Camera::captureImage()
+Image* Camera::captureImage()
 {
 	if(!this->initialized) return NULL;
 	

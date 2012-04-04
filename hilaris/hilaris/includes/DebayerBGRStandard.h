@@ -1,0 +1,4 @@
+#ifndef _DEBAYERBGRSTANDARD_H_
+#define _DEBAYERBGRSTANDARD_H_
+
+#endif

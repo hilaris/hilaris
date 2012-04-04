@@ -1,0 +1,4 @@
+#ifndef _DEBAYERBGRHALFSIZE_H_
+#define _DEBAYERBGRHALFSIZE_H_
+
+#endif

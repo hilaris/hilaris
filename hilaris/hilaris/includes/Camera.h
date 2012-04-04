@@ -48,7 +48,7 @@ class Camera {
 		
 		bool presetRegisters();
 		
-		RawImage* captureImage();
+		Image* captureImage();
 		
 		bool    getAutoExposure() const;
 		uint16  getBlackLevelOffset();
@@ -66,7 +66,7 @@ class Camera {
 		OSC_ERR lastError;
 		bool initialized;
 		bool isMultiBuffered;
-		RawImage* image;
+		Image* image;
 		
 		bool createBuffers(uint8 bufferSize);
 		bool init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize);

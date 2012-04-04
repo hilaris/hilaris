@@ -29,7 +29,7 @@ host: $(addsuffix .o, $(addprefix hilaris/build/host_, $(SOURCES))) $(addsuffix 
 	@ cp -R hilaris/oscar/includes/* app/includes/oscar/
 	@ cp $(OSCAR_HOST_LIB) app/library/
 
-target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES)))
+target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES))) $(addsuffix .o, $(addprefix hilaris/build/processors/target_, $(PROCESSORS))) $(addsuffix .o, $(addprefix hilaris/build/debayer/target_, $(DEBAYER)))
 	$(AR_TARGET) $(addsuffix libhilaris_target.a, $(LIBRARY)) $^
 	@ mkdir -p app/includes
 	@ mkdir -p app/includes/oscar
