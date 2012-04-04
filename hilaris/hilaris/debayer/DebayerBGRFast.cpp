@@ -1,6 +1,15 @@
 #include "DebayerBGRFast.h"
 #include <string.h>
 
+EnOscPictureType DebayerBGRFast::getType()
+{
+	return OSC_PICTURE_BGR_24;
+}
+
+BGRImage* DebayerBGRFast::getObject(uint8 width, uint8 height)
+{
+	return new BGRImage(width, height);
+}
 
 bool DebayerBGRFast::debayer(RawImage* raw, Image* image)
 {
@@ -10,3 +19,4 @@ bool DebayerBGRFast::debayer(RawImage* raw, Image* image)
 	
 	return true;
 }
+

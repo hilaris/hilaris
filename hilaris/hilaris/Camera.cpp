@@ -7,9 +7,9 @@ Camera::Camera()
 	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, OSC_PICTURE_BGR_24, 2);
 }
 
-Camera::Camera(enum EnOscPictureType type)
+Camera::Camera(Debayer debayer)
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, type, 2);
+	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, debayer, 2);
 }
 
 Camera::Camera(uint8 bufferSize)
@@ -43,20 +43,20 @@ Camera::Camera(uint16 width, uint16 height)
  */
 Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height)
 {
-	this->init(lowX, lowY, width, height, OSC_PICTURE_BGR_24, 2);
+	this->init(lowX, lowY, width, height, DebayerBGRFast(), 2);
 }
 
-Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type)
+Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer debayer)
 {
-	this->init(lowX, lowY, width, height, type, 2);
+	this->init(lowX, lowY, width, height, debayer, 2);
 }
 
-Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize)
+Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer debayer, uint8 bufferSize)
 {
-	this->init(lowX, lowY, width, height, type, bufferSize);
+	this->init(lowX, lowY, width, height, debayer, bufferSize);
 }
 
-bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize)
+bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer debayer, uint8 bufferSize)
 {
 	this->initialized = false;
 	
@@ -83,7 +83,7 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum En
 	}
 	
 	// set type
-	this->type = type;
+	this->type = debayer.getType();
 	
 	if(bufferSize > 0)
 	{
@@ -98,7 +98,7 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum En
 	}
 	
 	// create an image
-	this->image = new RawImage(width, height);
+	this->image = debayer.getObject(width, height);
 	
 	// finished initializing
 	this->initialized = true;

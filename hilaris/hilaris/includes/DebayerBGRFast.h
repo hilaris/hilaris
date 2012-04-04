@@ -9,7 +9,8 @@ class DebayerBGRFast : public Debayer
 {
 	public:
 		DebayerBGRFast(){}
-		
+		enum EnOscPictureType getType();
+		BGRImage* getObject(uint8 width, uint8 height);
 		bool debayer(RawImage* raw, Image* image);
 };
 
