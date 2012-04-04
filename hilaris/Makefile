@@ -14,7 +14,7 @@ BINARY = app/
 OSCAR_HOST_LIB = hilaris/oscar/library/libosc_host.a
 OSCAR_TARGET_LIB = hilaris/oscar/library/libosc_target.a
 
-SOURCES := $(patsubst hilaris/%.cpp,%,$(wildcard hilaris/*.cpp))
+SOURCES := $(patsubst hilaris/%.cpp,%,$(wildcard hilaris/*.cpp)) $(patsubst hilaris/processors/%.cpp,%,$(wildcard hilaris/processors/*.cpp))
 
 all: host target test
 notest: host target
