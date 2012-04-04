@@ -94,21 +94,23 @@ HilarisOutputter::printFailureDetail( Exception *thrownException )
 void 
 HilarisOutputter::printHeader()
 {
-  if ( m_result->wasSuccessful() )
-    m_stream << "\nOK (" << m_result->runTests () << " tests)\n" ;
-  else
-  {
-    m_stream << "\n";
-    printFailureWarning();
-    printStatistics();
-  }
+if(m_result->wasSuccessful())
+{
+	m_stream << "\033[1mI\'m the \"Everything\'s Fine\" unicorn!\033[0m\n\n            \\ \n             \\ \n             _\\^\n           _- oo\\\n           \\---- \\______\n                 \\       )\\\n                ||-----||  \\\n                ||     ||\n";
+}
+//  m_stream << "\033[1mOK (\033[0m" << m_result->runTests () << " tests)\n" ;
+else
+{
+m_stream << "\n";
+printFailureWarning();
+printStatistics();
+}
 }
 
 
-void 
-HilarisOutputter::printFailureWarning()
-{
-  m_stream  << "!!!FAILURES!!!\n";
+void HilarisOutputter::printFailureWarning()
+{ 
+	m_stream << "   \033[1mSorry, errors found!\033[0m\n    \n      \\_\\_     _/_/ \n           \\__/ \n           (oo)\\_______ \n           (__)\\       )\\/\\ \n               ||----w|| \n               ||     || \n\n";
 }
 
 
