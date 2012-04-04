@@ -14,4 +14,5 @@ void TestHilaris::testStartUp(void)
 	
 	CPPUNIT_ASSERT(hilaris.loaded());
 	//CPPUNIT_ASSERT(false);
+
 }
