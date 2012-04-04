@@ -58,6 +58,7 @@ Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* d
 
 bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize)
 {
+	//printf("init cam width %d height %d\n", width, height);
 	this->initialized = false;
 	
 	// setting sane default values
@@ -270,11 +271,10 @@ Image* Camera::captureImage()
 			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
 			{
 				RawImage img(this->aoi.width, this->aoi.height);
-				printf("before copy\n");
-				memcpy(&img, rawPic, this->aoi.width * this->aoi.height);
-				printf("after copy\n");
+				memcpy(img.getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
+				
 				this->debayer->debayer(&img, this->image);
-				printf("after debayer\n");
+
 				return this->image;
 			}
 		}
