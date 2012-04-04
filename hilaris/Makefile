@@ -63,7 +63,7 @@ hilaris/build/processors/host_%.o: hilaris/processors/%.cpp
 	$(CC_HOST) $(CCFLAG_H) $? -o $@
 
 clean:
-	rm -f $(BUILD)*
+	rm -f $(BUILD)/*.o $(BUILD)/debayer/*.o $(BUILD)/processors/*.o
 	rm -f $(LIBRARY)*
 
 
