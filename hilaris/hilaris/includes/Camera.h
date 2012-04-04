@@ -9,6 +9,7 @@
 #include "Image.h"
 #include "RawImage.h"
 #include "Debayer.h"
+#include "DebayerBGRFast.h"
 
 struct AreaOfInterest {
 	uint16 posX;
@@ -38,12 +39,12 @@ class Camera {
 	
 	public:
 		Camera();
-		Camera(Debayer debayer);
+		Camera(Debayer* debayer);
 		Camera(uint8 bufferSize);
 		Camera(uint16 width, uint16 height);
 		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height);
-		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer debayer);
-		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer debayer, uint8 bufferSize);
+		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer);
+		Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize);
 		
 		~Camera();
 		
@@ -68,9 +69,10 @@ class Camera {
 		bool initialized;
 		bool isMultiBuffered;
 		Image* image;
+		Debayer* debayer;
 		
 		bool createBuffers(uint8 bufferSize);
-		bool init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize);
+		bool init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize);
 };
 
 #endif 

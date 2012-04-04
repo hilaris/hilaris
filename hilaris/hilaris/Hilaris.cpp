@@ -101,11 +101,11 @@ Camera* Hilaris::getCamera()
 	return this->camera;
 }
 
-Camera* Hilaris::getCamera(enum EnOscPictureType type)
+Camera* Hilaris::getCamera(Debayer* debayer)
 {
 	if(this->camera == NULL)
 	{
-		this->camera = new Camera(type);
+		this->camera = new Camera(debayer);
 	}
 	
 	return this->camera;
@@ -141,21 +141,21 @@ Camera* Hilaris::getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height
 	return this->camera;
 }
 
-Camera* Hilaris::getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type)
+Camera* Hilaris::getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer)
 {
 	if(this->camera == NULL)
 	{
-		this->camera = new Camera(lowX, lowY, width, height, type);
+		this->camera = new Camera(lowX, lowY, width, height, debayer);
 	}
 	
 	return this->camera;
 }
 
-Camera* Hilaris::getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize)
+Camera* Hilaris::getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize)
 {
 	if(this->camera == NULL)
 	{
-		this->camera = new Camera(lowX, lowY, width, height, type, bufferSize);
+		this->camera = new Camera(lowX, lowY, width, height, debayer, bufferSize);
 	}
 	
 	return this->camera;

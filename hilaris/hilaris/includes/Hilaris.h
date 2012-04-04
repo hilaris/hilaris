@@ -91,12 +91,12 @@ class Hilaris {
 		 *  @return Returns a camera object.
 		 */
 		Camera* getCamera();
-		Camera* getCamera(enum EnOscPictureType type);
+		Camera* getCamera(Debayer* debayer);
 		Camera* getCamera(uint8 bufferSize);
 		Camera* getCamera(uint16 width, uint16 height);
 		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height);
-		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type);
-		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, enum EnOscPictureType type, uint8 bufferSize);
+		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer);
+		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize);
 		
 		void resetCamera();
 		
