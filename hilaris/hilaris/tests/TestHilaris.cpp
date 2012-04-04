@@ -13,5 +13,5 @@ void TestHilaris::testStartUp(void)
 	hilaris.setConsoleLogLevel(NONE);
 	
 	CPPUNIT_ASSERT(hilaris.loaded());
-	CPPUNIT_ASSERT(false);
+	//CPPUNIT_ASSERT(false);
 }
