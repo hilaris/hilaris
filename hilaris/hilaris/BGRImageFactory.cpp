@@ -26,11 +26,14 @@ BGRImage BGRImageFactory::getBilinearDebayered(RawImage* raw)
 BGRImage BGRImageFactory::getDebayered(RawImage* raw)
 {
 	BGRImage image(raw->getWidth(), raw->getHeight());
-	
+	OscLog(DEBUG, "Before Bayerorder\n");
 	enum EnBayerOrder order;
 	OscCamGetBayerOrder(&order, 0, 0);
-
+	
+	OscLog(DEBUG, "Before debayer %p, %d, %d, %p\n", raw->getDataPtr(), raw->getWidth(), raw->getHeight(), image.getDataPtr());
 	OscVisDebayer(raw->getDataPtr(), raw->getWidth(), raw->getHeight(), order, image.getDataPtr());	
+	
+	OscLog(DEBUG, "after debayer\n");
 	return image;
 }
 

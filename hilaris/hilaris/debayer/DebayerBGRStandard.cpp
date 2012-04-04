@@ -13,8 +13,9 @@ BGRImage* DebayerBGRStandard::getObject(uint16 width, uint16 height)
 bool DebayerBGRStandard::debayer(RawImage* raw, Image* image)
 {
 	BGRImage b = BGRImageFactory::getDebayered(raw);
-	
+	OscLog(DEBUG, "Before copy debayered\n");
 	memcpy(image, &b, sizeof(b));
+	OscLog(DEBUG, "After copy debayered\n");
 	
 	return true;
 }

@@ -69,6 +69,7 @@ class Camera {
 		bool initialized;
 		bool isMultiBuffered;
 		Image* image;
+		RawImage* rawImage;
 		Debayer* debayer;
 		
 		bool createBuffers(uint8 bufferSize);

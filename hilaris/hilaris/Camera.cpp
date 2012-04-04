@@ -103,6 +103,7 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	
 	// create an image
 	this->image = debayer->getObject(width, height);
+	this->rawImage = new RawImage(this->aoi.width, this->aoi.height);
 	
 	// finished initializing
 	this->initialized = true;
@@ -270,11 +271,14 @@ Image* Camera::captureImage()
 		{
 			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
 			{
-				RawImage img(this->aoi.width, this->aoi.height);
-				memcpy(img.getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
+				OscLog(DEBUG, "Trying to copy rawdata to RawImage\n");
+				memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
 				
-				this->debayer->debayer(&img, this->image);
-
+				rawPic = this->image->getDataPtr();
+				OscLog(DEBUG, "this->image %d %d %d\n", rawPic[10], rawPic[100], rawPic[1000]);
+				
+				this->debayer->debayer(this->rawImage, this->image);
+				OscLog(DEBUG, "Debayered RawImage\n");
 				return this->image;
 			}
 		}
