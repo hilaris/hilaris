@@ -54,7 +54,15 @@ bool StreamServer::start()
 		OscLog(DEBUG, "starting to insert image sin buffer\n");
 		while(1)
 		{
-			this->insertImage(this->camera->captureImage());
+			Image* i = this->camera->captureImage();
+			#if defined(OSC_HOST)
+			i->save("streamc.bmp");
+			#endif
+		
+			#if defined(OSC_TARGET)
+			i->save("/home/httpd/streamc.bmp");
+			#endif
+			this->insertImage(i);
 			OscLog(ALERT, "Inserted\n");
 			usleep(1000);
 		}
@@ -111,7 +119,8 @@ void* StreamServer::sendData(void* arg)
 			
 			if(s->writeable(s->clients.at(i)))
 			{
-				len = send(s->clients.at(i), s->image->getDataPtr(), s->image->getWidth() * s->image->getHeight(), 0);
+				int size = (OSC_PICTURE_TYPE_COLOR_DEPTH(s->camera->getDebayer()->getType())/8) * s->image->getWidth() * s->image->getHeight();
+				len = send(s->clients.at(i), s->image->getDataPtr(), size, 0);
 			}
 			else
 			{

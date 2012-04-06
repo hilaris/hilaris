@@ -5,6 +5,11 @@ EnOscPictureType DebayerBGRStandard::getType()
 	return OSC_PICTURE_BGR_24;
 }
 
+long unsigned int DebayerBGRStandard::getSize()
+{
+	return sizeof(BGRImage);
+}
+
 BGRImage* DebayerBGRStandard::getObject(uint16 width, uint16 height)
 {
 	return new BGRImage(width, height);
