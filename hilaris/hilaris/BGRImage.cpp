@@ -2,7 +2,7 @@
 
 BGRImage::BGRImage(uint16 width, uint16 height)
 {
-	printf("width: %d, height: %d\n", width, height);
+	OscLog(DEBUG, "Creating BGRImage width: %d, height: %d\n", width, height);
 	this->width = width;
 	this->height = height;
 	

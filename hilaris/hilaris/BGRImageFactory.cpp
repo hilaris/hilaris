@@ -25,6 +25,7 @@ BGRImage BGRImageFactory::getBilinearDebayered(RawImage* raw)
 
 BGRImage BGRImageFactory::getDebayered(RawImage* raw)
 {
+	OscLog(DEBUG, "Create BGR Image w %d / h %d\n", raw->getWidth(), raw->getHeight());
 	BGRImage image(raw->getWidth(), raw->getHeight());
 	OscLog(DEBUG, "Before Bayerorder\n");
 	enum EnBayerOrder order;
