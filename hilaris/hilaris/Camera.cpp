@@ -116,6 +116,21 @@ OSC_ERR Camera::getLastError()
 	return this->lastError;
 }
 
+Debayer* Camera::getDebayer()
+{
+	return this->debayer;
+}
+
+uint16 Camera::getWidth()
+{
+	return this->aoi.width;
+}
+
+uint16 Camera::getHeight()
+{
+	return this->aoi.height;
+}
+
 bool Camera::createBuffers(uint8 bufferSize)
 {
 	for(int i = 0; i < bufferSize; i++)
@@ -210,7 +225,7 @@ uint16 Camera::getBlackLevelOffset()
  */
 bool Camera::setAutoExposure(bool enabled)
 {
-	uint16 reg_val;
+	uint16 reg_val;	
 	OscCamGetRegisterValue(0xAF, &reg_val);
 	return (this->lastError = OscCamSetRegisterValue(0xAF, (reg_val & ~0x1) | (uint16)enabled)) != SUCCESS;
 }

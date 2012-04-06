@@ -61,6 +61,10 @@ class Camera {
 		bool setBlackLevelOffset(uint16 offset);
 		bool setPerspective(enum EnOscCamPerspective p);
 		bool setShutterWidth(uint32 width);
+		
+		Debayer* getDebayer();
+		uint16 getWidth();
+		uint16 getHeight();
 
 	private:
 		enum EnOscPictureType type;

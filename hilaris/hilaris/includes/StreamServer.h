@@ -8,6 +8,7 @@
 #include "Hilaris.h"
 #include "Camera.h"
 #include "RawImage.h"
+#include "CircularBuffer.h"
 
 #include <pthread.h>
 #include <unistd.h>
@@ -27,8 +28,11 @@ class StreamServer {
 		bool start();
 		static void *sendData(void* arg);
 		bool stop();
-		bool insertImage(RawImage img);
-		RawImage getImage();
+		
+		bool bufferIsFull();
+		bool bufferIsEmpty();
+		bool insertImage(Image* img);
+		bool getImage();
 		bool readable(int fd);
 		bool writeable(int fd);
 		
@@ -36,9 +40,11 @@ class StreamServer {
 		pthread_t thread;
 		pthread_mutex_t bufferLock;
 		
-		RawImage* imgBuffer;
+		Image* image;
+		Image* imgBuffer[6];
 		int startBuffer;
-		int endBuffer;
+		int countBuffer;
+		int sizeBuffer;
 		
 		//int clients[MAX_CLIENTS];
 		

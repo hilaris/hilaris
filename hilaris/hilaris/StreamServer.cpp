@@ -1,15 +1,23 @@
 #include "StreamServer.h"
-#if 0
+
 StreamServer::StreamServer(Camera* camera)
 {
 	this->clients.reserve(5); 
 	this->camera = camera;
-	this->startBuffer = 0;
-	this->endBuffer = 0;
-	this->connected = 0;
 	
-	//TODO image size from camera
-	//this->buffer = (uint8*)malloc(OSC_CAM_MAX_IMAGE_WIDTH*OSC_CAM_MAX_IMAGE_HEIGHT);
+	this->startBuffer = 0;
+	this->countBuffer = 0;
+	this->sizeBuffer = 6;
+	
+	this->image = this->camera->getDebayer()->getObject(this->camera->getWidth(), this->camera->getHeight());
+	
+	for(int i = 0; i<this->sizeBuffer;i++)
+	{
+		this->imgBuffer[i] = this->camera->getDebayer()->getObject(this->camera->getWidth(), this->camera->getHeight());
+		OscLog(DEBUG, "created image nr %d at %p\n", i, this->imgBuffer[i]);
+	}
+	
+	this->connected = 0;
 	
 	//initialize socket
 	int err;
@@ -23,7 +31,6 @@ StreamServer::StreamServer(Camera* camera)
 	setsockopt(this->srvSocket, SOL_SOCKET, SO_REUSEADDR, &i, sizeof(int));
 	//i=1024*512;
 	//setsockopt(this->srvSocket, SOL_SOCKET, SO_SNDBUF, &i, sizeof(int));
-
 	bzero(&this->addr, sizeof(this->addr));
 	addr.sin_port = htons(12345);
 	addr.sin_family = AF_INET;
@@ -34,29 +41,38 @@ StreamServer::StreamServer(Camera* camera)
 
 	err = listen(this->srvSocket, MAX_CLIENTS);
 
-	//TODO initialize image buffer
-
 
 }
 
 bool StreamServer::start()
 {
+	int err;
 	pthread_mutex_init(&this->bufferLock, NULL);
-	if(pthread_create(&this->thread, NULL, sendData, (void*) this))
+	if((err=pthread_create(&this->thread, NULL, sendData, (void*) this))==0)
 	{
-		return true;
+		this->startBuffer = 0;
+		OscLog(DEBUG, "starting to insert image sin buffer\n");
+		while(1)
+		{
+			this->insertImage(this->camera->captureImage());
+			OscLog(ALERT, "Inserted\n");
+			usleep(1000);
+		}
 	}
 	else
 	{
+		OscLog(DEBUG, "failed to start thread with error nr\n", err);
 		return false;
 	}
 }
 
 void* StreamServer::sendData(void* arg)
 {	
+	OscLog(DEBUG, "sending thread started\n");
+	StreamServer* s = (StreamServer*)arg;
 	while(1)
 	{
-		StreamServer* s = (StreamServer*)arg;
+		usleep(1000);
 		
 		//accept pending client connections
 		if(s->readable(s->srvSocket))
@@ -75,20 +91,27 @@ void* StreamServer::sendData(void* arg)
 			}
 		}
 		
-		RawImage* img = s->camera->captureImage();
+		//if no image can be read skip sending image
+		if((s->connected <= 0) || !s->getImage())
+		{
+			continue;
+		}
 		
+		#if defined(OSC_HOST)
+			s->image->save("stream.bmp");
+		#endif
+		
+		#if defined(OSC_TARGET)
+			s->image->save("/home/httpd/stream.bmp");
+		#endif
 		//send data to all connected clients
-		//TODO read image from buffer s->getImage();
 		for(int i=0;i < s->connected;i++)
 		{
 			int len;
-			char msg[] = "hallööö";
 			
 			if(s->writeable(s->clients.at(i)))
 			{
-				//send to client
-				len = send(s->clients.at(i), img->getDataPtr(), img->getWidth() * img->getHeight(), 0);
-				
+				len = send(s->clients.at(i), s->image->getDataPtr(), s->image->getWidth() * s->image->getHeight(), 0);
 			}
 			else
 			{
@@ -110,35 +133,68 @@ void* StreamServer::sendData(void* arg)
 					s->connected--;
 					printf("disconnected client %d\n", i);
 				}
-			}
-			
+			}			
 		}
-		
-		//printf("message: \n");
-		usleep(1000);
 	}
 	
 	return arg;
 }
 
-bool StreamServer::insertImage(RawImage img)
+bool StreamServer::bufferIsFull()
 {
-	pthread_mutex_lock(&this->bufferLock);
-	sleep(1);
-	//insert Image
-	pthread_mutex_unlock(&this->bufferLock);  
-	return false;
+	return this->countBuffer == this->sizeBuffer;
 }
 
-RawImage StreamServer::getImage()
+bool StreamServer::bufferIsEmpty()
+{
+	return this->countBuffer == 0;
+}
+
+bool StreamServer::insertImage(Image *img)
 {
 	pthread_mutex_lock(&this->bufferLock);
-	//sleep(1);
-	//get Image from buffer
-	RawImage i(*this->camera->captureImage());
-	pthread_mutex_unlock(&this->bufferLock);  
+	OscLog(DEBUG, "insert image nr %d\n", this->countBuffer);
 	
-	return i;
+	int end = (this->startBuffer + this->countBuffer) % this->sizeBuffer;
+    
+    OscLog(DEBUG, "insert at buffer[%d] %p / start %d / count %d\n", end, this->imgBuffer[end], this->startBuffer, this->countBuffer);
+	memcpy(this->imgBuffer[end], img, this->camera->getDebayer()->getSize());
+	//*this->imgBuffer[end] = *img;
+	    
+    if (this->countBuffer == this->sizeBuffer)
+    {
+		this->startBuffer = (this->startBuffer + 1) % this->sizeBuffer; /* full, overwrite */
+    }
+    else
+    {
+    	this->countBuffer++;
+    }
+	
+	pthread_mutex_unlock(&this->bufferLock);  
+	OscLog(DEBUG, "After unlock\n");
+	return true;
+}
+
+bool StreamServer::getImage()
+{	
+	if(!this->bufferIsEmpty())
+	{
+		pthread_mutex_lock(&this->bufferLock);
+		OscLog(ALERT, "getting image out of buffer at pos %d\n", this->startBuffer);
+		
+		OscLog(DEBUG, "get at %p size %ld into %p\n", this->imgBuffer[this->startBuffer], this->camera->getDebayer()->getSize(), this->image);
+		memcpy(this->image, this->imgBuffer[this->startBuffer], this->camera->getDebayer()->getSize());
+		//*this->image = *this->imgBuffer[this->startBuffer];
+		
+		this->startBuffer = (this->startBuffer + 1) % this->sizeBuffer;
+		this->countBuffer--;
+		
+		pthread_mutex_unlock(&this->bufferLock);  
+	
+		return true;
+	}
+	OscLog(DEBUG, "Buffer is still empty\n");	
+	return false;	
 }
 
 
@@ -192,4 +248,3 @@ bool StreamServer::writeable(int fd)
 
 	return FALSE;
 }
-#endif
