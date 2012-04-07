@@ -10,6 +10,7 @@
 #include "RawImage.h"
 #include "Debayer.h"
 #include "DebayerBGRFast.h"
+#include "FrameProcessor.h"
 
 struct AreaOfInterest {
 	uint16 posX;
@@ -62,6 +63,10 @@ class Camera {
 		bool setPerspective(enum EnOscCamPerspective p);
 		bool setShutterWidth(uint32 width);
 		
+		bool addFrameProcessor(FrameProcessor* proc);
+		
+		
+		FrameProcessor* processor;
 		Debayer* getDebayer();
 		uint16 getWidth();
 		uint16 getHeight();

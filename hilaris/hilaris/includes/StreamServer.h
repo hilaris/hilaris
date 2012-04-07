@@ -26,17 +26,19 @@ class StreamServer {
 	public:
 		StreamServer(Camera* camera);
 		bool start();
-		static void *sendData(void* arg);
 		bool stop();
+		
+	private:
+		static void *sendData(void* arg);
+		
+		bool readable(int fd);
+		bool writeable(int fd);
 		
 		bool bufferIsFull();
 		bool bufferIsEmpty();
 		bool insertImage(Image* img);
 		bool getImage();
-		bool readable(int fd);
-		bool writeable(int fd);
-		
-	private:
+	
 		pthread_t thread;
 		pthread_mutex_t bufferLock;
 		
@@ -45,9 +47,7 @@ class StreamServer {
 		int startBuffer;
 		int countBuffer;
 		int sizeBuffer;
-		
-		//int clients[MAX_CLIENTS];
-		
+				
 		std::vector<int> clients;
 		int connected;
 		int srvSocket;

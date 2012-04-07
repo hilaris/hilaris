@@ -29,8 +29,10 @@ StreamServer::StreamServer(Camera* camera)
 
 	i=1;
 	setsockopt(this->srvSocket, SOL_SOCKET, SO_REUSEADDR, &i, sizeof(int));
-	//i=1024*512;
-	//setsockopt(this->srvSocket, SOL_SOCKET, SO_SNDBUF, &i, sizeof(int));
+	
+	i=this->camera->getWidth()*this->camera->getHeight() * (OSC_PICTURE_TYPE_COLOR_DEPTH(this->camera->getDebayer()->getType())/8);
+	setsockopt(this->srvSocket, SOL_SOCKET, SO_SNDBUF, &i, sizeof(int));
+	
 	bzero(&this->addr, sizeof(this->addr));
 	addr.sin_port = htons(12345);
 	addr.sin_family = AF_INET;
@@ -54,16 +56,8 @@ bool StreamServer::start()
 		OscLog(DEBUG, "starting to insert image sin buffer\n");
 		while(1)
 		{
-			Image* i = this->camera->captureImage();
-			#if defined(OSC_HOST)
-			i->save("streamc.bmp");
-			#endif
-		
-			#if defined(OSC_TARGET)
-			i->save("/home/httpd/streamc.bmp");
-			#endif
-			this->insertImage(i);
-			OscLog(ALERT, "Inserted\n");
+			this->insertImage(this->camera->captureImage());
+			OscLog(ALERT, "Picture taken and inserted in buffer\n");
 			usleep(1000);
 		}
 	}
@@ -105,13 +99,6 @@ void* StreamServer::sendData(void* arg)
 			continue;
 		}
 		
-		#if defined(OSC_HOST)
-			s->image->save("stream.bmp");
-		#endif
-		
-		#if defined(OSC_TARGET)
-			s->image->save("/home/httpd/stream.bmp");
-		#endif
 		//send data to all connected clients
 		for(int i=0;i < s->connected;i++)
 		{
@@ -213,6 +200,12 @@ bool StreamServer::stop()
 	pthread_cancel(this->thread);
 	pthread_join(this->thread, NULL);
 	pthread_mutex_destroy(&this->bufferLock);
+
+	for(int i = 0; i<this->sizeBuffer;i++)
+	{
+		delete this->imgBuffer[i];
+	}
+	
 	return true;
 }
 

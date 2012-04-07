@@ -169,6 +169,11 @@ bool Camera::createBuffers(uint8 bufferSize)
 	return true;
 }
 
+bool Camera::addFrameProcessor(FrameProcessor* proc)
+{
+	this->processor = proc;
+}
+
 /**
  *	@brief Set a manual exposure time.
  *
@@ -294,6 +299,9 @@ Image* Camera::captureImage()
 				
 				this->debayer->debayer(this->rawImage, this->image);
 				OscLog(DEBUG, "Debayered RawImage\n");
+				
+				this->processor->process(this->image);
+				
 				return this->image;
 			}
 		}

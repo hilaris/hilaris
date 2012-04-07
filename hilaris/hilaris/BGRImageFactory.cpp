@@ -4,7 +4,7 @@ BGRImage BGRImageFactory::getFastDebayered(RawImage* raw)
 {
 	BGRImage image(raw->getWidth() / 2, raw->getHeight() / 2);
 	
-	OscVisFastDebayerRGB(&raw->getOscarContext(), &image.getOscarContext());
+	OscVisFastDebayerBGR(&raw->getOscarContext(), &image.getOscarContext());
 	
 	return image;
 }
