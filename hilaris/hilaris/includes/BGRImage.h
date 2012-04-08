@@ -4,11 +4,11 @@
 #include "oscar.h"
 #include "Image.h"
 
-struct BGRPixel
+enum BGRPixel
 {
-	uint8 blue;
-	uint8 green;
-	uint8 red;
+	BLUE  = 0,
+	GREEN = 1,
+	RED   = 2
 };
 
 class BGRImage : public Image
@@ -19,13 +19,8 @@ class BGRImage : public Image
 		EnOscPictureType getType();
 		uint8* getDataPtr();
 		
-		void pixel(uint16 x, uint16 y, struct BGRPixel& pixel);
-		uint8& component(uint16 x, uint16 y);
-		
-		// operators
-		// access via: image(x, y) = pixelvalue;
-		BGRPixel& operator()(const uint16 x, const uint16 y, struct BGRPixel& pixel);
-		uint8&    operator()(const uint16 x, const uint16);
+		uint8& pixel(uint16 x, uint16 y, enum BGRPixel compontent);
+		uint8& operator()(const uint16 x, const uint16, enum BGRPixel compontent);
 	
 	private:
 		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT * 3];
