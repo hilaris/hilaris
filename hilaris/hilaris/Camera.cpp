@@ -172,6 +172,8 @@ bool Camera::createBuffers(uint8 bufferSize)
 bool Camera::addFrameProcessor(FrameProcessor* proc)
 {
 	this->processor = proc;
+	
+	return true;
 }
 
 /**

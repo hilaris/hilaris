@@ -15,6 +15,8 @@ class DebayerBGRHalfsize : public Debayer
 		BGRImage* getObject(uint16 width, uint16 height);
 		bool debayer(RawImage* raw, Image* image);
 		long unsigned int getSize();
+		
+		virtual ~DebayerBGRHalfsize() {};
 };
 
 #endif

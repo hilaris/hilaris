@@ -10,6 +10,8 @@ class FrameProcessor {
 		virtual void tearDown() {};
 		virtual void beforeProcess() {};
 		virtual void afterProcess() {};
+		
+		virtual ~FrameProcessor() {};
 };
 
 #endif 
