@@ -1,12 +1,12 @@
-#ifndef _TESTBGRIMAGE_H_
-#define _TESTBGRIMAGE_H_
+#ifndef _TESTBINARYIMAGE_H_
+#define _TESTBINARYIMAGE_H_
 
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-class TestBGRImage : public CppUnit::TestFixture
+class TestBinaryImage : public CppUnit::TestFixture
 {
-	CPPUNIT_TEST_SUITE(TestBGRImage);
+	CPPUNIT_TEST_SUITE(TestBinaryImage);
 	
 		CPPUNIT_TEST(testCreate);
 		

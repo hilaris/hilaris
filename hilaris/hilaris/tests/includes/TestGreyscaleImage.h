@@ -1,12 +1,12 @@
-#ifndef _TESTBGRIMAGE_H_
-#define _TESTBGRIMAGE_H_
+#ifndef _TESTGREYSCALEIMAGE_H_
+#define _TESTGREYSCALEIMAGE_H_
 
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-class TestBGRImage : public CppUnit::TestFixture
+class TestGreyscaleImage : public CppUnit::TestFixture
 {
-	CPPUNIT_TEST_SUITE(TestBGRImage);
+	CPPUNIT_TEST_SUITE(TestGreyscaleImage);
 	
 		CPPUNIT_TEST(testCreate);
 		
