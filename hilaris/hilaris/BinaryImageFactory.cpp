@@ -30,3 +30,22 @@ BinaryImage BinaryImageFactory::getFromGreyscaleImage(GreyscaleImage& grey, uint
 	
 	return image;
 }
+
+/*
+ *	@todo add correct error handling, like whatif width is not dividable by 4 etc.
+ */
+ 
+BinaryImage BinaryImageFactory::create(uint16 width, uint16 height, uint8 color)
+{
+	BinaryImage image(width, height);
+	
+	for(int i = 0; i < image.getHeight(); i++)
+	{
+		for(int j = 0; j < image.getWidth(); j++)
+		{
+			image(i, j) = color && 1;
+		}
+	}
+	
+	return image;
+}

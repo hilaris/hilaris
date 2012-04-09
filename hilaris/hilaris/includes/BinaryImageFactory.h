@@ -14,6 +14,8 @@ class BinaryImageFactory
 		static BinaryImage getHalfsizeDebayered(RawImage* raw, uint8 thresold = 127, bool darkIsForeground = true);
 		
 		static BinaryImage getFromGreyscaleImage(GreyscaleImage& grey, uint8 thresold = 127, bool darkIsForeground = true);
+		
+		static BinaryImage create(uint16 width, uint16 height, uint8 color);
 };
 
 #endif

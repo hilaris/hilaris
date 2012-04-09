@@ -49,3 +49,16 @@ GreyscaleImage GreyscaleImageFactory::getFromBinaryImage(BinaryImage& binary)
 	
 	return image;
 }
+
+GreyscaleImage GreyscaleImageFactory::create(uint16 width, uint16 height, uint8 color)
+{
+	GreyscaleImage image(width, height);
+	
+	for(int i = 0; i < image.getHeight(); i++)
+	{
+		for(int j = 0; j < image.getWidth(); j++)
+		{
+			image(i, j) = color;
+		}
+	}
+}

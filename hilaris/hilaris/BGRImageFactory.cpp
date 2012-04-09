@@ -49,3 +49,20 @@ BGRImage BGRImageFactory::getHalfsizeDebayered(RawImage* raw)
 	
 	return image;
 }
+
+BGRImage BGRImageFactory::create(uint16 width, uint16 height, uint8 blue, uint16 green, uint16 red)
+{
+	BGRImage image(width, height);
+	
+	for(int i = 0; i < image.getHeight(); i++)
+	{
+		for(int j = 0; j < image.getWidth(); j++)
+		{
+			image(i, j, BLUE)  = blue;
+			image(i, j, GREEN) = green;
+			image(i, j, RED)   = red;
+		}
+	}
+	
+	return image;
+}
