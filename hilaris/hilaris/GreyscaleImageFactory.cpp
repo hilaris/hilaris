@@ -61,4 +61,6 @@ GreyscaleImage GreyscaleImageFactory::create(uint16 width, uint16 height, uint8 
 			image(i, j) = color;
 		}
 	}
+	
+	return image;
 }
