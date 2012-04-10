@@ -59,6 +59,13 @@ GreyscaleImage GreyscaleImageFactory::getFromBGRImage(BGRImage& bgr)
 	return image;
 }
 
+GreyscaleImage GreyscaleImageFactory::getFromRGBImage(RGBImage& rgb)
+{
+	BGRImage bgr = BGRImageFactory::getFromRGBImage(rgb);
+	
+	return GreyscaleImageFactory::getFromBGRImage(bgr);
+}
+
 GreyscaleImage GreyscaleImageFactory::create(uint16 width, uint16 height, uint8 color)
 {
 	GreyscaleImage image(width, height);

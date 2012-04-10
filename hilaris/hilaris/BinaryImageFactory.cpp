@@ -39,6 +39,13 @@ BinaryImage BinaryImageFactory::getFromBGRImage(BGRImage& bgr, uint8 thresold, b
 	return image;
 }
 
+BinaryImage BinaryImageFactory::getFromRGBImage(RGBImage& rgb, uint8 thresold, bool darkIsForeground)
+{
+	BGRImage bgr = BGRImageFactory::getFromRGBImage(rgb);
+	
+	return BinaryImageFactory::getFromBGRImage(bgr, thresold, darkIsForeground);
+}
+
 /*
  *	@todo add correct error handling, like whatif width is not dividable by 4 etc.
  */

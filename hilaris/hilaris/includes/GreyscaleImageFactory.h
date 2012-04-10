@@ -6,6 +6,7 @@
 #include "RawImage.h"
 #include "BGRImage.h"
 #include "BinaryImage.h"
+#include "RGBImage.h"
 
 class GreyscaleImageFactory
 {
@@ -16,6 +17,7 @@ class GreyscaleImageFactory
 		
 		static GreyscaleImage getFromBinaryImage(BinaryImage& binary);
 		static GreyscaleImage getFromBGRImage(BGRImage& bgr);
+		static GreyscaleImage getFromRGBImage(RGBImage& rgb);
 		
 		static GreyscaleImage create(uint16 width, uint16 height, uint8 color);
 };
