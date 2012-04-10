@@ -6,11 +6,11 @@
 #include <string.h>
 
 #include "oscar.h"
-#include "Image.h"
 #include "RawImage.h"
+#include "Image.h"
 #include "Debayer.h"
-#include "DebayerBGRFast.h"
 #include "FrameProcessor.h"
+#include "DebayerBGRFast.h"
 
 struct AreaOfInterest {
 	uint16 posX;

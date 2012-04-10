@@ -6,28 +6,41 @@
 #include <string.h>
 #include <unistd.h>
 
+// include oscar
 #include "oscar.h"
-#include "Camera.h"
 
-/*
-class Camera;
-class Image;
-class RawImage;
-class BGRImage;
-class BGRImageFactory;
-class DeviceIO;
-*/
-
-/*
+// include images
 #include "Image.h"
 #include "RawImage.h"
 #include "BGRImage.h"
+#include "RGBImage.h"
+#include "GreyscaleImage.h"
+#include "BinaryImage.h"
+
+// include factories
+#include "BinaryImageFactory.h"
 #include "BGRImageFactory.h"
+#include "GreyscaleImageFactory.h"
+#include "RGBImageFactory.h"
 
+// include debayer
+#include "Debayer.h"
+#include "DebayerBGRFast.h"
+#include "DebayerBGRStandard.h"
+#include "DebayerBGRHalfsize.h"
+#include "DebayerBGRBilinear.h"
+#include "DebayerGreyscaleFast.h"
+#include "DebayerGreyscaleHalfsize.h"
+#include "DebayerGreyscaleVector.h"
+
+// include system classes
 #include "Camera.h"
-
 #include "DeviceIO.h"
-*/
+#include "DataProcessor.h"
+#include "FrameProcessor.h"
+#include "CircularBuffer.h"
+#include "StreamClient.h"
+#include "StreamServer.h"
 
 /**
  *  @mainpage

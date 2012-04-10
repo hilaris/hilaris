@@ -1,11 +1,14 @@
 #ifndef _DEBAYERBGRFAST_H_
 #define _DEBAYERBGRFAST_H_
 
-#include "Debayer.h"
+#include <string.h>
+
+#include "oscar.h"
+#include "Image.h"
+#include "RawImage.h"
 #include "BGRImage.h"
 #include "BGRImageFactory.h"
-
-#include <string.h>
+#include "Debayer.h"
 
 class DebayerBGRFast : public Debayer
 {

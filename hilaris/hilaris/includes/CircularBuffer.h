@@ -1,6 +1,8 @@
 #ifndef _CIRCULAR_BUFFER_H_
 #define _CIRCULAR_BUFFER_H_
 
+#include "Hilaris.h"
+
 #include <malloc.h>
 
 template <class T>

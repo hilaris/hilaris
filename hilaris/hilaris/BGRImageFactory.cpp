@@ -50,6 +50,26 @@ BGRImage BGRImageFactory::getHalfsizeDebayered(RawImage* raw)
 	return image;
 }
 
+BGRImage BGRImageFactory::getFromRGBImage(RGBImage& rgb)
+{
+	BGRImage bgr(rgb.getWidth(), rgb.getHeight());
+	
+	for(int i = 0; i < bgr.getHeight(); i ++)
+	{
+		for(int j = 0; j < bgr.getWidth(); j ++)
+		{
+			// RGB -> BGR
+			// swap colors
+			bgr(i, j, RED)   = rgb(i, j, RGB_RED);
+			bgr(i, j, GREEN) = rgb(i, j, RGB_GREEN);
+			bgr(i, j, BLUE)  = rgb(i, j, RGB_BLUE);
+			
+		}
+	}
+	
+	return bgr;
+}
+
 BGRImage BGRImageFactory::create(uint16 width, uint16 height, uint8 blue, uint16 green, uint16 red)
 {
 	BGRImage image(width, height);

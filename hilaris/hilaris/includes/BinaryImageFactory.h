@@ -3,8 +3,10 @@
 
 #include "oscar.h"
 #include "BinaryImage.h"
-#include "GreyscaleImage.h"
 #include "RawImage.h"
+#include "GreyscaleImage.h"
+#include "BGRImage.h"
+#include "GreyscaleImageFactory.h"
 
 class BinaryImageFactory
 {
@@ -14,6 +16,7 @@ class BinaryImageFactory
 		static BinaryImage getHalfsizeDebayered(RawImage* raw, uint8 thresold = 127, bool darkIsForeground = true);
 		
 		static BinaryImage getFromGreyscaleImage(GreyscaleImage& grey, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getFromBGRImage(BGRImage& bgr, uint8 thresold = 127, bool darkIsForeground = true);
 		
 		static BinaryImage create(uint16 width, uint16 height, uint8 color);
 };

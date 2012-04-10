@@ -4,11 +4,7 @@
 #define MAX_CLIENTS 5
 #define SOCK_ERROR -1
 
-#include "oscar.h"
 #include "Hilaris.h"
-#include "Camera.h"
-#include "RawImage.h"
-#include "CircularBuffer.h"
 
 #include <pthread.h>
 #include <unistd.h>

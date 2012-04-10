@@ -3,7 +3,6 @@
 
 #include "oscar.h"
 #include "Image.h"
-#include "BinaryImage.h"
 
 class GreyscaleImage : public Image
 {

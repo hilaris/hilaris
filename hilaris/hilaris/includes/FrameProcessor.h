@@ -1,7 +1,7 @@
 #ifndef _FRAME_PROCESSOR_H_
 #define _FRAME_PROCESSOR_H_
 
-#include "Image.h"	
+#include "Image.h"
 
 class FrameProcessor {
 	public:

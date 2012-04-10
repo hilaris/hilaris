@@ -3,12 +3,14 @@
 
 #include "oscar.h"
 #include "Image.h"
+#include "BGRImage.h"
+#include "BGRImageFactory.h"
 
 enum RGBPixel
 {
-	RED   = 0,
-	GREEN = 1,
-	BLUE  = 2
+	RGB_RED   = 0,
+	RGB_GREEN = 1,
+	RGB_BLUE  = 2
 };
 
 class RGBImage : public Image
@@ -18,6 +20,9 @@ class RGBImage : public Image
 		
 		EnOscPictureType getType();
 		uint8* getDataPtr();
+		
+		// overriden save function
+		void save(char* path, enum ImageEncoding enc = BMP);
 		
 		uint8& pixel(uint16 x, uint16 y, enum RGBPixel compontent);
 		uint8& operator()(const uint16 x, const uint16, enum RGBPixel compontent);

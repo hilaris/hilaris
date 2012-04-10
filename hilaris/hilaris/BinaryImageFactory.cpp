@@ -1,5 +1,4 @@
 #include "BinaryImageFactory.h"
-#include "GreyscaleImageFactory.h"
 
 BinaryImage BinaryImageFactory::getFastDebayered(RawImage* raw, uint8 thresold, bool darkIsForeground)
 {
@@ -27,6 +26,15 @@ BinaryImage BinaryImageFactory::getFromGreyscaleImage(GreyscaleImage& grey, uint
 	BinaryImage image(grey.getWidth(), grey.getHeight());
 	
 	OscVisGrey2BW(&grey.getOscarContext(), &image.getOscarContext(), thresold, darkIsForeground);
+	
+	return image;
+}
+
+BinaryImage BinaryImageFactory::getFromBGRImage(BGRImage& bgr, uint8 thresold, bool darkIsForeground)
+{
+	BinaryImage image(bgr.getWidth(), bgr.getHeight());
+	
+	OscVisBGR2BW(&bgr.getOscarContext(), &image.getOscarContext(), thresold, darkIsForeground);
 	
 	return image;
 }

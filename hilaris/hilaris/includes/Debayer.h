@@ -1,8 +1,8 @@
 #ifndef _DEBAYER_H_
 #define _DEBAYER_H_
 
+#include "oscar.h"
 #include "Image.h"
-#include "RawImage.h"
 
 class Debayer
 {

@@ -1,9 +1,7 @@
 #ifndef _DEBAYERGREYSCALEHALFSIZE_H_
 #define _DEBAYERGREYSCALEHALFSIZE_H_
 
-#include "Debayer.h"
-#include "GreyscaleImage.h"
-#include "GreyscaleImageFactory.h"
+#include "Hilaris.h"
 
 #include <string.h>
 
