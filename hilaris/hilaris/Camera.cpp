@@ -307,7 +307,7 @@ Image* Camera::captureImage()
 				
 				if(this->processor != NULL)
 				{
-					this->processor->process(this->image);
+					return this->processor->process(this->image);
 				}
 				
 				return this->image;

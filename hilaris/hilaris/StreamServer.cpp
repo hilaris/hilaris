@@ -53,7 +53,6 @@ bool StreamServer::start()
 	if((err=pthread_create(&this->thread, NULL, sendData, (void*) this))==0)
 	{
 		this->startBuffer = 0;
-		OscLog(DEBUG, "starting to insert image sin buffer\n");
 		while(1)
 		{
 			this->insertImage(this->camera->captureImage());
@@ -108,20 +107,14 @@ void* StreamServer::sendData(void* arg)
 			{
 				int size = (OSC_PICTURE_TYPE_COLOR_DEPTH(s->camera->getDebayer()->getType())/8) * s->image->getWidth() * s->image->getHeight();
 				len = send(s->clients.at(i), s->image->getDataPtr(), size, 0);
-			}
-			else
-			{
-				printf("disconnecting client %d\n", i);
-				s->clients.erase(s->clients.begin() + i);
-				s->connected--;
-				continue;
+				OscLog(DEBUG, "sent %d bytes\n", len);
 			}
 			
 			if(s->readable(s->clients.at(i)))
 			{
 				int err;
 				char dummy[100];
-
+				printf("readable disconnecting\n");
 				err=read(s->clients.at(i), &dummy, sizeof(dummy)-1);
 				if (err==0) {
 					printf("disconnecting client %d\n", i);
