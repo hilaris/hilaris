@@ -29,10 +29,20 @@ class BinaryImage : public Image
 		// operators
 		// access via: image(x, y) = pixelvalue;
 		uint8& operator()(const uint16 x, const uint16 y);
+		
+		void invert();
+		bool getInvertedBackground();
+	
+	protected:
+		
+		// @brief black is foreground?
+		bool invertedBackground;
+		void setInvertedBackground(bool set = true);
 	
 	private:
 		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
 		struct OSC_VIS_REGIONS regions;
+		
 };
 
 #endif

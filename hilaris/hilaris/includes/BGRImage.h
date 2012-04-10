@@ -1,5 +1,5 @@
-#ifndef BGRIMAGE_H
-#define BGRIMAGE_H
+#ifndef _BGRIMAGE_H_
+#define _BGRIMAGE_H_
 
 #include "oscar.h"
 #include "Image.h"

@@ -29,6 +29,29 @@ void BinaryImage::save(char* path, enum ImageEncoding enc)
 	this->saveContext(grey.getOscarContext(), path);
 }
 
+void BinaryImage::invert()
+{
+	for(int i = 0; i < this->getHeight(); i ++)
+	{
+		for(int j = 0; j < this->getWidth(); j ++)
+		{
+			this->pixel(i, j) = (uint8)(!this->pixel(i, j));
+		}
+	}
+	
+	this->setInvertedBackground(!this->getInvertedBackground());
+}
+
+void BinaryImage::setInvertedBackground(bool set)
+{
+	this->invertedBackground = set;
+}
+
+bool BinaryImage::getInvertedBackground()
+{
+	return this->invertedBackground;
+}
+
 uint8& BinaryImage::pixel(uint16 x, uint16 y)
 {
 	return this->data[x * this->getWidth() + y];

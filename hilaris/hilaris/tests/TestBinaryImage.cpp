@@ -28,3 +28,12 @@ void TestBinaryImage::testCreate(void)
 	
 	CPPUNIT_ASSERT(loopTest);
 }
+
+/**
+void TestBinaryImage::testInvert(void)
+{
+	BinaryImage image = BinaryImageFactory::create(32, 32, 123);
+	
+	for
+}
+*/
