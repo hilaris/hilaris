@@ -2,9 +2,10 @@
 #define _GREYSCALEIMAGEFACTORY_H_
 
 #include "oscar.h"
-#include "BinaryImage.h"
 #include "GreyscaleImage.h"
 #include "RawImage.h"
+#include "BGRImage.h"
+#include "BinaryImage.h"
 
 class GreyscaleImageFactory
 {

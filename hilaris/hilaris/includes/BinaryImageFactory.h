@@ -3,9 +3,10 @@
 
 #include "oscar.h"
 #include "BinaryImage.h"
+#include "RawImage.h"
 #include "GreyscaleImage.h"
 #include "BGRImage.h"
-#include "RawImage.h"
+#include "GreyscaleImageFactory.h"
 
 class BinaryImageFactory
 {

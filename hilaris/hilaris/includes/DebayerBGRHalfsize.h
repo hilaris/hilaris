@@ -1,9 +1,7 @@
 #ifndef _DEBAYERBGRHALFSIZE_H_
 #define _DEBAYERBGRHALFSIZE_H_
 
-#include "Debayer.h"
-#include "BGRImage.h"
-#include "BGRImageFactory.h"
+#include "Hilaris.h"
 
 #include <string.h>
 

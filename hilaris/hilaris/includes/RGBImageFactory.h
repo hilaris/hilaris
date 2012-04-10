@@ -1,8 +1,7 @@
 #ifndef _RGBImageFACTORY_H_
 #define _RGBImageFACTORY_H_
 
-#include "oscar.h"
-#include "RawImage.h"
+#include "Hilaris.h"
 
 class RGBImageFactory
 {

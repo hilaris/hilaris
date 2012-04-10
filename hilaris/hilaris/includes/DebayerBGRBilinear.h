@@ -1,9 +1,7 @@
 #ifndef _DEBAYERBGRBILINEAR_H_
 #define _DEBAYERBGRBILINEAR_H_
 
-#include "Debayer.h"
-#include "BGRImage.h"
-#include "BGRImageFactory.h"
+#include "Hilaris.h"
 
 #include <string.h>
 
