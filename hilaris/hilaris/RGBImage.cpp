@@ -19,12 +19,12 @@ uint8* RGBImage::getDataPtr()
 	return this->data;
 }
 
-uint8& RGBImage::pixel(uint16 x, uint16 y, enum RGBPixel component)
+uint8& RGBImage::pixel(uint16 x, uint16 y, enum RGBImage::Pixel component)
 {
 	return this->data[x * this->getWidth() * 3 + y * 3 + component];
 }
 
-uint8& RGBImage::operator()(const uint16 x, const uint16 y, enum RGBPixel component)
+uint8& RGBImage::operator()(const uint16 x, const uint16 y, enum RGBImage::Pixel component)
 {
 	return this->pixel(x, y, component);
 }

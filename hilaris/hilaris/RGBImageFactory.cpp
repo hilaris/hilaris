@@ -17,9 +17,9 @@ RGBImage RGBImageFactory::create(uint16 width, uint16 height, uint8 blue, uint16
 	{
 		for(int j = 0; j < image.getWidth(); j++)
 		{
-			image(i, j, RGB_GREEN) = green;
-			image(i, j, RGB_RED)   = red;
-			image(i, j, RGB_BLUE)  = blue;
+			image(i, j, RGBImage::GREEN) = green;
+			image(i, j, RGBImage::RED)   = red;
+			image(i, j, RGBImage::BLUE)  = blue;
 		}
 	}
 	
