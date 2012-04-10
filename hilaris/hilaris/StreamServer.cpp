@@ -155,7 +155,6 @@ bool StreamServer::insertImage(Image *img)
     
     OscLog(DEBUG, "insert at buffer[%d] %p / start %d / count %d\n", end, this->imgBuffer[end], this->startBuffer, this->countBuffer);
 	memcpy(this->imgBuffer[end], img, this->camera->getDebayer()->getSize());
-	//*this->imgBuffer[end] = *img;
 	    
     if (this->countBuffer == this->sizeBuffer)
     {
@@ -180,7 +179,6 @@ bool StreamServer::getImage()
 		
 		OscLog(DEBUG, "get at %p size %ld into %p\n", this->imgBuffer[this->startBuffer], this->camera->getDebayer()->getSize(), this->image);
 		memcpy(this->image, this->imgBuffer[this->startBuffer], this->camera->getDebayer()->getSize());
-		//*this->image = *this->imgBuffer[this->startBuffer];
 		
 		this->startBuffer = (this->startBuffer + 1) % this->sizeBuffer;
 		this->countBuffer--;

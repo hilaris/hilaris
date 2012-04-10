@@ -105,6 +105,9 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	this->image = debayer->getObject(width, height);
 	this->rawImage = new RawImage(this->aoi.width, this->aoi.height);
 	
+	//initialize processors
+	this->processor = NULL;
+	
 	// finished initializing
 	this->initialized = true;
 	
@@ -302,7 +305,10 @@ Image* Camera::captureImage()
 				this->debayer->debayer(this->rawImage, this->image);
 				OscLog(DEBUG, "Debayered RawImage\n");
 				
-				this->processor->process(this->image);
+				if(this->processor != NULL)
+				{
+					this->processor->process(this->image);
+				}
 				
 				return this->image;
 			}
