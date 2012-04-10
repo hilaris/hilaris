@@ -19,12 +19,12 @@ uint8* BGRImage::getDataPtr()
 	return this->data;
 }
 
-uint8& BGRImage::pixel(uint16 x, uint16 y, enum BGRPixel component)
+uint8& BGRImage::pixel(uint16 x, uint16 y, enum BGRImage::Pixel component)
 {
 	return this->data[x * this->getWidth() * 3 + y * 3 + component];
 }
 
-uint8& BGRImage::operator()(const uint16 x, const uint16 y, enum BGRPixel component)
+uint8& BGRImage::operator()(const uint16 x, const uint16 y, enum BGRImage::Pixel component)
 {
 	return this->pixel(x, y, component);
 }

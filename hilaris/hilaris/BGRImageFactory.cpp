@@ -60,10 +60,44 @@ BGRImage BGRImageFactory::getFromRGBImage(RGBImage& rgb)
 		{
 			// RGB -> BGR
 			// swap colors
-			bgr(i, j, RED)   = rgb(i, j, RGB_RED);
-			bgr(i, j, GREEN) = rgb(i, j, RGB_GREEN);
-			bgr(i, j, BLUE)  = rgb(i, j, RGB_BLUE);
+			bgr(i, j, BGRImage::RED)   = rgb(i, j, RGBImage::RED);
+			bgr(i, j, BGRImage::GREEN) = rgb(i, j, RGBImage::GREEN);
+			bgr(i, j, BGRImage::BLUE)  = rgb(i, j, RGBImage::BLUE);
 			
+		}
+	}
+	
+	return bgr;
+}
+
+BGRImage BGRImageFactory::getFromGreyscaleImage(GreyscaleImage& grey)
+{
+	BGRImage bgr(grey.getWidth(), grey.getHeight());
+	
+	for(int i = 0; i < bgr.getHeight(); i ++)
+	{
+		for(int j = 0; j < bgr.getWidth(); j ++)
+		{
+			bgr(i, j, BGRImage::RED)   = grey(i, j);
+			bgr(i, j, BGRImage::GREEN) = grey(i, j);
+			bgr(i, j, BGRImage::BLUE)  = grey(i, j);
+		}
+	}
+	
+	return bgr;
+}
+
+BGRImage BGRImageFactory::getFromBinaryImage(BinaryImage& binary)
+{
+	BGRImage bgr(binary.getWidth(), binary.getHeight());
+	
+	for(int i = 0; i < bgr.getHeight(); i ++)
+	{
+		for(int j = 0; j < bgr.getWidth(); j ++)
+		{
+			bgr(i, j, BGRImage::RED)   = binary(i, j) == 0 ? 0 : 255;
+			bgr(i, j, BGRImage::GREEN) = binary(i, j) == 0 ? 0 : 255;
+			bgr(i, j, BGRImage::BLUE)  = binary(i, j) == 0 ? 0 : 255;
 		}
 	}
 	
@@ -78,9 +112,9 @@ BGRImage BGRImageFactory::create(uint16 width, uint16 height, uint8 blue, uint16
 	{
 		for(int j = 0; j < image.getWidth(); j++)
 		{
-			image(i, j, BLUE)  = blue;
-			image(i, j, GREEN) = green;
-			image(i, j, RED)   = red;
+			image(i, j, BGRImage::BLUE)  = blue;
+			image(i, j, BGRImage::GREEN) = green;
+			image(i, j, BGRImage::RED)   = red;
 		}
 	}
 	

@@ -21,9 +21,9 @@ void TestBGRImage::testCreate(void)
 	{
 		for(int j = 0; j < image.getWidth(); j++)
 		{
-			loopTest = loopTest && (image(i, j, BLUE ) == 0);
-			loopTest = loopTest && (image(i, j, GREEN) == 0);
-			loopTest = loopTest && (image(i, j, RED  ) == 255);
+			loopTest = loopTest && (image(i, j, BGRImage::BLUE ) == 0);
+			loopTest = loopTest && (image(i, j, BGRImage::GREEN) == 0);
+			loopTest = loopTest && (image(i, j, BGRImage::RED  ) == 255);
 		}
 	}
 	
