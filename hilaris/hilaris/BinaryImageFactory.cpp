@@ -31,6 +31,15 @@ BinaryImage BinaryImageFactory::getFromGreyscaleImage(GreyscaleImage& grey, uint
 	return image;
 }
 
+BinaryImage BinaryImageFactory::getFromBGRImage(BGRImage& bgr, uint8 thresold, bool darkIsForeground)
+{
+	BinaryImage image(bgr.getWidth(), bgr.getHeight());
+	
+	OscVisBGR2BW(&bgr.getOscarContext(), &image.getOscarContext(), threshold, bDarkIsForeground);
+	
+	return image;
+}
+
 /*
  *	@todo add correct error handling, like whatif width is not dividable by 4 etc.
  */

@@ -2,7 +2,6 @@
 #define _RGBImageFACTORY_H_
 
 #include "oscar.h"
-#include "RGBImage.h"
 #include "RawImage.h"
 
 class RGBImageFactory

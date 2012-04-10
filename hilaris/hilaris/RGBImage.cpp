@@ -28,3 +28,10 @@ uint8& RGBImage::operator()(const uint16 x, const uint16 y, enum RGBPixel compon
 {
 	return this->pixel(x, y, component);
 }
+
+void RGBImage::save(char* path, enum ImageEncoding enc)
+{
+	BGRImage bgr = BGRImageFactory::getFromRGBImage(*this);
+	
+	this->saveContext(bgr.getOscarContext(), path);
+}

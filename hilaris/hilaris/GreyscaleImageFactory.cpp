@@ -50,6 +50,15 @@ GreyscaleImage GreyscaleImageFactory::getFromBinaryImage(BinaryImage& binary)
 	return image;
 }
 
+GreyscaleImage GreyscaleImageFactory::getFromBGRImage(BGRImage& bgr)
+{
+	GreyscaleImage image(bgr.getWidth(), bgr.getHeight());
+	
+	OscVisBGR2Grey(&bgr.getOscarContext(), &image.getOscarContext());
+	
+	return image;
+}
+
 GreyscaleImage GreyscaleImageFactory::create(uint16 width, uint16 height, uint8 color)
 {
 	GreyscaleImage image(width, height);
