@@ -12,10 +12,29 @@
 #include "FrameProcessor.h"
 #include "DebayerBGRFast.h"
 
-struct AreaOfInterest {
+/**
+ *  @brief Area of Interest structure.
+ */
+struct AreaOfInterest
+{
+	/**
+	 *  @brief The X-Coordinate of the lower corner of the window.
+	 */
 	uint16 posX;
+	
+	/**
+	 *  @brief The Y-Coordinate of the lower corner of the window.
+	 */
 	uint16 posY;
+	
+	/**
+	 *  @brief The width of the resulting image.
+	 */
 	uint16 width;
+	
+	/**
+	 *  @brief The height of the resulting image.
+	 */
 	uint16 height;
 };
 
