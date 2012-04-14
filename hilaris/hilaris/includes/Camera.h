@@ -41,9 +41,9 @@ struct AreaOfInterest
 /**
  *  @brief A represantation of the leanXCam
  *
- *  @description This is the camera class. It is wrapped around the corresponding Oscar functions.
- *               While setup it will asure that sane configuration values are set to the camera.
- * *
+ *  @detail This is the camera class. It is wrapped around the corresponding Oscar functions.
+ *          While setup it will asure that sane configuration values are set to the camera.
+ *
  *  @author Jim Schmid
  *  @author Michael Kreis
  *
