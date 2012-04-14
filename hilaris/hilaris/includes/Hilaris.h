@@ -121,6 +121,8 @@ class Hilaris {
 		 *  
 		 *  @param bufferSize How many buffers should be used on the camera.
 		 *  @return Returns a camera object.
+		 *
+		 *  @include getCameraByDebayer.cpp
 		 */
 		Camera* getCamera(uint8 bufferSize);
 		
@@ -133,6 +135,8 @@ class Hilaris {
 		 *  @param height The image height.
 		 *
 		 *  @return Returns a camera object.
+		 *
+		 *  @include getCameraByBufferSize.cpp
 		 */
 		Camera* getCamera(uint16 width, uint16 height);
 		
