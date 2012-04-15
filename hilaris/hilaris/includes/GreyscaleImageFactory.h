@@ -68,7 +68,7 @@ class GreyscaleImageFactory
 		/**
 		 *  @brief Get a GreyscaleImage from a BGRImage.
 		 *
-		 *  @param rgb An input BGRImage.
+		 *  @param bgr An input BGRImage.
 		 *  @return The resulting GreyscaleImage.
 		 */
 		static GreyscaleImage getFromBGRImage(BGRImage& bgr);

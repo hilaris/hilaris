@@ -33,7 +33,7 @@ class BinaryImage : public Image
 		
 		/**
 		 *  @brief Return a pointer to the underlying image data.
-		 *  @return dataptr The data pointer.
+		 *  @return The data pointer.
 		 */
 		uint8* getDataPtr();
 		
