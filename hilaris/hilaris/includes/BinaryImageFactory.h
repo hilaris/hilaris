@@ -39,7 +39,7 @@ class BinaryImageFactory
 		 *  @warning This function is used internaly in Hilaris and does not have
 		 *   to be invoked by a user.
 		 */
-		static BinaryImage getFastDebayered(RawImage* raw, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getFastDebayered(RawImage* raw, uint8 threshold = 127, bool darkIsForeground = true);
 		
 		/**
 		 *  @brief Get a BinaryImage out of a RawImage and its data using the greyscale vector based
@@ -58,7 +58,7 @@ class BinaryImageFactory
 		 *  @warning This function is used internaly in Hilaris and does not have
 		 *   to be invoked by a user.
 		 */
-		static BinaryImage getVectorDebayered(RawImage* raw, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getVectorDebayered(RawImage* raw, uint8 threshold = 127, bool darkIsForeground = true);
 		
 		/**
 		 *  @brief Get a BinaryImage out of a RawImage and its data using the greyscale halfsize
@@ -77,7 +77,7 @@ class BinaryImageFactory
 		 *  @warning This function is used internaly in Hilaris and does not have
 		 *   to be invoked by a user.
 		 */
-		static BinaryImage getHalfsizeDebayered(RawImage* raw, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getHalfsizeDebayered(RawImage* raw, uint8 threshold = 127, bool darkIsForeground = true);
 		
 		
 		/**
@@ -91,7 +91,7 @@ class BinaryImageFactory
 		 *
 		 *  @return The resulting BinaryImage.
 		 */
-		static BinaryImage getFromGreyscaleImage(GreyscaleImage& grey, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getFromGreyscaleImage(GreyscaleImage& grey, uint8 threshold = 127, bool darkIsForeground = true);
 		
 		/**
 		 *  @brief Get a BinaryImage from a BGRImage.
@@ -104,7 +104,7 @@ class BinaryImageFactory
 		 *
 		 *  @return The resulting BinaryImage.
 		 */
-		static BinaryImage getFromBGRImage(BGRImage& bgr, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getFromBGRImage(BGRImage& bgr, uint8 threshold = 127, bool darkIsForeground = true);
 		
 		/**
 		 *  @brief Get a BinaryImage from a RGBImage.
@@ -117,7 +117,7 @@ class BinaryImageFactory
 		 *
 		 *  @return The resulting BinaryImage.
 		 */
-		static BinaryImage getFromRGBImage(RGBImage& rgb, uint8 thresold = 127, bool darkIsForeground = true);
+		static BinaryImage getFromRGBImage(RGBImage& rgb, uint8 threshold = 127, bool darkIsForeground = true);
 		
 		/**
 		 *  @brief Create an empty BinaryImage and fill it with a specified color.
