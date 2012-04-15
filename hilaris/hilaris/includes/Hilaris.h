@@ -36,9 +36,7 @@
 // include system classes
 #include "Camera.h"
 #include "DeviceIO.h"
-#include "DataProcessor.h"
 #include "FrameProcessor.h"
-#include "CircularBuffer.h"
 #include "StreamClient.h"
 #include "StreamServer.h"
 
