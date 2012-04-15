@@ -46,10 +46,7 @@ BinaryImage BinaryImageFactory::getFromRGBImage(RGBImage& rgb, uint8 thresold, b
 	return BinaryImageFactory::getFromBGRImage(bgr, thresold, darkIsForeground);
 }
 
-/*
- *	@todo add correct error handling, like whatif width is not dividable by 4 etc.
- */
- 
+
 BinaryImage BinaryImageFactory::create(uint16 width, uint16 height, uint8 color)
 {
 	BinaryImage image(width, height);

@@ -24,7 +24,7 @@ class BinaryImageFactory
 		
 		/**
 		 *  @brief Get a BinaryImage out of a RawImage and its data using the greyscale fast
-		 *   debayer.
+		 *   Debayer.
 		 *
 		 *  @param raw The RawImage from the Camera.
 		 *  @param threshold (@b optional) A threshold value for generating the BinaryImage out
@@ -43,7 +43,7 @@ class BinaryImageFactory
 		
 		/**
 		 *  @brief Get a BinaryImage out of a RawImage and its data using the greyscale vector based
-		 *   debayer.
+		 *   Debayer.
 		 *
 		 *  @param raw The RawImage from the Camera.
 		 *  @param threshold (@b optional) A threshold value for generating the BinaryImage out
@@ -62,7 +62,7 @@ class BinaryImageFactory
 		
 		/**
 		 *  @brief Get a BinaryImage out of a RawImage and its data using the greyscale halfsize
-		 *   debayer.
+		 *   Debayer.
 		 *
 		 *  @param raw The RawImage from the Camera.
 		 *  @param threshold (@b optional) A threshold value for generating the BinaryImage out
@@ -127,6 +127,8 @@ class BinaryImageFactory
 		 *  @param color  Either 1 or 0
 		 *
 		 *  @return A BinaryImage.
+		 *
+		 *  @todo add correct error handling, like whatif width is not dividable by 4 etc.
 		 */
 		static BinaryImage create(uint16 width, uint16 height, uint8 color);
 };
