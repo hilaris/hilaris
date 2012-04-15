@@ -12,7 +12,6 @@
  *  @version 1.0
  *  @since March 2012
  */
- 
 class FrameProcessor {
 	public:
 		/**

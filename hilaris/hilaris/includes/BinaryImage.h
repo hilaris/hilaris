@@ -4,6 +4,15 @@
 #include "oscar.h"
 #include "Image.h"
 
+/**
+ *  @brief A binary image.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class BinaryImage : public Image
 {
 	public:
