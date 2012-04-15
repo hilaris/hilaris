@@ -103,19 +103,19 @@ class BGRImageFactory
 		static BGRImage getFromBinaryImage(BinaryImage& binary);
 		
 		/**
-		 *  @brief Create an empty BGRImage and fill it with a specified color.
+		 *  @brief Create an empty RGBImage and fill it with a specified color.
 		 *
 		 *  @param width  The width of the resulting image.
 		 *  @param height The height of the resulting image.
-		 *  @param blue   Blue color component of fill color.
-		 *  @param green  Green color component of fill color.
 		 *  @param red    Red color component of fill color.
+		 *  @param green  Green color component of fill color.
+		 *  @param blue   Blue color component of fill color.
 		 *
-		 *  @return A BGRImage.
+		 *  @return A RGBImage.
 		 *
 		 *  @include BGRImageFactoryCreate.cpp
 		 */
-		static BGRImage create(uint16 width, uint16 height, uint8 blue, uint16 green, uint16 red);
+		static BGRImage create(uint16 width, uint16 height, uint8 red, uint16 green, uint16 blue);
 };
 
 #endif

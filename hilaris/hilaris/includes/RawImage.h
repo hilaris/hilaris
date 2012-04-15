@@ -4,6 +4,15 @@
 #include "oscar.h"
 #include "Image.h"
 
+/**
+ *  @brief A RawImage captured directly from the Camera.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class RawImage : public Image
 {	
 	public:

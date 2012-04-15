@@ -17,11 +17,32 @@
 
 #include <vector>
 
-
+/**
+ *  @brief Streaming Server for streaming debayered Images over the network.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class StreamServer {
 	public:
+		/**
+		 *  @brief Setting up this StreamServer by providing a Camera pointer.
+		 */
 		StreamServer(Camera* camera);
+		
+		/**
+		 *  @brief Start streaming the debayered Image.
+		 *  @return Success status.
+		 */
 		bool start();
+		
+		/**
+		 *  @brief Stop the streaming.
+		 *  @return Success status.
+		 */
 		bool stop();
 		
 	private:

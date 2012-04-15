@@ -6,6 +6,15 @@
 #include "BGRImage.h"
 #include "BGRImageFactory.h"
 
+/**
+ *  @brief A RGB-encoded colored Image.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class RGBImage : public Image
 {
 	public:
