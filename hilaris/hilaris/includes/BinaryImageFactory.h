@@ -83,7 +83,7 @@ class BinaryImageFactory
 		/**
 		 *  @brief Get a BinaryImage from a GreyscaleImage.
 		 *
-		 *  @param binary An input GreyscaleImage.
+		 *  @param grey An input GreyscaleImage.
 		 *  @param threshold (@b optional) A threshold value for generating the BinaryImage out
 		 *   of the input Image.
 		 *  @param darkIsForeground (@b optional) Indicates wheter black or white should be
@@ -96,7 +96,7 @@ class BinaryImageFactory
 		/**
 		 *  @brief Get a BinaryImage from a BGRImage.
 		 *
-		 *  @param binary An input BGRImage.
+		 *  @param bgr An input BGRImage.
 		 *  @param threshold (@b optional) A threshold value for generating the BinaryImage out
 		 *   of the input Image.
 		 *  @param darkIsForeground (@b optional) Indicates wheter black or white should be
@@ -109,7 +109,7 @@ class BinaryImageFactory
 		/**
 		 *  @brief Get a BinaryImage from a RGBImage.
 		 *
-		 *  @param binary An input RGBImage.
+		 *  @param rgb An input RGBImage.
 		 *  @param threshold (@b optional) A threshold value for generating the BinaryImage out
 		 *   of the input Image.
 		 *  @param darkIsForeground (@b optional) Indicates wheter black or white should be
