@@ -72,7 +72,7 @@ class BGRImage : public Image
 		uint8& operator()(const uint16 x, const uint16, enum BGRImage::Pixel component);
 	
 	private:
-		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT * 3];
+		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT * 3];
 };
 
 #endif

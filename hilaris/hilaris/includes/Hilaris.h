@@ -34,6 +34,7 @@
 #include "DebayerGreyscaleVector.h"
 
 // include system classes
+#include "Debug.h"
 #include "Camera.h"
 #include "DeviceIO.h"
 #include "FrameProcessor.h"

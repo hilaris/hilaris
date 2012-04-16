@@ -29,7 +29,7 @@ class RawImage : public Image
 		uint8* getDataPtr();
 		
 	private:
-		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
+		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];
 };
 
 #endif

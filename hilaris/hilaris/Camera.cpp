@@ -4,24 +4,24 @@ Camera::~Camera() {}
 
 Camera::Camera()
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, new DebayerBGRFast(), 2);
+	this->init(0, 0, Image::MAX_WIDTH, Image::MAX_HEIGHT, new DebayerBGRFast(), 2);
 }
 
 Camera::Camera(Debayer* debayer)
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, debayer, 2);
+	this->init(0, 0, Image::MAX_WIDTH, Image::MAX_HEIGHT, debayer, 2);
 }
 
 Camera::Camera(uint8 bufferSize)
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, new DebayerBGRFast(), bufferSize);
+	this->init(0, 0, Image::MAX_WIDTH, Image::MAX_HEIGHT, new DebayerBGRFast(), bufferSize);
 }
 
 Camera::Camera(uint16 width, uint16 height)
 {
 	this->init(
-		(OSC_CAM_MAX_IMAGE_WIDTH / 2)  - (width / 2),
-		(OSC_CAM_MAX_IMAGE_HEIGHT / 2) - (height / 2),
+		(Image::MAX_WIDTH / 2)  - (width / 2),
+		(Image::MAX_HEIGHT / 2) - (height / 2),
 		width,
 		height,
 		new DebayerBGRFast(),
@@ -51,10 +51,10 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	
 	// setting sane default values
 	this->presetRegisters();
-	this->setPerspective(OSC_CAM_PERSPECTIVE_180DEG_ROTATE);
+	this->setPerspective(ROTATE_180DEG);
 	
-	if(((lowX + width) <= OSC_CAM_MAX_IMAGE_WIDTH) &&
-		(lowY + height) <= OSC_CAM_MAX_IMAGE_HEIGHT)
+	if(((lowX + width) <= Image::MAX_WIDTH) &&
+		(lowY + height) <= Image::MAX_HEIGHT)
 	{
 		this->aoi.width = width;
 		this->aoi.height = height;
@@ -212,9 +212,31 @@ bool Camera::presetRegisters()
 	return (this->lastError = OscCamPresetRegs()) != SUCCESS;
 }
 
-bool Camera::setPerspective(enum EnOscCamPerspective p)
+bool Camera::setPerspective(enum Camera::Perspective perspective)
 {
-	return (this->lastError = OscCamSetupPerspective(p)) != SUCCESS;
+	// setup oscar wrapper
+	enum EnOscCamPerspective oscPerspective;
+	
+	switch(perspective)
+	{
+		case DEFAULT:
+			oscPerspective = OSC_CAM_PERSPECTIVE_DEFAULT;
+		break;
+		
+		case HORIZONTAL_MIRROR:
+			oscPerspective = OSC_CAM_PERSPECTIVE_HORIZONTAL_MIRROR;
+		break;
+		
+		case VERTICAL_MIRROR:
+			oscPerspective = OSC_CAM_PERSPECTIVE_VERTICAL_MIRROR;
+		break;
+		
+		case ROTATE_180DEG:
+			oscPerspective = OSC_CAM_PERSPECTIVE_180DEG_ROTATE;
+		break;
+	}
+	
+	return (this->lastError = OscCamSetupPerspective(oscPerspective)) != SUCCESS;
 }
 
 Image* Camera::captureImage()

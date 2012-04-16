@@ -151,7 +151,7 @@ class BinaryImage : public Image
 		void setInvertedBackground(bool set = true);
 	
 	private:
-		uint8 data[OSC_CAM_MAX_IMAGE_WIDTH * OSC_CAM_MAX_IMAGE_HEIGHT];
+		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];
 		struct OSC_VIS_REGIONS regions;
 		
 };
