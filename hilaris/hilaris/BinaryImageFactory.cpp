@@ -1,55 +1,52 @@
 #include "BinaryImageFactory.h"
 
-BinaryImage BinaryImageFactory::getFastDebayered(RawImage* raw, uint8 thresold, bool darkIsForeground)
+BinaryImage BinaryImageFactory::getFastDebayered(RawImage* raw, uint8 threshold, bool darkIsForeground)
 {
 	GreyscaleImage image = GreyscaleImageFactory::getFastDebayered(raw);
 	
-	return BinaryImageFactory::getFromGreyscaleImage(image, thresold, darkIsForeground);
+	return BinaryImageFactory::getFromGreyscaleImage(image, threshold, darkIsForeground);
 }
 
-BinaryImage BinaryImageFactory::getVectorDebayered(RawImage* raw, uint8 thresold, bool darkIsForeground)
+BinaryImage BinaryImageFactory::getVectorDebayered(RawImage* raw, uint8 threshold, bool darkIsForeground)
 {
 	GreyscaleImage image = GreyscaleImageFactory::getVectorDebayered(raw);
 	
-	return BinaryImageFactory::getFromGreyscaleImage(image, thresold, darkIsForeground);
+	return BinaryImageFactory::getFromGreyscaleImage(image, threshold, darkIsForeground);
 }
 
-BinaryImage BinaryImageFactory::getHalfsizeDebayered(RawImage* raw, uint8 thresold, bool darkIsForeground)
+BinaryImage BinaryImageFactory::getHalfsizeDebayered(RawImage* raw, uint8 threshold, bool darkIsForeground)
 {
 	GreyscaleImage image = GreyscaleImageFactory::getHalfsizeDebayered(raw);
 	
-	return BinaryImageFactory::getFromGreyscaleImage(image, thresold, darkIsForeground);
+	return BinaryImageFactory::getFromGreyscaleImage(image, threshold, darkIsForeground);
 }
 
-BinaryImage BinaryImageFactory::getFromGreyscaleImage(GreyscaleImage& grey, uint8 thresold, bool darkIsForeground)
+BinaryImage BinaryImageFactory::getFromGreyscaleImage(GreyscaleImage& grey, uint8 threshold, bool darkIsForeground)
 {
 	BinaryImage image(grey.getWidth(), grey.getHeight());
 	
-	OscVisGrey2BW(&grey.getOscarContext(), &image.getOscarContext(), thresold, darkIsForeground);
+	OscVisGrey2BW(&grey.getOscarContext(), &image.getOscarContext(), threshold, darkIsForeground);
 	
 	return image;
 }
 
-BinaryImage BinaryImageFactory::getFromBGRImage(BGRImage& bgr, uint8 thresold, bool darkIsForeground)
+BinaryImage BinaryImageFactory::getFromBGRImage(BGRImage& bgr, uint8 threshold, bool darkIsForeground)
 {
 	BinaryImage image(bgr.getWidth(), bgr.getHeight());
 	
-	OscVisBGR2BW(&bgr.getOscarContext(), &image.getOscarContext(), thresold, darkIsForeground);
+	OscVisBGR2BW(&bgr.getOscarContext(), &image.getOscarContext(), threshold, darkIsForeground);
 	
 	return image;
 }
 
-BinaryImage BinaryImageFactory::getFromRGBImage(RGBImage& rgb, uint8 thresold, bool darkIsForeground)
+BinaryImage BinaryImageFactory::getFromRGBImage(RGBImage& rgb, uint8 threshold, bool darkIsForeground)
 {
 	BGRImage bgr = BGRImageFactory::getFromRGBImage(rgb);
 	
-	return BinaryImageFactory::getFromBGRImage(bgr, thresold, darkIsForeground);
+	return BinaryImageFactory::getFromBGRImage(bgr, threshold, darkIsForeground);
 }
 
-/*
- *	@todo add correct error handling, like whatif width is not dividable by 4 etc.
- */
- 
+
 BinaryImage BinaryImageFactory::create(uint16 width, uint16 height, uint8 color)
 {
 	BinaryImage image(width, height);

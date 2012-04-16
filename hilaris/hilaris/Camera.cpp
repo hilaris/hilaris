@@ -29,18 +29,6 @@ Camera::Camera(uint16 width, uint16 height)
 	);
 }
 
-/**
- *  Set a Region of Interest.
- *
- *  The sensor on the camera will be advised to just capture the window you define
- *  here. This is able to increase the speed of capturing, leading to a top framerate
- *  which is higher than the 60fps you have while using a full sized region of interest.
- *
- *  @param lowX   The X-Coordinate of the lower left corner.
- *  @param lowY   The Y-Coordinate of the lower left corner.
- *  @param width  The width of the window.
- *  @param height The height of the window.
- */
 Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height)
 {
 	this->init(lowX, lowY, width, height, new DebayerBGRFast(), 2);
@@ -179,23 +167,11 @@ bool Camera::addFrameProcessor(FrameProcessor* proc)
 	return true;
 }
 
-/**
- *	@brief Set a manual exposure time.
- *
- *  @param width uint32 numerical representation of the shutter width.
- *               Sane values are between 100 and 1500.
- *
- */
 bool Camera::setShutterWidth(uint32 width)
 {	
 	return (this->lastError = OscCamSetShutterWidth(width)) != SUCCESS;
 }
 
-/**
- *	@brief Get the manual set exposure time.
- *  @return width Returns a unit32 numerical representation of the shutter width
-                  which is set on the camera.
- */
 uint32 Camera::getShutterWidth()
 {
 	uint32 width = 0;
@@ -204,22 +180,11 @@ uint32 Camera::getShutterWidth()
 	return width;
 }
 
-/**
- *  @brief Set a new black level offset.
- *
- *  @param offset uint16 numerical representation of the new offset which will
-                  be set to the camera.
- */
 bool Camera::setBlackLevelOffset(uint16 offset)
 {
 	return (this->lastError = OscCamSetBlackLevelOffset(offset)) != SUCCESS;
 }
 
-/**
- *  @brief Get the black level offset which will is set on the camera.
- *
- *  @return offset unit16 numerical representation of the offset.
- */
 uint16 Camera::getBlackLevelOffset()
 {
 	uint16 offset = 0;
@@ -228,11 +193,6 @@ uint16 Camera::getBlackLevelOffset()
 	return offset;
 }
 
-/**
- *  @brief Enable or disable auto exposure on the camera.
- *
- *  @param enabled Wheter you enable or disable auto exposure on the camera.
- */
 bool Camera::setAutoExposure(bool enabled)
 {
 	uint16 reg_val;	
@@ -240,11 +200,6 @@ bool Camera::setAutoExposure(bool enabled)
 	return (this->lastError = OscCamSetRegisterValue(0xAF, (reg_val & ~0x1) | (uint16)enabled)) != SUCCESS;
 }
 
-/**
- *  @brief Check wheter auto exposure is enabled or disabled on the camera.
- *
- *  @return enabled
- */
 bool Camera::getAutoExposure() const
 {
 	uint16 reg_val;
@@ -252,37 +207,16 @@ bool Camera::getAutoExposure() const
 	return(reg_val & 0x1);
 }
 
-/**
- *  @brief A wrapper function for OscCamPresetRegs(). Will setup the camera with some sane values.
- *
- *  @description The following things will be performed on the camera:
- *   @li Reset frame capture and AGC/Exposure logic.
- *   @li Set snapshot mode, simultaneous readout.
- *   @li Mark image as colorfull, linear taken.
- *   @li Disable AGC/AEC.
- *   @li Set black level offset to 13.
- *   @li Set shutter width to 15000.
- *   @li Setup region of interest as full sized image.
- *   @li Setup a default perspective.
- */
 bool Camera::presetRegisters()
 {
 	return (this->lastError = OscCamPresetRegs()) != SUCCESS;
 }
 
-/**
- *  Set the perspective of the image taken.
- *
- *  @param perspective A member of EnOscCamPerspective
- */
 bool Camera::setPerspective(enum EnOscCamPerspective p)
 {
 	return (this->lastError = OscCamSetupPerspective(p)) != SUCCESS;
 }
 
-/**
- *  @todo max age and timeout implementation
- */
 Image* Camera::captureImage()
 {
 	if(!this->initialized) return NULL;
@@ -307,7 +241,9 @@ Image* Camera::captureImage()
 				
 				if(this->processor != NULL)
 				{
+					OscLog(DEBUG, "before processor\n");
 					return this->processor->process(this->image);
+					OscLog(DEBUG, "after processor \n");
 				}
 				
 				return this->image;

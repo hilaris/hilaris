@@ -20,14 +20,6 @@ uint16 Image::getHeight()
 	return this->height;
 }
 
-/**
- *  @brief Save an image to the given path.
- *
- *  @param path The location where the image should be stored.
- *  @param enc  The image encoder which should be used. i.e: BMP, JPG
- *
- *  @warning This will not save the whole class, but just its debayered data as an image file.
- */
 void Image::save(char* path, enum ImageEncoding enc)
 {
 	struct OSC_PICTURE pic = this->getOscarContext();

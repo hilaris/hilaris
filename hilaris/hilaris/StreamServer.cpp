@@ -141,6 +141,7 @@ bool StreamServer::bufferIsEmpty()
 
 bool StreamServer::insertImage(Image *img)
 {
+	OscLog(DEBUG, "before lock\n");
 	pthread_mutex_lock(&this->bufferLock);
 	OscLog(DEBUG, "insert image nr %d\n", this->countBuffer);
 	

@@ -36,9 +36,7 @@
 // include system classes
 #include "Camera.h"
 #include "DeviceIO.h"
-#include "DataProcessor.h"
 #include "FrameProcessor.h"
-#include "CircularBuffer.h"
 #include "StreamClient.h"
 #include "StreamServer.h"
 
@@ -58,7 +56,7 @@
 /**
  *  @brief The Hilaris-Framework. Your entry point to the Camera.
  *
- *  @description This is the main class of the framework. It is the starting
+ *  This is the main class of the framework. It is the starting
  *   point and will setup most of the things automatically.
  *
  *  @author Jim Schmid
@@ -66,16 +64,19 @@
  *
  *  @version 1.0
  *  @since March 2012
+ *
+ *  @include createHilaris.cpp
  */
 class Hilaris {
 	public:
+		
 		Hilaris();
 		~Hilaris();
 		
 		/**
 		 *  @brief Set the number of frame buffers
 		 *
-		 *  @description This is necessary because of the missing Memory-Management-Unit
+		 *  This is necessary because of the missing Memory-Management-Unit
 		 *   on the Blackfin-Processor. We decided to use a fixed number
 		 *   of buffers to minimize the allocations on the heap. Otherwise
 		 *   it could lead to memory fragmentation.
@@ -104,13 +105,81 @@ class Hilaris {
 		 *  @return Returns a camera object.
 		 */
 		Camera* getCamera();
+		
+		/**
+		 *  @brief Get a Camera instance by specifing a Debayer.
+		 *  
+		 *  @param debayer A debayer instance
+		 *  @return Returns a camera object.
+		 */
 		Camera* getCamera(Debayer* debayer);
+		
+		/**
+		 *  @brief Get a Camera instance by specifing a buffer size.
+		 *  
+		 *  @param bufferSize How many buffers should be used on the camera.
+		 *  @return Returns a camera object.
+		 *
+		 *  @include getCameraByDebayer.cpp
+		 */
 		Camera* getCamera(uint8 bufferSize);
+		
+		/**
+		 *  @brief Get a Camera instance by specifing the image size.
+		 *
+		 *  The resulting image is a centered cut out of the original full sized image.
+		 *
+		 *  @param width  The image width.
+		 *  @param height The image height.
+		 *
+		 *  @return Returns a camera object.
+		 *
+		 *  @include getCameraByBufferSize.cpp
+		 */
 		Camera* getCamera(uint16 width, uint16 height);
+		
+		/**
+		 *  @brief Get a Camera instance by specifing a full Area of Interest.
+		 *
+		 *  @param lowX   The X-Coordinate of the lower corner
+		 *  @param lowY   The Y-Coordinate of the lower corner.
+		 *  @param width  The image width.
+		 *  @param height The image height.
+		 *
+		 *  @return Returns a camera object.
+		 */
 		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height);
+		
+		/**
+		 *  @brief Get a Camera instance by specifing a full Area of Interest and a Debayer
+		 *
+		 *  @param lowX    The X-Coordinate of the lower corner
+		 *  @param lowY    The Y-Coordinate of the lower corner.
+		 *  @param width   The image width.
+		 *  @param height  The image height.
+		 *  @param debayer A Debayer instance.
+		 *
+		 *  @return Returns a camera object.
+		 */
 		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer);
+		
+		/**
+		 *  @brief Get a Camera instance by specifing a full Area of Interest, a Debayer and the buffer size.
+		 *
+		 *  @param lowX    The X-Coordinate of the lower corner
+		 *  @param lowY    The Y-Coordinate of the lower corner.
+		 *  @param width   The image width.
+		 *  @param height  The image height.
+		 *  @param debayer A Debayer instance.
+		 *  @param bufferSize The buffer size the Camera should use.
+		 *
+		 *  @return Returns a camera object.
+		 */
 		Camera* getCamera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize);
 		
+		/**
+		 *  @brief Resets the Camera.
+		 */
 		void resetCamera();
 		
 		/**
@@ -127,6 +196,13 @@ class Hilaris {
 		 */
 		bool loaded() const;
 		
+		/**
+		 *  @brief Cleanup after Hilaris has been deconstructed.
+		 *
+		 *  Oscar creates a bunch of files, like logs, gpio-input and ouput files and so on.
+		 *  Hilaris is able to get rid of this files, if you don't need them, so you always
+		 *  have a clean and tidy.
+		 */
 		void setRemoveOnCleanup(bool remove);
 		
 	private:
