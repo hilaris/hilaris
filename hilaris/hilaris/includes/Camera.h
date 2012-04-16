@@ -151,6 +151,22 @@ class Camera {
 		
 		~Camera();
 		
+		/** The Image alignment. */
+		enum Perspective
+		{
+			/** The default perspective. No rotation or mirroring. */
+			DEFAULT,
+			
+			/** Mirror the Image horizontal */
+			HORIZONTAL_MIRROR,
+			
+			/** Mirror the Image verticaly */
+			VERTICAL_MIRROR,
+			
+			/** Rotate the Image by 180°. This will fit most of the purposes and is therefore the interal Hilaris standard. */
+			ROTATE_180DEG
+		};
+		
 		/**
 		 *  @brief A wrapper function for OscCamPresetRegs(). Will setup the camera with some sane values.
 		 *
@@ -242,10 +258,10 @@ class Camera {
 		 *  Use this function to turn the image to your personal perspective.
 		 *  For example turn it 180°.
 		 *
-		 *  @param p The perspective.
+		 *  @param perspective The perspective.
 		 *  @return Success status.
 		 */
-		bool setPerspective(enum EnOscCamPerspective p);
+		bool setPerspective(enum Camera::Perspective perspective);
 		
 		/**
 		 *	@brief Set a manual exposure time.
