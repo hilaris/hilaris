@@ -31,11 +31,10 @@ class Debug
 		
 		static void fatal(const char * strFormat, ...);
 		
+		static EnOscLogLevel switchOscar(Debug::Level level);
+		/*
 		static uint32 fps();
 		
-	private:
-		
-		static EnOscLogLevel switchOscar(Debug::Level level);
 		
 		static uint32 frameClockLast;
 		static uint32 frameClockCurrent;
@@ -43,6 +42,9 @@ class Debug
 		static void start();
 		static void end();
 		static void tick();
+		*/
+		
+	private:
 };
 
 #endif

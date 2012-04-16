@@ -1,12 +1,6 @@
 #include "Camera.h"
 
-Camera::~Camera()
-{
-	if(this->getTrackFPS())
-	{
-		Debug::end();
-	}
-}
+Camera::~Camera() { }
 
 Camera::Camera()
 {
@@ -270,11 +264,6 @@ Image* Camera::captureImage()
 				this->debayer->debayer(this->rawImage, this->image);
 				OscLog(DEBUG, "Debayered RawImage\n");
 				
-				if(this->getTrackFPS())
-				{
-					Debug::tick();
-				}
-				
 				if(this->processor != NULL)
 				{
 					return this->processor->process(this->image);
@@ -291,16 +280,6 @@ Image* Camera::captureImage()
 void Camera::setTrackFPS(bool track)
 {
 	this->trackFPS = track;
-	
-	if(track)
-	{
-		Debug::start();
-	}
-	else
-	{
-		// Debug must have been initialized, shutdown
-		Debug::end();
-	}
 }
 
 bool Camera::getTrackFPS()

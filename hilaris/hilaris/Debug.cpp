@@ -30,6 +30,7 @@ void Debug::fatal(const char * strFormat, ...)
 	va_end(ap);
 }
 
+/*
 void Debug::start()
 {
 	OscSupWdtInit();
@@ -54,7 +55,6 @@ uint32 Debug::fps()
 		return 0;
 	}
 }
-
 void Debug::tick()
 {
 	OscSupWdtKeepAlive();
@@ -63,6 +63,7 @@ void Debug::tick()
 	Debug::frameClockCurrent = OscSupCycGet();
 }
 
+*/
 EnOscLogLevel Debug::switchOscar(Debug::Level level)
 {
 	EnOscLogLevel oscarLevel;
