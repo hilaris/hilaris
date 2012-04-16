@@ -3,6 +3,15 @@
 
 #include "Hilaris.h"
 
+/**
+ *  @brief Device Input/Output class.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class DeviceIO {
 	public:
 	
