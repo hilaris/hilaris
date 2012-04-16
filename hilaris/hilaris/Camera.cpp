@@ -258,7 +258,7 @@ Image* Camera::captureImage()
 				OscLog(DEBUG, "Trying to copy rawdata to RawImage\n");
 				memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
 				
-				rawPic = this->image->getDataPtr();
+				rawPic = this->rawImage->getDataPtr();
 				OscLog(DEBUG, "this->image %d %d %d\n", rawPic[10], rawPic[100], rawPic[1000]);
 				
 				this->debayer->debayer(this->rawImage, this->image);
@@ -266,7 +266,9 @@ Image* Camera::captureImage()
 				
 				if(this->processor != NULL)
 				{
+					OscLog(DEBUG, "before processor\n");
 					return this->processor->process(this->image);
+					OscLog(DEBUG, "after processor \n");
 				}
 				
 				return this->image;
