@@ -6,6 +6,9 @@
 
 class Debug
 {
+	friend class Hilaris;
+	friend class Camera;
+	
 	public:
 		
 		enum Level
@@ -28,13 +31,18 @@ class Debug
 		
 		static void fatal(const char * strFormat, ...);
 		
-		static void start();
-		static void end();
-		static void tick();
+		static uint32 fps();
 		
 	private:
 		
 		static EnOscLogLevel switchOscar(Debug::Level level);
+		
+		static uint32 frameClockLast;
+		static uint32 frameClockCurrent;
+		
+		static void start();
+		static void end();
+		static void tick();
 };
 
 #endif
