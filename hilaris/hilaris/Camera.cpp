@@ -4,24 +4,24 @@ Camera::~Camera() {}
 
 Camera::Camera()
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, new DebayerBGRFast(), 2);
+	this->init(0, 0, Image::MAX_WIDTH, Image::MAX_HEIGHT, new DebayerBGRFast(), 2);
 }
 
 Camera::Camera(Debayer* debayer)
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, debayer, 2);
+	this->init(0, 0, Image::MAX_WIDTH, Image::MAX_HEIGHT, debayer, 2);
 }
 
 Camera::Camera(uint8 bufferSize)
 {
-	this->init(0, 0, OSC_CAM_MAX_IMAGE_WIDTH, OSC_CAM_MAX_IMAGE_HEIGHT, new DebayerBGRFast(), bufferSize);
+	this->init(0, 0, Image::MAX_WIDTH, Image::MAX_HEIGHT, new DebayerBGRFast(), bufferSize);
 }
 
 Camera::Camera(uint16 width, uint16 height)
 {
 	this->init(
-		(OSC_CAM_MAX_IMAGE_WIDTH / 2)  - (width / 2),
-		(OSC_CAM_MAX_IMAGE_HEIGHT / 2) - (height / 2),
+		(Image::MAX_WIDTH / 2)  - (width / 2),
+		(Image::MAX_HEIGHT / 2) - (height / 2),
 		width,
 		height,
 		new DebayerBGRFast(),
@@ -53,8 +53,8 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	this->presetRegisters();
 	this->setPerspective(OSC_CAM_PERSPECTIVE_180DEG_ROTATE);
 	
-	if(((lowX + width) <= OSC_CAM_MAX_IMAGE_WIDTH) &&
-		(lowY + height) <= OSC_CAM_MAX_IMAGE_HEIGHT)
+	if(((lowX + width) <= Image::MAX_WIDTH) &&
+		(lowY + height) <= Image::MAX_HEIGHT)
 	{
 		this->aoi.width = width;
 		this->aoi.height = height;

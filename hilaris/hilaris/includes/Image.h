@@ -87,6 +87,16 @@ class Image {
 		 */
 		virtual EnOscPictureType getType() = 0;
 		
+		/**
+		 *  @brief The maximum width of an image.
+		 */
+		static const int MAX_WIDTH = OSC_CAM_MAX_IMAGE_WIDTH;
+		
+		/**
+		 *  @brief The maximum height of an image.
+		 */
+		static const int MAX_HEIGHT = OSC_CAM_MAX_IMAGE_HEIGHT;
+		
 	protected:
 	
 		/**
