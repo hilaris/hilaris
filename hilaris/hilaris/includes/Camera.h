@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "oscar.h"
+#include "Debug.h"
 #include "RawImage.h"
 #include "Image.h"
 #include "Debayer.h"
@@ -283,6 +284,9 @@ class Camera {
 		 */
 		Debayer* getDebayer();
 		
+		void setTrackFPS(bool track = true);
+		bool getTrackFPS();
+		
 		/**
 		 *  @brief The current frameprocessor
 		 *  @todo Make this a vector.
@@ -295,6 +299,7 @@ class Camera {
 		OSC_ERR lastError;
 		bool initialized;
 		bool isMultiBuffered;
+		bool trackFPS;
 		Image* image;
 		RawImage* rawImage;
 		Debayer* debayer;

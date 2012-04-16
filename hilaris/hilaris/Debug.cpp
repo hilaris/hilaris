@@ -32,17 +32,35 @@ void Debug::fatal(const char * strFormat, ...)
 
 void Debug::start()
 {
-
+	OscSupWdtInit();
+	
+	Debug::frameClockLast = 0;
+	Debug::frameClockCurrent = 0;
 }
 
 void Debug::end()
 {
+	OscSupWdtClose();
+}
 
+uint32 Debug::fps()
+{
+	if(Debug::frameClockLast > 0)
+	{
+		return OscSupCycToSecs(Debug::frameClockCurrent - Debug::frameClockLast);
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 void Debug::tick()
 {
-
+	OscSupWdtKeepAlive();
+	
+	Debug::frameClockLast = Debug::frameClockCurrent;
+	Debug::frameClockCurrent = OscSupCycGet();
 }
 
 EnOscLogLevel Debug::switchOscar(Debug::Level level)
