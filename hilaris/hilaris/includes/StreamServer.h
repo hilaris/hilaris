@@ -47,6 +47,7 @@ class StreamServer {
 		
 	private:
 		static void *sendData(void* arg);
+		static void *insertData(void* arg);
 		
 		bool readable(int fd);
 		bool writeable(int fd);
@@ -57,6 +58,7 @@ class StreamServer {
 		bool getImage();
 	
 		pthread_t thread;
+		pthread_t insert_thread;
 		pthread_mutex_t bufferLock;
 		
 		Image* image;

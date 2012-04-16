@@ -51,32 +51,62 @@ bool StreamServer::start()
 	int err;
 	pthread_mutex_init(&this->bufferLock, NULL);
 	#ifdef OSC_HOST
-	OscLog(DEBUG, "before insert lock %Ld\n", this->bufferLock.__data.__lock);
+	printf("start lock %d\n", this->bufferLock.__data.__lock);
 	#else
-	OscLog(DEBUG, "before insert lock %Ld\n", this->bufferLock.__m_lock.__status);
+	printf("start lock %Ld\n", this->bufferLock.__m_lock.__status);
 	#endif
 	
 	if((err=pthread_create(&this->thread, NULL, sendData, (void*) this))==0)
 	{
 		this->startBuffer = 0;
-		while(1)
+		if((err=pthread_create(&this->insert_thread, NULL, insertData, (void*) this))==0)
 		{
-			this->insertImage(this->camera->captureImage());
-			OscLog(ALERT, "Picture taken and inserted in buffer\n");
-			usleep(1000);
+			pthread_join(this->insert_thread, NULL);
+			pthread_join(this->thread, NULL);
 		}
+		else
+		{
+			OscLog(DEBUG, "failed to start thread with error nr\n", err);
+			return false;
+		}
+		
 	}
 	else
 	{
 		OscLog(DEBUG, "failed to start thread with error nr\n", err);
 		return false;
 	}
+	return true;
+}
+
+void* StreamServer::insertData(void* arg)
+{
+	StreamServer* s = (StreamServer*)arg;
+	#ifdef OSC_HOST
+	printf("start insert lock %d\n", s->bufferLock.__data.__lock);
+	#else
+	printf("start insert lock %ld\n", s->bufferLock.__m_lock.__status);
+	#endif
+
+	while(1)
+	{
+		s->insertImage(s->camera->captureImage());
+		OscLog(ALERT, "Picture taken and inserted in buffer\n");
+		usleep(1000);
+	}
 }
 
 void* StreamServer::sendData(void* arg)
 {	
+
 	OscLog(DEBUG, "sending thread started\n");
 	StreamServer* s = (StreamServer*)arg;
+	#ifdef OSC_HOST
+	printf("start send lock %d\n", s->bufferLock.__data.__lock);
+	#else
+	printf("start send lock %ld\n", s->bufferLock.__m_lock.__status);
+	#endif
+		
 	while(1)
 	{
 		usleep(1000);
@@ -147,10 +177,11 @@ bool StreamServer::bufferIsEmpty()
 
 bool StreamServer::insertImage(Image *img)
 {
+	printf("insert\n");
 	#ifdef OSC_HOST
-	OscLog(DEBUG, "before insert lock %Ld\n", this->bufferLock.__data.__lock);
+	printf("before insert lock %d\n", this->bufferLock.__data.__lock);
 	#else
-	OscLog(DEBUG, "before insert lock %Ld\n", this->bufferLock.__m_lock.__status);
+	printf("before insert lock %ld\n", this->bufferLock.__m_lock.__status);
 	#endif
 	pthread_mutex_lock(&this->bufferLock);
 	OscLog(DEBUG, "insert image nr %d\n", this->countBuffer);
@@ -176,14 +207,17 @@ bool StreamServer::insertImage(Image *img)
 
 bool StreamServer::getImage()
 {	
-	if(!this->bufferIsEmpty())
+	printf("get\n");
+	bool check = false;
+	#ifdef OSC_HOST
+	printf("before get lock %d\n", this->bufferLock.__data.__lock);
+	#else
+	printf("before get lock %ld\n", this->bufferLock.__m_lock.__status);
+	#endif
+	pthread_mutex_lock(&this->bufferLock);
+	
+	if((check = (!this->bufferIsEmpty())))
 	{
-		#ifdef OSC_HOST
-		OscLog(DEBUG, "before insert lock %Ld\n", this->bufferLock.__data.__lock);
-		#else
-		OscLog(DEBUG, "before insert lock %Ld\n", this->bufferLock.__m_lock.__status);
-		#endif
-		pthread_mutex_lock(&this->bufferLock);
 		OscLog(ALERT, "getting image out of buffer at pos %d\n", this->startBuffer);
 		
 		OscLog(DEBUG, "get at %p size %ld into %p\n", this->imgBuffer[this->startBuffer], this->camera->getDebayer()->getSize(), this->image);
@@ -191,13 +225,14 @@ bool StreamServer::getImage()
 		
 		this->startBuffer = (this->startBuffer + 1) % this->sizeBuffer;
 		this->countBuffer--;
-		
-		pthread_mutex_unlock(&this->bufferLock);  
-	
-		return true;
 	}
-	OscLog(DEBUG, "Buffer is still empty\n");	
-	return false;	
+	else
+	{
+		OscLog(DEBUG, "Buffer is still empty\n");
+	}
+			
+	pthread_mutex_unlock(&this->bufferLock);  
+	return check;	
 }
 
 
