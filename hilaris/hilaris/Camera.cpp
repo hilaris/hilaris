@@ -278,13 +278,3 @@ Image* Camera::captureImage()
 	
 	return NULL;
 }
-
-void Camera::setTrackFPS(bool track)
-{
-	this->trackFPS = track;
-}
-
-bool Camera::getTrackFPS()
-{
-	return this->trackFPS;
-}
