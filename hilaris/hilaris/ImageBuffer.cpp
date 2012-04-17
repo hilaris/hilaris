@@ -5,6 +5,8 @@ ImageBuffer::ImageBuffer(int dataSize, uint8 bufferSize)
 	this->dataSize = dataSize;
 	this->bufferSize = bufferSize;
 	
+	this->count = 0;
+	
 	this->data = new uint8[this->dataSize * this->bufferSize];
 	this->currentImg = new uint8[this->dataSize];
 }
@@ -22,7 +24,7 @@ bool ImageBuffer::isEmpty()
 	uint8 c = this->count;
 	this->mutex.unlock();
 	
-	return (c == 0);
+	return (c <= 0);
 }
 
 void ImageBuffer::insert(uint8* img)
