@@ -2,7 +2,6 @@
 
 RGBImage::RGBImage(uint16 width, uint16 height)
 {
-	OscLog(DEBUG, "Creating RGBImage width: %d, height: %d\n", width, height);
 	this->width = width;
 	this->height = height;
 	
