@@ -37,10 +37,10 @@ class Debug
 			/** A notice occured. */
 			NOTICE,
 			
-			/** For your information. */
+			/** For your information. This is the standard log level if you don't pass one to Debug::log() */
 			INFO,
 			
-			/** Just a message about what is going on. This is the standard log level if you don't pass one to Debug::log() */
+			/** Just a message about what is going on. */
 			DEBUG,
 			
 			/** Do not show this message. Simular to: don't log it. */
@@ -55,7 +55,7 @@ class Debug
 		     level.
 		    
 		    @param strFormat The format string, followed by the corresponding values.
-		    @note Using this function, the log level passed to Oscar will be DEBUG.
+		    @note Using this function, the log level passed to Oscar will be INFO.
 		    @see Hilaris::setFileLogLevel and Hilaris::setConsoleLogLevel for details
 		     on how to set the log level.
 		 */

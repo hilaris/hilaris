@@ -1,16 +1,16 @@
 #include "Debug.h"
 
-void Debug::log(const char * strFormat, ...)
+void Debug::log(const char* strFormat, ...)
 {
 	// create dynamic argument list
 	va_list ap;
 
 	va_start(ap, strFormat);
-	OscLog((EnOscLogLevel)DEBUG, strFormat, ap);
+	OscLog((EnOscLogLevel)INFO, strFormat, ap);
 	va_end(ap);
 }
 
-void Debug::log(enum Debug::Level level, const char * strFormat, ...)
+void Debug::log(enum Debug::Level level, const char* strFormat, ...)
 {
 	// create dynamic argument list
 	va_list ap;
