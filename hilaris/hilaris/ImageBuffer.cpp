@@ -8,6 +8,7 @@ ImageBuffer::ImageBuffer(int dataSize, int bufferSize)
 	
 	this->count = 0;
 	this->start = 0;
+	
 	Debug::log("count %d start %d\n", this->count, this->start);
 	
 	this->data = new uint8[this->dataSize * this->bufferSize];
