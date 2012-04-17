@@ -6,6 +6,7 @@ ImageBuffer::ImageBuffer(int dataSize, uint8 bufferSize)
 	this->bufferSize = bufferSize;
 	
 	this->count = 0;
+	this->start = 0;
 	
 	this->data = new uint8[this->dataSize * this->bufferSize];
 	this->currentImg = new uint8[this->dataSize];
