@@ -33,7 +33,7 @@ void ImageBuffer::insert(uint8* img)
 	{
 		int end = (this->start - this->count) % this->bufferSize;
 	
-		memcpy(&this->data[end], img, this->dataSize);
+		memcpy(&this->data[end*this->dataSize], img, this->dataSize);
 	
 		if(this->count == this->bufferSize)
 		{
@@ -51,7 +51,7 @@ uint8* ImageBuffer::get()
 {
 	this->mutex.lock();
 	{
-		memcpy(this->currentImg, &this->data[this->start], this->dataSize);
+		memcpy(this->currentImg, &this->data[this->start*this->dataSize], this->dataSize);
 		
 		this->start = (this->start + 1) % this->bufferSize;
 		this->count--;

@@ -14,7 +14,9 @@ void StreamServer::start()
 	this->imgSender->start();
 	
 	this->imgProducer->join();
+	Debug::log("producer stopped\n");
 	this->imgSender->join();
+	Debug::log("sender stopped\n");
 }
 
 void StreamServer::stop()
