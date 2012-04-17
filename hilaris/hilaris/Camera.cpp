@@ -125,6 +125,11 @@ uint16 Camera::getHeight()
 	return this->aoi.height;
 }
 
+int Camera::getDebayeredImageSize()
+{
+	return this->image->getWidth() * this->image->getHeight() * (OSC_PICTURE_TYPE_COLOR_DEPTH(this->debayer->getType())/8);	
+}
+
 bool Camera::createBuffers(uint8 bufferSize)
 {
 	for(int i = 0; i < bufferSize; i++)

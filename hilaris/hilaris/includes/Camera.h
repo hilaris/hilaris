@@ -238,6 +238,12 @@ class Camera {
 		uint16 getHeight();
 		
 		/**
+		 *  @biref Get the size of debayered image data
+		 *  @return size of debayered image data
+		 */
+		int getDebayeredImageSize();
+		
+		/**
 		 *  @brief Let the exposure time to be set automatically or manual.
 		 *  @param enabled True if auto, false if manual.
 		 *
