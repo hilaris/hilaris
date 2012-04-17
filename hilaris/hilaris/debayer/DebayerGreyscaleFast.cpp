@@ -12,6 +12,7 @@ long unsigned int DebayerGreyscaleFast::getSize()
 
 GreyscaleImage* DebayerGreyscaleFast::getObject(uint16 width, uint16 height)
 {
+	printf("created greyscale image\n");
 	return new GreyscaleImage(width/2, height/2);
 }
 

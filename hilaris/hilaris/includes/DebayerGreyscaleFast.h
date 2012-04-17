@@ -1,8 +1,12 @@
 #ifndef _DEBAYERGREYSCALEFAST_H_
 #define _DEBAYERGREYSCALEFAST_H_
 
-#include "Hilaris.h"
-
+#include "oscar.h"
+#include "Debayer.h"
+#include "Image.h"
+#include "RawImage.h"
+#include "GreyscaleImage.h"
+#include "GreyscaleImageFactory.h"
 #include <string.h>
 
 /**

@@ -265,7 +265,12 @@ Image* Camera::captureImage()
 				
 				rawPic = this->rawImage->getDataPtr();
 				printf("copied\n");
-				this->debayer->debayer(this->rawImage, this->image);
+				
+				if(this->debayer != NULL)
+				{
+					this->debayer->debayer(this->rawImage, this->image);
+				}
+				
 				printf("Debayered RawImage\n");
 				
 				if(this->processor != NULL)

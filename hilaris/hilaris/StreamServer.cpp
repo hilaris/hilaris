@@ -13,6 +13,7 @@ void StreamServer::start()
 	this->imgProducer->start();
 	this->imgSender->start();
 	
+	printf("joingin threads\n");
 	this->imgProducer->join();
 	printf("producer stopped\n");
 	this->imgSender->join();

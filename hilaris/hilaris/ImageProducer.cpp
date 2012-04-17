@@ -4,7 +4,10 @@ void ImageProducer::run()
 {
 	while(!this->cancel)
 	{
-		this->buffer->insert(this->camera->captureImage()->getDataPtr());
+		Image* img = this->camera->captureImage();
+		uint8* data = img->getDataPtr();
+		
+		this->buffer->insert(data);
 		usleep(1000);
 	}
 }

@@ -3,6 +3,7 @@
 
 #include "oscar.h"
 #include "Image.h"
+#include "RawImage.h"
 
 /**
  *  @brief Abstract representation of a Debayer. Must be extended by every single
