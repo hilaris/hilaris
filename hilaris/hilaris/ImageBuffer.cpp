@@ -32,6 +32,7 @@ bool ImageBuffer::isEmpty()
 
 void ImageBuffer::insert(uint8* img)
 {
+	printf("before lock insert\n");
 	this->mutex.lock();
 	{
 		int end = (this->start + this->count) % this->bufferSize;
@@ -52,6 +53,7 @@ void ImageBuffer::insert(uint8* img)
 
 uint8* ImageBuffer::get()
 {
+	printf("before lock get\n");
 	this->mutex.lock();
 	{
 		printf("position insert %d\n", this->start*this->dataSize);
