@@ -11,13 +11,13 @@ class ImageBuffer
 	private:
 		Mutex mutex;
 		int dataSize;
-		uint8 bufferSize;
-		uint8 start;
-		uint8 count;
+		int bufferSize;
+		int start;
+		int count;
 		uint8* data;
 		uint8* currentImg;
 	public:
-		ImageBuffer(int size, uint8 number);
+		ImageBuffer(int dataSize, int bufferSize);
 		~ImageBuffer();
 		bool isEmpty();
 		void insert(uint8* img);
