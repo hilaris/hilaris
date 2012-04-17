@@ -238,7 +238,7 @@ class Camera {
 		uint16 getHeight();
 		
 		/**
-		 *  @biref Get the size of debayered image data
+		 *  @brief Get the size of debayered image data
 		 *  @return size of debayered image data
 		 */
 		int getDebayeredImageSize();

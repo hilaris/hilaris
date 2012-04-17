@@ -260,17 +260,17 @@ Image* Camera::captureImage()
 		{
 			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
 			{
-				Debug::log(Debug::DEBUG, "%s:\t Trying to copy rawdata to RawImage\n", __func__);
+				printf("Trying to copy rawdata to RawImage\n");
 				memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
 				
 				rawPic = this->rawImage->getDataPtr();
-				
+				printf("copied\n");
 				this->debayer->debayer(this->rawImage, this->image);
-				Debug::log(Debug::DEBUG, "%s:\t Debayered RawImage\n", __func__);
+				printf("Debayered RawImage\n");
 				
 				if(this->processor != NULL)
 				{
-					Debug::log(Debug::DEBUG, "%s:\t A Processor has been set, trying to process image.\n", __func__);
+					printf("A Processor has been set, trying to process image.\n");
 					return this->processor->process(this->image);
 				}
 				

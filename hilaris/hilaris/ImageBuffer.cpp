@@ -36,7 +36,7 @@ void ImageBuffer::insert(uint8* img)
 	this->mutex.lock();
 	{
 		int end = (this->start + this->count) % this->bufferSize;
-		printf("start %d count %d insert %d\n", this->start, this->count, end);
+		printf("start %d count %d insert %d\n", this->start, this->count, end*this->dataSize);
 		memcpy(&this->data[end*this->dataSize], img, this->dataSize);
 	
 		if(this->count == this->bufferSize)
@@ -49,6 +49,7 @@ void ImageBuffer::insert(uint8* img)
 		}
 	}
 	this->mutex.unlock();
+	printf("after unlock\n");
 }
 
 uint8* ImageBuffer::get()
