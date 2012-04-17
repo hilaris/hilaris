@@ -12,7 +12,6 @@ long unsigned int DebayerBGRFast::getSize()
 
 BGRImage* DebayerBGRFast::getObject(uint16 width, uint16 height)
 {
-	OscLog(DEBUG, "getting object %d x %d\n", width, height);
 	return new BGRImage(width/2, height/2);
 }
 

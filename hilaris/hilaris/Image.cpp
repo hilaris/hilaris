@@ -33,7 +33,7 @@ void Image::saveContext(struct OSC_PICTURE pic, char* path)
 	
 	if((err = OscBmpWrite(&pic, path)) != SUCCESS)
 	{
-		OscLog(DEBUG, "Error saving file: %d\n", err);
+		Debug::log(Debug::DEBUG, "%s:\t Error saving file: %d\n", __func__, err);
 	}
 }
 

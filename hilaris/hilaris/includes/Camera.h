@@ -284,9 +284,6 @@ class Camera {
 		 */
 		Debayer* getDebayer();
 		
-		void setTrackFPS(bool track = true);
-		bool getTrackFPS();
-		
 		/**
 		 *  @brief The current frameprocessor
 		 *  @todo Make this a vector.

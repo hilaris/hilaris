@@ -4,18 +4,11 @@
 #define MAX_CLIENTS 5
 #define SOCK_ERROR -1
 
-#include "Hilaris.h"
-
-#include <pthread.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <stdio.h>
-#include <sys/select.h>
-
-#include <vector>
+#include "Thread.h"
+#include "ImageBuffer.h"
+#include "ImageProducer.h"
+#include "ImageSender.h"
+#include "Camera.h"
 
 /**
  *  @brief Streaming Server for streaming debayered Images over the network.
@@ -31,48 +24,29 @@ class StreamServer {
 		/**
 		 *  @brief Setting up this StreamServer by providing a Camera pointer.
 		 */
-		StreamServer(Camera* camera);
+		StreamServer(Camera* camera, int port=9003);
 		
 		/**
 		 *  @brief Start streaming the debayered Image.
 		 *  @return Success status.
 		 */
-		bool start();
+		void start();
 		
 		/**
 		 *  @brief Stop the streaming.
 		 *  @return Success status.
 		 */
-		bool stop();
+		void stop();
 		
 	private:
-		static void *sendData(void* arg);
-		static void *insertData(void* arg);
+		Thread* imgProducer;
+		Thread* imgSender;
 		
-		bool readable(int fd);
-		bool writeable(int fd);
-		
-		bool bufferIsFull();
-		bool bufferIsEmpty();
-		bool insertImage(Image* img);
-		bool getImage();
-	
-		pthread_t thread;
-		pthread_t insert_thread;
-		pthread_mutex_t bufferLock;
-		
-		Image* image;
-		Image* imgBuffer[6];
-		int startBuffer;
-		int countBuffer;
-		int sizeBuffer;
-				
-		std::vector<int> clients;
-		int connected;
-		int srvSocket;
-		struct  sockaddr_in addr;
-		
+		ImageBuffer* buffer;
 		Camera* camera;
+		
+		int imgSize;
+		int port;
 };
 
 #endif 

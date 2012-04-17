@@ -2,6 +2,7 @@
 #define _IMAGE_H_
 
 #include "oscar.h"
+#include "Debug.h"
 
 enum ImageEncoding 
 {
