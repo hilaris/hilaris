@@ -1,9 +1,14 @@
 #ifndef _DEBAYERGREYSCALEHALFSIZE_H_
 #define _DEBAYERGREYSCALEHALFSIZE_H_
 
-#include "Hilaris.h"
-
 #include <string.h>
+
+#include "oscar.h"
+#include "Image.h"
+#include "RawImage.h"
+#include "GreyscaleImage.h"
+#include "GreyscaleImageFactory.h"
+#include "Debayer.h"
 
 /**
  *  @brief Halfsize Debayer for GreyscaleImage.
