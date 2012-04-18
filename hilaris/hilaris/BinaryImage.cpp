@@ -62,6 +62,28 @@ uint8& BinaryImage::operator()(const uint16 x, const uint16 y)
     return this->pixel(x, y);
 }
 
+BinaryImage BinaryImage::operator-(BinaryImage& in)
+{
+	BinaryImage out(this->getWidth(), this->getHeight());
+	
+	for(int i = 0; i < this->getHeight(); i ++)
+	{
+		for(int j = 0; j < this->getWidth(); j ++)
+		{
+			// XOR
+			bool a = this->pixel(i, j) > 0;
+			bool b = in.pixel(i, j)    > 0;
+			
+			// Result
+			bool r = (a && !b) || (!a && b);
+			
+			out(i, j) = r ? 1 : 0;
+		} 
+	}
+	
+	return out;
+}
+
 bool BinaryImage::erode(struct OSC_VIS_STREL *strel, uint8 repetitions)
 {
 	OSC_ERR err;

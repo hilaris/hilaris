@@ -126,6 +126,19 @@ class BinaryImage : public Image
 		uint8& operator()(const uint16 x, const uint16 y);
 		
 		/**
+		 *  @brief Substract @b in from this image. The pixel values will wrap up.
+		 *
+		 *  @param right The second BinaryImage.
+		 *
+		 *  @todo Add correct error handling. Images must be of the same size.
+		 *  @todo Image should share the same foregroundColor.
+		 *  @todo Add Support for different foregroundColor.
+		 *
+		 *  @return The resulting BinaryImage.
+		 */
+		BinaryImage operator-(BinaryImage& in);
+		
+		/**
 		 *  @brief Invert this image. Black will become white and vice versa.
 		 */
 		void invert();

@@ -1,13 +1,14 @@
 #ifndef _DEBAYERGREYSCALEFAST_H_
 #define _DEBAYERGREYSCALEFAST_H_
 
+#include <string.h>
+
 #include "oscar.h"
 #include "Debayer.h"
 #include "Image.h"
 #include "RawImage.h"
 #include "GreyscaleImage.h"
 #include "GreyscaleImageFactory.h"
-#include <string.h>
 
 /**
  *  @brief Fast Debayer for GreyscaleImage.

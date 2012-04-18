@@ -1,9 +1,14 @@
 #ifndef _DEBAYERBGRBILINEAR_H_
 #define _DEBAYERBGRBILINEAR_H_
 
-#include "Hilaris.h"
-
 #include <string.h>
+
+#include "oscar.h"
+#include "Image.h"
+#include "RawImage.h"
+#include "BGRImage.h"
+#include "BGRImageFactory.h"
+#include "Debayer.h"
 
 /**
  *  @brief Bilinear Debayer for BGRImage.
