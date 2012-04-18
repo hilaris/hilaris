@@ -4,6 +4,8 @@
 #define MAX_CLIENTS 5
 #define SOCK_ERROR -1
 
+#include <signal.h>
+
 #include "Thread.h"
 #include "ImageBuffer.h"
 #include "ImageProducer.h"
@@ -36,11 +38,11 @@ class StreamServer {
 		 *  @brief Stop the streaming.
 		 *  @return Success status.
 		 */
-		void stop();
+		static void stop(int signum);
 		
 	private:
-		Thread* imgProducer;
-		Thread* imgSender;
+		static Thread* imgProducer;
+		static Thread* imgSender;
 		
 		ImageBuffer* buffer;
 		Camera* camera;

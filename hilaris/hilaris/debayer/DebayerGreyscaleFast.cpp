@@ -12,16 +12,15 @@ long unsigned int DebayerGreyscaleFast::getSize()
 
 GreyscaleImage* DebayerGreyscaleFast::getObject(uint16 width, uint16 height)
 {
-	printf("created greyscale image\n");
 	return new GreyscaleImage(width/2, height/2);
 }
 
 bool DebayerGreyscaleFast::debayer(RawImage* raw, Image* image)
 {
-	printf("befor factory\n");
+	//printf("befor factory\n");
 	GreyscaleImage b = GreyscaleImageFactory::getFastDebayered(raw);
-	printf("after factory\n");
+	//printf("after factory\n");
 	memcpy(image, &b, sizeof(b));
-	printf("after memcpy\n");
+	//printf("after memcpy\n");
 	return true;
 }
