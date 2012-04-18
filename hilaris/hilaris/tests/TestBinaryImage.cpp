@@ -29,11 +29,38 @@ void TestBinaryImage::testCreate(void)
 	CPPUNIT_ASSERT(loopTest);
 }
 
-/**
-void TestBinaryImage::testInvert(void)
+void TestBinaryImage::testSubstract(void)
 {
-	BinaryImage image = BinaryImageFactory::create(32, 32, 123);
+	uint16 width  = 4;
+	uint16 height = 4;
 	
-	for
+	BinaryImage one = BinaryImageFactory::create(width, height, 0);
+	BinaryImage two = BinaryImageFactory::create(width, height, 1);
+	
+	/*
+		setup images
+		
+		one: -----  two: -----  res: -----
+		     |0|0|       |1|0|       |1|0|
+		     -----       -----       -----
+		     |1|0|       |0|1|       |1|1|
+		     -----       -----       -----
+	*/
+	
+	one(0, 0) = 0;
+	one(0, 1) = 0;
+	one(1, 0) = 1;
+	one(1, 1) = 0;
+	
+	two(0, 0) = 1;
+	two(0, 1) = 0;
+	two(1, 0) = 0;
+	two(1, 1) = 1;
+	
+	BinaryImage res = one - two;
+	
+	CPPUNIT_ASSERT(res(0, 0) == 1);
+	CPPUNIT_ASSERT(res(0, 1) == 0);
+	CPPUNIT_ASSERT(res(1, 0) == 1);
+	CPPUNIT_ASSERT(res(1, 1) == 1);
 }
-*/
