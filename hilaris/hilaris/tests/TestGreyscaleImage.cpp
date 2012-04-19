@@ -1,7 +1,6 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "Hilaris.h"
-#include "GreyscaleImageFactory.h"
 #include "TestGreyscaleImage.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestGreyscaleImage);
@@ -26,4 +25,49 @@ void TestGreyscaleImage::testCreate(void)
 	}
 	
 	CPPUNIT_ASSERT(loopTest);
+}
+
+void TestGreyscaleImage::testDebayerFast(void)
+{
+	Camera* camera = getHilaris().getCamera(new DebayerGreyscaleFast());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	GreyscaleImage* image = (GreyscaleImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
+	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_GREYSCALE);
+}
+
+void TestGreyscaleImage::testDebayerHalfsize(void)
+{
+	Camera* camera = getHilaris().getCamera(new DebayerGreyscaleHalfsize());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	GreyscaleImage* image = (GreyscaleImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
+	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_GREYSCALE);
+}
+
+void TestGreyscaleImage::testDebayerVector(void)
+{
+	Camera* camera = getHilaris().getCamera(new DebayerGreyscaleVector());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	GreyscaleImage* image = (GreyscaleImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
+	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_GREYSCALE);
 }

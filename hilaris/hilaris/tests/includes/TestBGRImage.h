@@ -12,6 +12,9 @@ class TestBGRImage : public CppUnit::TestFixture
 	
 		CPPUNIT_TEST(testCreate);
 		CPPUNIT_TEST(testDebayerFast);
+		CPPUNIT_TEST(testDebayerBilinear);
+		CPPUNIT_TEST(testDebayerStandard);
+		CPPUNIT_TEST(testDebayerHalfsize);
 		
 	CPPUNIT_TEST_SUITE_END();
 
@@ -21,6 +24,9 @@ class TestBGRImage : public CppUnit::TestFixture
 
 		void testCreate(void);
 		void testDebayerFast();
+		void testDebayerBilinear();
+		void testDebayerStandard();
+		void testDebayerHalfsize();
 };
 
 #endif

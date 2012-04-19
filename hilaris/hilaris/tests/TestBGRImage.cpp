@@ -51,3 +51,48 @@ void TestBGRImage::testDebayerFast()
 	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
 }
+
+void TestBGRImage::testDebayerBilinear()
+{
+	Camera* camera = getHilaris().getCamera(new DebayerBGRBilinear());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	BGRImage* image = (BGRImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getHeight() == height);
+	CPPUNIT_ASSERT(image->getWidth()  == width);
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+}
+
+void TestBGRImage::testDebayerHalfsize()
+{
+	Camera* camera = getHilaris().getCamera(new DebayerBGRHalfsize());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	BGRImage* image = (BGRImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
+	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+}
+
+void TestBGRImage::testDebayerStandard()
+{
+	Camera* camera = getHilaris().getCamera(new DebayerBGRStandard());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	BGRImage* image = (BGRImage*)camera->captureImage();
+		
+	CPPUNIT_ASSERT(image->getHeight() == height);
+	CPPUNIT_ASSERT(image->getWidth()  == width);
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+}
