@@ -11,17 +11,22 @@ class TestCamera : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE(TestCamera);
 	
 		CPPUNIT_TEST(testStandardConstructor);
+		CPPUNIT_TEST(testShutterWidth);
+		CPPUNIT_TEST(testBlackLevelOffset);
+		CPPUNIT_TEST(testPresetRegisters);
+		CPPUNIT_TEST(testDefaultDebayer);
 		
 	CPPUNIT_TEST_SUITE_END();
 
 	public:
 		void setUp(void);
-		void tearDown(void);
+		void tearDown(void) {}
 
 		void testStandardConstructor(void);
-	
-	private:
-		Hilaris* hilaris;
+		void testShutterWidth(void);
+		void testBlackLevelOffset(void);
+		void testPresetRegisters(void);
+		void testDefaultDebayer(void);
 };
 
 #endif
