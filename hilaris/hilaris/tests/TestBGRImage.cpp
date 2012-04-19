@@ -19,7 +19,7 @@ void TestBGRImage::testCreate(void)
 	bool loopTest = true;
 	
 	// create a red image
-	BGRImage image = BGRImageFactory::create(width, height, 0, 0, 255);
+	BGRImage image = BGRImageFactory::create(width, height, 255, 0, 0);
 	
 	CPPUNIT_ASSERT(image.getWidth() == width);
 	CPPUNIT_ASSERT(image.getHeight() == height);
@@ -28,6 +28,9 @@ void TestBGRImage::testCreate(void)
 	{
 		for(int j = 0; j < image.getWidth(); j++)
 		{
+			
+			printf("RGB -: %d%d%d\n", image(i, j, BGRImage::RED ), image(i, j, BGRImage::GREEN ), image(i, j, BGRImage::BLUE ));
+			
 			loopTest = loopTest && (image(i, j, BGRImage::BLUE ) == 0);
 			loopTest = loopTest && (image(i, j, BGRImage::GREEN) == 0);
 			loopTest = loopTest && (image(i, j, BGRImage::RED  ) == 255);
