@@ -43,7 +43,7 @@ void ImageSender::run()
 		//accept pending client connections
 		if(this->readable(this->srvSocket))
 		{
-			printf("readable!!\n");
+			//printf("readable!!\n");
 			this->clients.insert(this->clients.begin() + this->connected, accept(this->srvSocket, NULL, 0));
 			if(this->clients.at(this->connected)==SOCK_ERROR)
 			{
@@ -52,7 +52,7 @@ void ImageSender::run()
 			}
 			else
 			{
-				printf("connected client %d\n", this->connected);
+				//printf("connected client %d\n", this->connected);
 				this->connected++;
 			}
 		}
@@ -80,13 +80,13 @@ void ImageSender::run()
 			{
 				int err;
 				char dummy[100];
-				printf("readable disconnecting\n");
+				//printf("readable disconnecting\n");
 				err=read(this->clients.at(i), &dummy, sizeof(dummy)-1);
 				if (err==0) {
-					printf("disconnecting client %d\n", i);
+					//printf("disconnecting client %d\n", i);
 					this->clients.erase(this->clients.begin() + i);
 					this->connected--;
-					printf("disconnected client %d\n", i);
+					//printf("disconnected client %d\n", i);
 				}
 			}			
 		}

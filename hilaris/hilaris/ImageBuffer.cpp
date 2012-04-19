@@ -3,7 +3,7 @@
 
 ImageBuffer::ImageBuffer(int dataSize, int bufferSize)
 {
-	printf("%d\n", dataSize);
+	//printf("%d\n", dataSize);
 	this->dataSize = dataSize;
 	this->bufferSize = bufferSize;
 	
@@ -35,21 +35,24 @@ void ImageBuffer::insert(uint8* img)
 	printf("before lock insert\n");
 	this->mutex.lock();
 	{
+		printf("after lock insert\n");
 		int end = (this->start + this->count) % this->bufferSize;
-		printf("start %d count %d insert %d\n", this->start, this->count, end*this->dataSize);
+		//printf("start %d count %d insert %d\n", this->start, this->count, end*this->dataSize);
 		memcpy(&this->data[end*this->dataSize], img, this->dataSize);
 	
 		if(this->count == this->bufferSize)
 		{
 			this->start = (this->start + 1) % this->bufferSize;
+			printf("full\n");
 		}
 		else
 		{
 			this->count++;
 		}
 	}
+	printf("before lock insert\n");
 	this->mutex.unlock();
-	printf("after unlock\n");
+	printf("after unlock insert\n");
 }
 
 uint8* ImageBuffer::get()
@@ -57,15 +60,16 @@ uint8* ImageBuffer::get()
 	printf("before lock get\n");
 	this->mutex.lock();
 	{
-		printf("position insert %d\n", this->start*this->dataSize);
+		printf("after lock get\n");
+		//printf("position insert %d\n", this->start*this->dataSize);
 		memcpy(this->currentImg, &this->data[this->start*this->dataSize], this->dataSize);
 		
 		this->start = (this->start + 1) % this->bufferSize;
 		this->count--;
 	}
+	printf("before lock get\n");
 	this->mutex.unlock();
-	
-	OscLog(DEBUG, "image data %d %d %d\n", this->currentImg[100], this->currentImg[300], this->currentImg[10000]);
+	printf("after unlock get\n");
 	
 	return this->currentImg;
 }

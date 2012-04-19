@@ -1,5 +1,7 @@
 #include "Thread.h"
 
+Thread::Thread():cancel(0){}
+
 Thread::~Thread(){}
 
 void* Thread::dispatch(void* ptr)
@@ -19,3 +21,11 @@ void Thread::join()
 {
 	pthread_join(this->thread, 0);
 }
+
+void Thread::stop()
+{
+	printf("cancel thread\n");
+	this->cancel = 1;
+}
+
+
