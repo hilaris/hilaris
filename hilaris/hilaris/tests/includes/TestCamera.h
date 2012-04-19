@@ -1,16 +1,16 @@
-#ifndef TESTHILARIS_H
-#define TESTHILARIS_H
+#ifndef _TESTCAMERA_H_
+#define _TESTCAMERA_H_
 
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
 extern Hilaris& getHilaris();
 
-class TestHilaris : public CppUnit::TestFixture
+class TestCamera : public CppUnit::TestFixture
 {
-	CPPUNIT_TEST_SUITE(TestHilaris);
+	CPPUNIT_TEST_SUITE(TestCamera);
 	
-		CPPUNIT_TEST(testStartUp);
+		CPPUNIT_TEST(testStandardConstructor);
 		
 	CPPUNIT_TEST_SUITE_END();
 
@@ -18,7 +18,7 @@ class TestHilaris : public CppUnit::TestFixture
 		void setUp(void);
 		void tearDown(void);
 
-		void testStartUp(void);
+		void testStandardConstructor(void);
 	
 	private:
 		Hilaris* hilaris;
