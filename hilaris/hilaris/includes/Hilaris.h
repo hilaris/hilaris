@@ -29,6 +29,7 @@
 #include "DebayerBGRStandard.h"
 #include "DebayerBGRHalfsize.h"
 #include "DebayerBGRBilinear.h"
+#include "DebayerRGBStandard.h"
 #include "DebayerGreyscaleFast.h"
 #include "DebayerGreyscaleHalfsize.h"
 #include "DebayerGreyscaleVector.h"
