@@ -5,6 +5,13 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestBGRImage);
 
+void TestBGRImage::setUp(void)
+{
+	// set up hilaris
+	getHilaris().setFileLogLevel(NONE);
+	getHilaris().setConsoleLogLevel(NONE);
+}
+
 void TestBGRImage::testCreate(void)
 {
 	uint16 width  = 32;
@@ -28,4 +35,19 @@ void TestBGRImage::testCreate(void)
 	}
 	
 	CPPUNIT_ASSERT(loopTest);
+}
+
+void TestBGRImage::testDebayerFast()
+{
+	Camera* camera = getHilaris().getCamera(new DebayerBGRFast());
+	
+	uint16 height = camera->getHeight();
+	uint16 width  = camera->getWidth();
+	
+	// capture image
+	BGRImage* image = (BGRImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
+	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
 }
