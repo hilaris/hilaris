@@ -176,8 +176,19 @@ bool Camera::addFrameProcessor(FrameProcessor* proc)
 }
 
 bool Camera::setShutterWidth(uint32 width)
-{	
-	return (this->lastError = OscCamSetShutterWidth(width)) != SUCCESS;
+{
+	this->lastError = OscCamSetShutterWidth(width);
+	
+	if(this->lastError == SUCCESS)
+	{
+		this->setAutoExposure(false);
+		
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 uint32 Camera::getShutterWidth()
