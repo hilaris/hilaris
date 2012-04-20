@@ -10,8 +10,13 @@ class Led
 		~Led();
 		bool setColor(uint8 red, uint8 green);
 		bool on();
+		bool on(uint8 red, uint8 green);
 		bool off();
 		bool toggle();
+	
+	private:
+		uint8 red;
+		uint8 green;
 };
 
 #endif
