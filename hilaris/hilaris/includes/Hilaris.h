@@ -212,6 +212,9 @@ class Hilaris {
 		 */
 		void setRemoveOnCleanup(bool remove);
 		
+		// usage: *this->getOscarVersion();
+		char** getOscarVersion();
+		
 		IO* io();
 		
 	private:

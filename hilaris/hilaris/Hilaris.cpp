@@ -61,6 +61,15 @@ Hilaris::~Hilaris()
 	OscDestroy();
 }
 
+char** Hilaris::getOscarVersion()
+{
+	char* strVersion[15];
+	
+	OscGetVersionString(strVersion);
+	
+	return strVersion;
+}
+
 void Hilaris::setRemoveOnCleanup(bool remove)
 {
 	this->removeOnCleanup = remove;
