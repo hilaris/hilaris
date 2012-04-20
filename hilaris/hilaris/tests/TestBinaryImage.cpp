@@ -6,6 +6,16 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestBinaryImage);
 
+void TestBinaryImage::setUp(void)
+{
+	// ...
+}
+
+void TestBinaryImage::tearDown(void)
+{
+	getHilaris().resetCamera();
+}
+
 void TestBinaryImage::testCreate(void)
 {
 	uint16 width  = 32;
@@ -27,6 +37,18 @@ void TestBinaryImage::testCreate(void)
 	}
 	
 	CPPUNIT_ASSERT(loopTest);
+}
+
+void TestBinaryImage::testDirectDebayer(void)
+{
+	// using direct debayer
+	Camera* camera = getHilaris().getCamera(new DebayerBinaryDirect());
+	
+	BinaryImage* image = (BinaryImage*)camera->captureImage();
+	
+	CPPUNIT_ASSERT(image->getWidth()  == Image::MAX_WIDTH  / 2);
+	CPPUNIT_ASSERT(image->getHeight() == Image::MAX_HEIGHT / 2);
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BINARY);
 }
 
 void TestBinaryImage::invert(void)

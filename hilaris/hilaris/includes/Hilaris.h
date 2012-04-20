@@ -27,6 +27,7 @@
 
 // include debayer
 #include "Debayer.h"
+#include "DebayerBinaryDirect.h"
 #include "DebayerBGRFast.h"
 #include "DebayerBGRStandard.h"
 #include "DebayerBGRHalfsize.h"
