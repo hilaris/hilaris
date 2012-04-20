@@ -16,12 +16,14 @@
 #include "RGBImage.h"
 #include "GreyscaleImage.h"
 #include "BinaryImage.h"
+#include "YUV422Image.h"
 
 // include factories
 #include "BinaryImageFactory.h"
 #include "BGRImageFactory.h"
 #include "GreyscaleImageFactory.h"
 #include "RGBImageFactory.h"
+#include "YUV422ImageFactory.h"
 
 // include debayer
 #include "Debayer.h"
@@ -33,6 +35,7 @@
 #include "DebayerGreyscaleFast.h"
 #include "DebayerGreyscaleHalfsize.h"
 #include "DebayerGreyscaleVector.h"
+#include "DebayerYUV422Fast.h"
 
 // include system classes
 #include "Debug.h"
