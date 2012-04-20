@@ -139,6 +139,20 @@ uint16 Camera::getHeight()
 	return this->aoi.height;
 }
 
+uint16 Camera::getRegister(const uint32 reg)
+{
+	uint16 res;
+	
+	OscCamGetRegisterValue(reg, &res);
+	
+	return res;
+}
+
+bool Camera::setRegister(const uint32 reg, const uint16 value)
+{
+	return (OscCamSetRegisterValue(reg, value) == SUCCESS);
+}
+
 int Camera::getDebayeredImageSize()
 {
 	return this->image->getWidth() * this->image->getHeight() * (OSC_PICTURE_TYPE_COLOR_DEPTH(this->debayer->getType())/8);	

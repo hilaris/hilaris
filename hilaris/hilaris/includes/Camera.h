@@ -295,6 +295,9 @@ class Camera {
 		 *  @todo Make this a vector.
 		 */
 		FrameProcessor* processor;
+		
+		uint16 getRegister(const uint32 reg);
+		bool setRegister(const uint32 reg, const uint16 value);
 
 	private:
 		enum EnOscPictureType type;
