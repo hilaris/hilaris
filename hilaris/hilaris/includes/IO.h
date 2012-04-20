@@ -24,7 +24,7 @@ class IO
 		bool read(enum IO::Pin pin);
 		bool setPolarity(enum IO::Pin pin, bool lowActive);
 		
-		Led* getLed();
+		Led* led();
 	
 	private:
 		enum EnGpios getOscarIO(enum IO::Pin pin);

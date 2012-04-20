@@ -32,7 +32,7 @@ bool IO::setPolarity(enum IO::Pin pin, bool lowActive)
 	return (OscGpioSetupPolarity(this->getOscarIO(pin), lowActive) == SUCCESS);
 }
 		
-Led* IO::getLed()
+Led* IO::led()
 {
 	return this->testLed;
 }
