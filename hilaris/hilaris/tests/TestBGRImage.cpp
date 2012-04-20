@@ -17,7 +17,7 @@ void TestBGRImage::testCreate(void)
 	bool loopTest = true;
 	
 	// create a red image
-	BGRImage image = BGRImageFactory::create(width, height, 255, 0, 0);
+	BGRImage image = BGRImageFactory::create(width, height, 0, 0, 255);
 	
 	CPPUNIT_ASSERT(image.getWidth() == width);
 	CPPUNIT_ASSERT(image.getHeight() == height);
