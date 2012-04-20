@@ -37,10 +37,11 @@
 // include system classes
 #include "Debug.h"
 #include "Camera.h"
-#include "DeviceIO.h"
 #include "FrameProcessor.h"
 #include "StreamClient.h"
 #include "StreamServer.h"
+#include "Led.h"
+#include "IO.h"
 
 /**
  *  @mainpage

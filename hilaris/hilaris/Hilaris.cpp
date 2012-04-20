@@ -44,6 +44,8 @@ Hilaris::Hilaris()
 Hilaris::~Hilaris()
 {
 	// cleanup
+	if(this->camera != NULL) delete this->camera;
+	
 	// remove some files
 	if(this->removeOnCleanup)
 	{
