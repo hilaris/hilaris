@@ -5,11 +5,9 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCamera);
 
-void TestCamera::setUp(void)
+void TestCamera::tearDown(void)
 {
-	// set up hilaris
-	getHilaris().setFileLogLevel(NONE);
-	getHilaris().setConsoleLogLevel(NONE);
+	getHilaris().resetCamera();
 }
 
 void TestCamera::testStandardConstructor(void)

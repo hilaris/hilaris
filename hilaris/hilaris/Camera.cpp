@@ -1,6 +1,14 @@
 #include "Camera.h"
 
-Camera::~Camera() { }
+Camera::~Camera()
+{
+	// destroy buffers
+	this->destroyBuffers();
+	
+	if(this->image    != NULL) delete this->image;
+	if(this->rawImage != NULL) delete this->rawImage;
+	if(this->debayer  != NULL) delete this->debayer;
+}
 
 Camera::Camera()
 {
@@ -63,7 +71,10 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	
 		this->lastError = OscCamSetAreaOfInterest(lowX, lowY, width, height);
 		
-		if(this->lastError != SUCCESS) return false;
+		if(this->lastError != SUCCESS)
+		{
+			return false;
+		}
 	}
 	else
 	{
@@ -80,7 +91,10 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	if(bufferSize > 0)
 	{
 		// creating buffers
-		if(!this->createBuffers(bufferSize)) return false;
+		if(!this->createBuffers(bufferSize))
+		{
+			return false;
+		}
 	}
 	else
 	{
@@ -132,6 +146,8 @@ int Camera::getDebayeredImageSize()
 
 bool Camera::createBuffers(uint8 bufferSize)
 {
+	this->bufferSize = bufferSize;
+	
 	for(int i = 0; i < bufferSize; i++)
 	{
 		// create a new buffer
@@ -166,6 +182,21 @@ bool Camera::createBuffers(uint8 bufferSize)
 	this->isMultiBuffered = bufferSize > 1;
 	
 	return true;
+}
+
+bool Camera::destroyBuffers()
+{
+	bool success = true;
+	
+	success = success && (OscCamDeleteMultiBuffer() == SUCCESS);
+	
+	// remove all buffers
+	for(int i = 0; i < this->bufferSize; i++)
+	{
+		success = success && (OscCamSetFrameBuffer(i, 0, NULL, true) == SUCCESS);
+	}
+	
+	return success;
 }
 
 bool Camera::addFrameProcessor(FrameProcessor* proc)
@@ -271,7 +302,6 @@ Image* Camera::captureImage()
 		{
 			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
 			{
-				//printf("Trying to copy rawdata to RawImage\n");
 				memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
 				
 				rawPic = this->rawImage->getDataPtr();

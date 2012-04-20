@@ -5,6 +5,11 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestGreyscaleImage);
 
+void TestGreyscaleImage::tearDown(void)
+{
+	getHilaris().resetCamera();
+}
+
 void TestGreyscaleImage::testCreate(void)
 {
 	uint16 width  = 32;

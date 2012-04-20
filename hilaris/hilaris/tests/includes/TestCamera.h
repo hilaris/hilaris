@@ -19,8 +19,8 @@ class TestCamera : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE_END();
 
 	public:
-		void setUp(void);
-		void tearDown(void) {}
+		void setUp(void) {}
+		void tearDown(void);
 
 		void testStandardConstructor(void);
 		void testShutterWidth(void);

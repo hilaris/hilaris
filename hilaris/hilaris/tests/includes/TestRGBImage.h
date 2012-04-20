@@ -16,8 +16,8 @@ class TestRGBImage : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE_END();
 
 	public:
-		void setUp(void);
-		void tearDown(void) {}
+		void setUp(void) {}
+		void tearDown(void);
 
 		void testCreate(void);
 		void testDebayerFast(void);

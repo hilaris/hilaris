@@ -5,11 +5,9 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestBGRImage);
 
-void TestBGRImage::setUp(void)
+void TestBGRImage::tearDown(void)
 {
-	// set up hilaris
-	getHilaris().setFileLogLevel(NONE);
-	getHilaris().setConsoleLogLevel(NONE);
+	getHilaris().resetCamera();
 }
 
 void TestBGRImage::testCreate(void)
@@ -28,9 +26,6 @@ void TestBGRImage::testCreate(void)
 	{
 		for(int j = 0; j < image.getWidth(); j++)
 		{
-			
-			printf("RGB -: %d%d%d\n", image(i, j, BGRImage::RED ), image(i, j, BGRImage::GREEN ), image(i, j, BGRImage::BLUE ));
-			
 			loopTest = loopTest && (image(i, j, BGRImage::BLUE ) == 0);
 			loopTest = loopTest && (image(i, j, BGRImage::GREEN) == 0);
 			loopTest = loopTest && (image(i, j, BGRImage::RED  ) == 255);
@@ -53,6 +48,8 @@ void TestBGRImage::testDebayerFast()
 	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
 	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+	
+	getHilaris().resetCamera();
 }
 
 void TestBGRImage::testDebayerBilinear()
@@ -68,6 +65,8 @@ void TestBGRImage::testDebayerBilinear()
 	CPPUNIT_ASSERT(image->getHeight() == height);
 	CPPUNIT_ASSERT(image->getWidth()  == width);
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+	
+	getHilaris().resetCamera();
 }
 
 void TestBGRImage::testDebayerHalfsize()
@@ -83,6 +82,8 @@ void TestBGRImage::testDebayerHalfsize()
 	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
 	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+	
+	getHilaris().resetCamera();
 }
 
 void TestBGRImage::testDebayerStandard()
@@ -98,4 +99,6 @@ void TestBGRImage::testDebayerStandard()
 	CPPUNIT_ASSERT(image->getHeight() == height);
 	CPPUNIT_ASSERT(image->getWidth()  == width);
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_BGR_24);
+	
+	getHilaris().resetCamera();
 }

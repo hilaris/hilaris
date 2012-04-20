@@ -15,7 +15,7 @@ class TestHilaris : public CppUnit::TestFixture
 	CPPUNIT_TEST_SUITE_END();
 
 	public:
-		void setUp(void);
+		void setUp(void) {}
 		void tearDown(void);
 
 		void testStartUp(void);

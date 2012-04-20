@@ -88,6 +88,8 @@ bool Hilaris::loaded() const
 
 void Hilaris::resetCamera()
 {
+	if(this->camera != NULL) delete this->camera;
+	
 	this->camera = NULL;
 }
 

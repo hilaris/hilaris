@@ -5,11 +5,9 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestRGBImage);
 
-void TestRGBImage::setUp(void)
+void TestRGBImage::tearDown(void)
 {
-	// set up hilaris
-	getHilaris().setFileLogLevel(NONE);
-	getHilaris().setConsoleLogLevel(NONE);
+	getHilaris().resetCamera();
 }
 
 void TestRGBImage::testCreate(void)

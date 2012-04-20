@@ -6,6 +6,10 @@
 Hilaris& getHilaris()
 {
     static Hilaris hilaris;
+    
+    hilaris.setFileLogLevel(NONE);
+    hilaris.setConsoleLogLevel(NONE);
+    
     return hilaris;
 }
 
