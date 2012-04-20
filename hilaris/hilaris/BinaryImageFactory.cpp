@@ -1,5 +1,37 @@
 #include "BinaryImageFactory.h"
 
+BinaryImage BinaryImageFactory::getDirectDebayered(RawImage* raw, uint8 threshold, bool darkIsForeground)
+{
+	// do the debayering
+	BinaryImage binary(raw->getWidth() / 2, raw->getHeight() / 2);
+	
+	uint8 bg = darkIsForeground ? 1 : 0;
+	uint8 fg = darkIsForeground ? 0 : 1;
+	
+	uint16 x,y;
+	uint32 outPos=0;
+	uint8 *in  = (uint8 *)raw->getDataPtr();
+	uint8 *out = (uint8 *)binary.getDataPtr();
+
+	for (y=0; y<raw->getHeight(); y += 2)
+	{
+		for (x=0; x<raw->getWidth(); x += 2)
+		{
+			out[outPos++] = ((uint8)
+			(
+				(
+					(uint16)in[y*raw->getWidth()+x]       + 
+					(uint16)in[y*raw->getWidth()+x+1]     + 
+					(uint16)in[(y+1)*raw->getWidth()+x]   +
+					(uint16)in[(y+1)*raw->getWidth()+x+1]
+				)
+			>> 2)) >= threshold ? fg : bg;
+		}
+	}
+	
+	return binary;
+}
+
 BinaryImage BinaryImageFactory::getFastDebayered(RawImage* raw, uint8 threshold, bool darkIsForeground)
 {
 	GreyscaleImage image = GreyscaleImageFactory::getFastDebayered(raw);

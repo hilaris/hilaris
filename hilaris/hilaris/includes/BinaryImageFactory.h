@@ -22,6 +22,8 @@ class BinaryImageFactory
 {
 	public:
 		
+		static BinaryImage getDirectDebayered(RawImage* raw, uint8 threshold = 127, bool darkIsForeground = true);
+		
 		/**
 		 *  @brief Get a BinaryImage out of a RawImage and its data using the greyscale fast
 		 *   Debayer.
