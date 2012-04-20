@@ -5,6 +5,8 @@ Led::Led()
 	this->on();
 }
 
+Led::~Led() {}
+
 bool Led::setColor(uint8 red, uint8 green)
 {
 	return (OscGpioSetTestLedColor(red, green) == SUCCESS);

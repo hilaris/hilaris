@@ -208,12 +208,15 @@ class Hilaris {
 		 */
 		void setRemoveOnCleanup(bool remove);
 		
+		IO* io();
+		
 	private:
 		int loadSuccess;
 		int frameBufferSize;
 		bool removeOnCleanup;
 		
 		Camera* camera;
+		IO* gpio;
 };
 
 #endif

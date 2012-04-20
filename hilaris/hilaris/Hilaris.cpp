@@ -5,6 +5,8 @@ Hilaris::Hilaris()
 	this->camera = NULL;
 	this->setRemoveOnCleanup(true);
 	
+	this->gpio = new IO();
+	
 	// check wheter gpio-file exists
 	// if not, create it and fill it with
 	// a default text
@@ -45,6 +47,7 @@ Hilaris::~Hilaris()
 {
 	// cleanup
 	if(this->camera != NULL) delete this->camera;
+	if(this->gpio   != NULL) delete this->gpio;
 	
 	// remove some files
 	if(this->removeOnCleanup)
@@ -86,6 +89,11 @@ int Hilaris::getFrameBufferSize() const
 bool Hilaris::loaded() const
 {
 	return this->loadSuccess == SUCCESS;
+}
+
+IO* Hilaris::io()
+{
+	return this->gpio;
 }
 
 void Hilaris::resetCamera()
