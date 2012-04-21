@@ -163,3 +163,18 @@ bool BinaryImage::drawBoundingBox()
 	
 	return (err = OscVisDrawBoundingBox(&this->getOscarContext(), &this->getRegions())) != SUCCESS;
 }
+
+bool BinaryImage::sobel(uint8 exp)
+{
+	OSC_ERR err;
+	uint8 outData[this->getWidth() * this->getHeight()];
+	
+	if((err = OscVisSobel(this->getDataPtr(), outData, this->getWidth(), this->getHeight(), exp)) != SUCCESS)
+	{
+		return false;
+	}
+	
+	memcpy(this->getDataPtr(), outData, this->getWidth() * this->getHeight());
+	
+	return true;
+}

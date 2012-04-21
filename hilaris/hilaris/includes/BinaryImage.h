@@ -148,6 +148,8 @@ class BinaryImage : public Image
 		 *  @return True if white is foreground, false if it is black.
 		 */
 		bool getInvertedBackground();
+		
+		bool sobel(uint8 exp = 10);
 	
 	protected:
 		
