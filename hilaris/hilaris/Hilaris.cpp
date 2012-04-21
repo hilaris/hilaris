@@ -61,11 +61,11 @@ Hilaris::~Hilaris()
 	OscDestroy();
 }
 
-char** Hilaris::getOscarVersion()
+char* Hilaris::getOscarVersion()
 {
-	char* strVersion[15];
+	char* strVersion;
 	
-	OscGetVersionString(strVersion);
+	OscGetVersionString(&strVersion);
 	
 	return strVersion;
 }
