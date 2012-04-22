@@ -23,9 +23,13 @@ ImageBuffer::~ImageBuffer()
 
 bool ImageBuffer::isEmpty()
 {
+	int c = 0;
+	
 	this->mutex.lock();
-	int c = this->count;
-	this->mutex.unlock();
+	{
+		c = this->count;
+		this->mutex.unlock();
+	}
 	
 	return (c <= 0);
 }
@@ -49,10 +53,11 @@ void ImageBuffer::insert(uint8* img)
 		{
 			this->count++;
 		}
+		
+		printf("before unlock insert\n");
+		this->mutex.unlock();
+		printf("after unlock insert\n");
 	}
-	printf("before lock insert\n");
-	this->mutex.unlock();
-	printf("after unlock insert\n");
 }
 
 uint8* ImageBuffer::get()
@@ -66,10 +71,12 @@ uint8* ImageBuffer::get()
 		
 		this->start = (this->start + 1) % this->bufferSize;
 		this->count--;
+		
+		printf("before unlock get\n");
+		this->mutex.unlock();
+		printf("after unlock get\n");
 	}
-	printf("before lock get\n");
-	this->mutex.unlock();
-	printf("after unlock get\n");
+	
 	
 	return this->currentImg;
 }

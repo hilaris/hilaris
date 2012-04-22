@@ -112,9 +112,19 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	
 	//initialize processors
 	this->processor = NULL;
+		
+	int mb = this->isMultiBuffered ? OSC_CAM_MULTI_BUFFER : 0;
 	
-	// finished initializing
-	this->initialized = true;
+	if(OscCamSetupCapture(mb) == SUCCESS)
+	{
+		usleep(10000);
+		if(OscGpioTriggerImage() == SUCCESS)
+		{
+			usleep(10000);
+			// finished initializing
+			this->initialized = true;
+		}
+	}
 	
 	return true;
 }
@@ -310,33 +320,31 @@ Image* Camera::captureImage()
 	uint8* rawPic = NULL;
 	int mb = this->isMultiBuffered ? OSC_CAM_MULTI_BUFFER : 0;
 	
-	if(OscCamSetupCapture(mb) == SUCCESS)
+	if(OscCamReadPicture(mb, &rawPic,0,0) == SUCCESS)
 	{
-		if(OscGpioTriggerImage() == SUCCESS)
+		usleep(2000);
+	
+		if(OscCamSetupCapture(mb) != SUCCESS)
+			Debug::log(Debug::ERROR, "Failed to setup capture\n");
+		if(OscGpioTriggerImage() != SUCCESS)
+			Debug::log(Debug::ERROR, "GPIO trigger image failed\n");
+			
+			
+		memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
+		
+		rawPic = this->rawImage->getDataPtr();
+		
+		if(this->debayer != NULL)
 		{
-			if(OscCamReadPicture(mb, &rawPic, 0, 0) == SUCCESS)
-			{
-				memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
-				
-				rawPic = this->rawImage->getDataPtr();
-				//printf("copied\n");
-				
-				if(this->debayer != NULL)
-				{
-					this->debayer->debayer(this->rawImage, this->image);
-				}
-				
-				//printf("Debayered RawImage\n");
-				
-				if(this->processor != NULL)
-				{
-					//printf("A Processor has been set, trying to process image.\n");
-					return this->processor->process(this->image);
-				}
-				
-				return this->image;
-			}
+			this->debayer->debayer(this->rawImage, this->image);
 		}
+		
+		if(this->processor != NULL)
+		{
+			return this->processor->process(this->image);
+		}
+		
+		return this->image;
 	}
 	
 	return NULL;

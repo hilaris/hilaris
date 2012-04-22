@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "oscar.h"
 #include "Debug.h"
@@ -12,6 +13,10 @@
 #include "Debayer.h"
 #include "FrameProcessor.h"
 #include "DebayerBGRFast.h"
+
+#define REG_AEC_AGC_ENABLE 0xaf
+#define CAM_REG_RESERVED_0x20 0x20
+#define CAM_REG_CHIP_CONTROL 0x07
 
 /**
  *  @brief Area of Interest structure.

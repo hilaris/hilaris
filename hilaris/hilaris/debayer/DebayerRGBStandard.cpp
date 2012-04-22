@@ -12,7 +12,7 @@ long unsigned int DebayerRGBStandard::getSize()
 
 RGBImage* DebayerRGBStandard::getObject(uint16 width, uint16 height)
 {
-	return new RGBImage(width, height);
+	return new RGBImage(width/2, height/2);
 }
 
 bool DebayerRGBStandard::debayer(RawImage* raw, Image* image)

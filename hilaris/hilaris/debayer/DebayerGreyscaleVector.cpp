@@ -17,9 +17,13 @@ GreyscaleImage* DebayerGreyscaleVector::getObject(uint16 width, uint16 height)
 
 bool DebayerGreyscaleVector::debayer(RawImage* raw, Image* image)
 {
+	/*
 	GreyscaleImage b = GreyscaleImageFactory::getVectorDebayered(raw);
 	
 	memcpy(image, &b, sizeof(b));
+	*/
+	
+	OscVisVectorDebayerGrey(&raw->getOscarContext(), &image->getOscarContext());
 	
 	return true;
 }

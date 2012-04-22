@@ -2,11 +2,9 @@
 
 GreyscaleImage GreyscaleImageFactory::getFastDebayered(RawImage* raw)
 {
-	//printf("start fast debayer\n");
 	GreyscaleImage image(raw->getWidth() / 2, raw->getHeight() / 2);
-	//printf("middel fast debayer\n");
+
 	OscVisFastDebayerGrey(&raw->getOscarContext(), &image.getOscarContext());
-	//printf("end fast debayer\n");
 	return image;
 }
 

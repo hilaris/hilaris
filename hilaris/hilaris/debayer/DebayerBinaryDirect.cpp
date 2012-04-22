@@ -7,12 +7,12 @@ EnOscPictureType DebayerBinaryDirect::getType()
 
 long unsigned int DebayerBinaryDirect::getSize()
 {
-	return sizeof(BGRImage);
+	return sizeof(BinaryImage);
 }
 
-BGRImage* DebayerBinaryDirect::getObject(uint16 width, uint16 height)
+BinaryImage* DebayerBinaryDirect::getObject(uint16 width, uint16 height)
 {
-	return new BGRImage(width/2, height/2);
+	return new BinaryImage(width/2, height/2);
 }
 
 bool DebayerBinaryDirect::debayer(RawImage* raw, Image* image)

@@ -17,9 +17,13 @@ BGRImage* DebayerBGRFast::getObject(uint16 width, uint16 height)
 
 bool DebayerBGRFast::debayer(RawImage* raw, Image* image)
 {
+	/*
 	BGRImage b = BGRImageFactory::getFastDebayered(raw);
 	
 	memcpy(image, &b, sizeof(b));
+	*/
+	
+	OscVisFastDebayerBGR(&raw->getOscarContext(), &image->getOscarContext());
 	
 	return true;
 }

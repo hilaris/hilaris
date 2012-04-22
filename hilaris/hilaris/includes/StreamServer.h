@@ -4,6 +4,10 @@
 #define MAX_CLIENTS 5
 #define SOCK_ERROR -1
 
+#define REG_AEC_AGC_ENABLE 0xaf
+#define CAM_REG_RESERVED_0x20 0x20
+#define CAM_REG_CHIP_CONTROL 0x07
+
 #include <signal.h>
 
 #include "Thread.h"
@@ -24,19 +28,21 @@
 class StreamServer {
 	public:
 		/**
-		 *  @brief Setting up this StreamServer by providing a Camera pointer.
+		 *  @brief Setting up this StreamServer by providing a Camera pointer
+		 *         and a port which is optional.
 		 */
 		StreamServer(Camera* camera, int port=9003);
 		
 		/**
-		 *  @brief Start streaming the debayered Image.
-		 *  @return Success status.
+		 *  @brief Start streaming the debayered and processed Image.
+		 *         This call will block until the threads are stopped
+		 *         by the StreamServer::stop() method.
 		 */
 		void start();
 		
 		/**
-		 *  @brief Stop the streaming.
-		 *  @return Success status.
+		 *  @brief Static method to handle the SIGINT signal. Stops the producer 
+		 *         and sender thread.
 		 */
 		static void stop(int signum);
 		

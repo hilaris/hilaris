@@ -33,7 +33,7 @@ class DebayerBinaryDirect : public Debayer
 		 *  @brief Get an image pointer.
 		 *  @return A pointer to a BGRImage.
 		 */
-		BGRImage* getObject(uint16 width, uint16 height);
+		BinaryImage* getObject(uint16 width, uint16 height);
 		
 		/**
 		 *  @brief This is where the action takes place. Debayer the image according

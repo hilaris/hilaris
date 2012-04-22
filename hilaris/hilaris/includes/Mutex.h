@@ -2,6 +2,8 @@
 #define _MUTEX_H_
 
 #include <pthread.h>
+#include <errno.h>
+#include <unistd.h>
 
 class Mutex
 {

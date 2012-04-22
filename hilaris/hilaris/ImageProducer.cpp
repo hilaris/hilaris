@@ -9,6 +9,6 @@ void ImageProducer::run()
 		
 		this->buffer->insert(data);
 		//printf("img count %d\n", ++count);
-		usleep(1000);
+		usleep(2000);
 	}
 }
