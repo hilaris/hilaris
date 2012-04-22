@@ -55,6 +55,8 @@ class GreyscaleImage : public Image
 		 */
 		bool filter(struct OSC_VIS_FILTER_KERNEL *kernel);
 		
+		bool sobel(uint8 exp = 10);
+		
 		/**
 		 *  @brief The ()-opeartor. Get and set pixels of this image using this operator.
 		 *

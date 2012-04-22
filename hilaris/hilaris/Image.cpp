@@ -50,4 +50,3 @@ void Image::setOscarContext()
 	this->oscarContext.type   = this->getType();
 	this->oscarContext.data   = this->getDataPtr();
 }
-
