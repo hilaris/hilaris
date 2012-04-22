@@ -336,7 +336,9 @@ Image* Camera::captureImage()
 		
 		if(this->debayer != NULL)
 		{
+			OscLog(DEBUG, "Debayering rawdata\n");
 			this->debayer->debayer(this->rawImage, this->image);
+			OscLog(DEBUG, "Got a debayered image\n");
 		}
 		
 		if(this->processor != NULL)
