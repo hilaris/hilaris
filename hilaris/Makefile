@@ -12,7 +12,9 @@ LIBRARY = app/library/
 BINARY = app/
 
 OSCAR_HOST_LIB = hilaris/oscar/library/libosc_host.a
+OSCAR_OVERLAY_HOST_LIB = hilaris/oscar/library/libosc_overlay_host.a
 OSCAR_TARGET_LIB = hilaris/oscar/library/libosc_target.a
+OSCAR_OVERLAY_TARGET_LIB = hilaris/oscar/library/libosc_overlay_target.a
 
 SOURCES    := $(patsubst hilaris/%.cpp,%,$(wildcard hilaris/*.cpp)) 
 PROCESSORS := $(patsubst hilaris/processors/%.cpp,%,$(wildcard hilaris/processors/*.cpp))
@@ -28,6 +30,7 @@ host: $(addsuffix .o, $(addprefix hilaris/build/host_, $(SOURCES))) $(addsuffix 
 	@ cp -R hilaris/includes/* app/includes/
 	@ cp -R hilaris/oscar/includes/* app/includes/oscar/
 	@ cp $(OSCAR_HOST_LIB) app/library/
+	@ cp $(OSCAR_OVERLAY_HOST_LIB) app/library/
 
 target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES))) $(addsuffix .o, $(addprefix hilaris/build/processors/target_, $(PROCESSORS))) $(addsuffix .o, $(addprefix hilaris/build/debayer/target_, $(DEBAYER)))
 	$(AR_TARGET) $(addsuffix libhilaris_target.a, $(LIBRARY)) $^
@@ -36,6 +39,7 @@ target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES))) $(addsuf
 	@ cp -R hilaris/includes/* app/includes/
 	@ cp -R hilaris/oscar/includes/* app/includes/oscar/
 	@ cp $(OSCAR_TARGET_LIB) app/library/
+	@ cp $(OSCAR_OVERLAY_TARGET_LIB) app/library/
 
 test: 
 	make -C hilaris/tests -f Makefile
