@@ -3,10 +3,19 @@
 
 GreyscaleImage::GreyscaleImage(uint16 width, uint16 height)
 {
+	this->hist = NULL;
 	this->width = width;
 	this->height = height;
 	
 	this->setOscarContext();
+}
+
+GreyscaleImage::~GreyscaleImage()
+{
+	if(this->hist != NULL)
+	{
+		//delete this->hist;
+	}
 }
 
 EnOscPictureType GreyscaleImage::getType()
@@ -64,4 +73,15 @@ bool GreyscaleImage::sobel(uint8 exp)
 	memcpy(this->getDataPtr(), outData, this->getWidth() * this->getHeight());
 	
 	return true;
+}
+
+Histogram* GreyscaleImage::histogram()
+{
+	if(this->hist == NULL)
+	{
+		this->hist = new Histogram(this);
+		this->hist->init();
+	}
+	
+	return this->hist;
 }
