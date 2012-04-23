@@ -14,7 +14,7 @@ GreyscaleImage::~GreyscaleImage()
 {
 	if(this->hist != NULL)
 	{
-		//delete this->hist;
+		delete this->hist;
 	}
 }
 

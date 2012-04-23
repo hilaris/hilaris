@@ -17,7 +17,9 @@ ImageBuffer::ImageBuffer(int dataSize, int bufferSize)
 ImageBuffer::~ImageBuffer()
 {
 	this->mutex.lock();
+	
 	delete[] this->data;
+	
 	this->mutex.unlock();
 }
 
