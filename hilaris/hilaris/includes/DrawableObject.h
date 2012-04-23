@@ -1,7 +1,7 @@
 #ifndef _DRAWABLE_OBJECT_H_
 #define _DRAWABLE_OBJECT_H_
 
-#include "Image.h"
+class Image;
 
 class DrawableObject
 {

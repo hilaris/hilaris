@@ -3,8 +3,10 @@
 
 #include <string.h>
 
+#include "oscar.h"
 #include "leanXoverlay.h"
 #include "DrawableObject.h"
+#include "Image.h"
 
 class Text : public DrawableObject
 {

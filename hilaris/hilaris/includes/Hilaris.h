@@ -51,6 +51,7 @@
 
 // include overlays
 #include "DrawableObject.h"
+#include "Overlay.h"
 #include "Text.h"
 #include "Box.h"
 #include "Line.h"

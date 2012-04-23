@@ -50,3 +50,11 @@ void Image::setOscarContext()
 	this->oscarContext.type   = this->getType();
 	this->oscarContext.data   = this->getDataPtr();
 }
+
+void Image::drawOverlay(Overlay* overlay)
+{
+	for(int i=0;i<overlay->size();i++)
+	{
+		overlay->get(i)->draw(this);
+	}
+}

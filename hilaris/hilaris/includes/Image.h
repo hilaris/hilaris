@@ -4,8 +4,9 @@
 #include <string.h>
 
 #include "oscar.h"
-#include "leanXoverlay.h"
 #include "Debug.h"
+#include "DrawableObject.h"
+#include "Overlay.h"
 
 enum ImageEncoding 
 {
@@ -66,6 +67,8 @@ class Image {
 		 *   a BinaryImage has to override this function in order to be storeable.
 		 */
 		virtual void save(char* path, enum ImageEncoding enc = BMP);
+		
+		virtual void drawOverlay(Overlay* overlay);
 		
 		/**
 		 *  @brief Get the width of the Image.

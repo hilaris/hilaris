@@ -1,8 +1,10 @@
 #ifndef _LINE_H_
 #define _LINE_H_
 
+#include "oscar.h"
 #include "leanXoverlay.h"
 #include "DrawableObject.h"
+#include "Image.h"
 
 class Line : public DrawableObject
 {

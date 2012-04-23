@@ -1,8 +1,10 @@
 #ifndef _BOX_H_
 #define _BOX_H_
 
+#include "oscar.h"
 #include "leanXoverlay.h"
 #include "DrawableObject.h"
+#include "Image.h"
 
 class Box : public DrawableObject
 {
