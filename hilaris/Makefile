@@ -40,6 +40,12 @@ target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES))) $(addsuf
 test: 
 	make -C hilaris/tests -f Makefile
 	./hilaris/tests/test
+
+doc:
+	doxygen
+
+docs:
+	doxygen
 	
 #building sources
 hilaris/build/target_%.o: hilaris/%.cpp
