@@ -325,9 +325,9 @@ Image* Camera::captureImage()
 		usleep(2000);
 	
 		if(OscCamSetupCapture(mb) != SUCCESS)
-			Debug::log(Debug::ERROR, "Failed to setup capture\n");
+			printf("Failed to setup capture\n");
 		if(OscGpioTriggerImage() != SUCCESS)
-			Debug::log(Debug::ERROR, "GPIO trigger image failed\n");
+			printf("GPIO trigger image failed\n");
 			
 			
 		memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
@@ -336,14 +336,16 @@ Image* Camera::captureImage()
 		
 		if(this->debayer != NULL)
 		{
-			OscLog(DEBUG, "Debayering rawdata\n");
+			printf("Debayering rawdata\n");
 			this->debayer->debayer(this->rawImage, this->image);
-			OscLog(DEBUG, "Got a debayered image\n");
+			printf("Got a debayered image\n");
 		}
 		
 		if(this->processor != NULL)
 		{
-			return this->processor->process(this->image);
+			printf("before process\n");
+			this->processor->process(this->image);
+			printf("after process\n");
 		}
 		
 		return this->image;
