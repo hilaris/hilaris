@@ -8,6 +8,7 @@
 
 // include oscar
 #include "oscar.h"
+#include "leanXoverlay.h"
 
 // include images
 #include "Image.h"
@@ -47,6 +48,12 @@
 #include "StreamServerNoThread.h"
 #include "Led.h"
 #include "IO.h"
+
+// include overlays
+#include "DrawableObject.h"
+#include "Text.h"
+#include "Box.h"
+#include "Line.h"
 
 /**
  *  @mainpage
