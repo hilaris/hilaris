@@ -53,6 +53,8 @@ class StreamServer {
 		ImageBuffer* buffer;
 		Camera* camera;
 		
+		static volatile sig_atomic_t cancel;
+		
 		int imgSize;
 		int port;
 };

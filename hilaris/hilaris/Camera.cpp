@@ -324,7 +324,7 @@ Image* Camera::captureImage()
 	
 	if(OscCamReadPicture(mb, &rawPic,0,0) == SUCCESS)
 	{
-		usleep(2000);
+		usleep(4000);
 	
 		if(OscCamSetupCapture(mb) != SUCCESS)
 			printf("Failed to setup capture\n");

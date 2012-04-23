@@ -3,6 +3,8 @@
 Thread* StreamServer::imgProducer;
 Thread* StreamServer::imgSender;
 
+volatile sig_atomic_t StreamServer::cancel = 0; 
+
 StreamServer::StreamServer(Camera* camera, int port): camera(camera), port(port)
 {
 	signal(SIGINT, StreamServer::stop);
@@ -28,17 +30,28 @@ StreamServer::StreamServer(Camera* camera, int port): camera(camera), port(port)
 void StreamServer::start()
 {
 	//start threads
-	StreamServer::imgProducer->start();
+	//StreamServer::imgProducer->start();
 	StreamServer::imgSender->start();
 	
+	while(!StreamServer::cancel)
+	{
+		Image* img = this->camera->captureImage();
+		uint8* data = img->getDataPtr();
+		
+		this->buffer->insert(data);
+		//printf("img count %d\n", ++count);
+		usleep(2000);
+	}
+	
 	//wait for threads to end
-	StreamServer::imgProducer->join();
+	//StreamServer::imgProducer->join();
 	StreamServer::imgSender->join();
 }
 
 void StreamServer::stop(int signum)
 {
-	pthread_cancel(StreamServer::imgProducer->thread);
+	//pthread_cancel(StreamServer::imgProducer->thread);
+	StreamServer::cancel = 1;
 	pthread_cancel(StreamServer::imgSender->thread);
 }
 
