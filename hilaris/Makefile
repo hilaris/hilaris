@@ -2,7 +2,7 @@ CC_HOST = g++
 CC_TARGET = bfin-uclinux-g++
 
 CCFLAG_T = -Wall -c -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_TARGET
-CCFLAG_H = -Wall -c -m32 -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_HOST
+CCFLAG_H = -Wall -c -m32 -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_HOST -g
 
 AR_HOST := ar -rcs
 AR_TARGET := bfin-uclinux-ar -rcs
@@ -40,6 +40,12 @@ target: $(addsuffix .o, $(addprefix hilaris/build/target_, $(SOURCES))) $(addsuf
 test: 
 	make -C hilaris/tests -f Makefile
 	./hilaris/tests/test
+
+doc:
+	doxygen
+
+docs:
+	doxygen
 	
 #building sources
 hilaris/build/target_%.o: hilaris/%.cpp

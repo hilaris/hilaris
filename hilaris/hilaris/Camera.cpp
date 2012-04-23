@@ -8,6 +8,8 @@ Camera::~Camera()
 	if(this->image    != NULL) delete this->image;
 	if(this->rawImage != NULL) delete this->rawImage;
 	if(this->debayer  != NULL) delete this->debayer;
+	/*if(this->buffer   != NULL) */delete[] this->buffer;
+	/*if(this->bufferIds!= NULL) */delete[] this->bufferIds;
 }
 
 Camera::Camera()
@@ -175,10 +177,10 @@ bool Camera::createBuffers(uint8 bufferSize)
 	for(int i = 0; i < bufferSize; i++)
 	{
 		// create a new buffer
-		uint8* buffer = new uint8[bufferSize * this->aoi.height * this->aoi.width];
+		this->buffer = new uint8[bufferSize * this->aoi.height * this->aoi.width];
 		
 		// setting frame buffer
-		this->lastError = OscCamSetFrameBuffer(i, this->aoi.width * this->aoi.height, buffer, true);
+		this->lastError = OscCamSetFrameBuffer(i, this->aoi.width * this->aoi.height, this->buffer, true);
 		
 		// error handling
 		if(this->lastError != SUCCESS) return false;
@@ -187,16 +189,16 @@ bool Camera::createBuffers(uint8 bufferSize)
 	// handle multiple buffers
 	if(bufferSize > 1)
 	{
-		uint8* bufferIds = new uint8[bufferSize]; 
+		this->bufferIds = new uint8[bufferSize]; 
 		
 		// create an array of buffer ids
 		for(int j = 0; j < bufferSize; j++)
 		{
-			bufferIds[j] = j;
+			this->bufferIds[j] = j;
 		}
 		
 		// setting to oscar
-		this->lastError = OscCamCreateMultiBuffer(bufferSize, bufferIds);
+		this->lastError = OscCamCreateMultiBuffer(bufferSize, this->bufferIds);
 		
 		// error handling
 		if(this->lastError != SUCCESS) return false;

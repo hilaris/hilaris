@@ -1,8 +1,11 @@
 #ifndef GREYSCALEIMAGE_H
 #define GREYSCALEIMAGE_H
 
+class Histogram;
+
 #include "oscar.h"
 #include "Image.h"
+#include "Histogram.h"
 
 /**
  *  @brief A greyscale image.
@@ -24,6 +27,8 @@ class GreyscaleImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		GreyscaleImage(uint16 width, uint16 height);
+		
+		~GreyscaleImage();
 		
 		/**
 		 *  @brief Get the image type.
@@ -68,9 +73,12 @@ class GreyscaleImage : public Image
 		 *  @see GreyscaleImage::pixel
 		 */
 		uint8& operator()(const uint16 x, const uint16 y);
+		
+		Histogram* histogram();
 	
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];
+		Histogram* hist;
 };
 
 #endif

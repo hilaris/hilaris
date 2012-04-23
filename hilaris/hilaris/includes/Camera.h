@@ -315,6 +315,8 @@ class Camera {
 		RawImage* rawImage;
 		Debayer* debayer;
 		uint8 bufferSize;
+		uint8* buffer;
+		uint8* bufferIds;
 		
 		bool destroyBuffers();
 		bool createBuffers(uint8 bufferSize);
