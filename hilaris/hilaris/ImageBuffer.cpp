@@ -3,7 +3,6 @@
 
 ImageBuffer::ImageBuffer(int dataSize, int bufferSize)
 {
-	//printf("%d\n", dataSize);
 	this->dataSize = dataSize;
 	this->bufferSize = bufferSize;
 	
@@ -38,13 +37,10 @@ bool ImageBuffer::isEmpty()
 
 void ImageBuffer::insert(uint8* img)
 {
-	printf("before lock insert\n");
 	this->mutex.lock();
 	{
-		printf("after lock insert\n");
 		int end = (this->start + this->count) % this->bufferSize;
-		//printf("start %d count %d insert %d\n", this->start, this->count, end*this->dataSize);
-		memcpy(&this->data[end*this->dataSize], img, this->dataSize);
+		memcpy(&this->data[end * this->dataSize], img, this->dataSize);
 	
 		if(this->count == this->bufferSize)
 		{
@@ -55,30 +51,21 @@ void ImageBuffer::insert(uint8* img)
 		{
 			this->count++;
 		}
-		
-		printf("before unlock insert\n");
-		this->mutex.unlock();
-		printf("after unlock insert\n");
 	}
+	
+	this->mutex.unlock();
 }
 
 uint8* ImageBuffer::get()
 {
-	printf("before lock get\n");
 	this->mutex.lock();
 	{
-		printf("after lock get\n");
-		//printf("position insert %d\n", this->start*this->dataSize);
-		memcpy(this->currentImg, &this->data[this->start*this->dataSize], this->dataSize);
+		memcpy(this->currentImg, &this->data[this->start * this->dataSize], this->dataSize);
 		
 		this->start = (this->start + 1) % this->bufferSize;
 		this->count--;
-		
-		printf("before unlock get\n");
-		this->mutex.unlock();
-		printf("after unlock get\n");
 	}
-	
+	this->mutex.unlock();
 	
 	return this->currentImg;
 }
