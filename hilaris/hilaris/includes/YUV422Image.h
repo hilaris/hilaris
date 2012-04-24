@@ -29,7 +29,7 @@ class YUV422Image : public Image
 		uint8* getDataPtr();
 	
 	private:
-		uint8 data[(Image::MAX_WIDTH / 2) * (Image::MAX_HEIGHT / 2)];
+		uint8 data[(Image::MAX_WIDTH / 2) * (Image::MAX_HEIGHT / 2) * 3];
 };
 
 #endif

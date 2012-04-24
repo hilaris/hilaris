@@ -1,16 +1,15 @@
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "Hilaris.h"
 #include "TestHSLImage.h"
 
-CPPUNIT_TEST_SUITE_REGISTRATION(TestHSLmage);
+CPPUNIT_TEST_SUITE_REGISTRATION(TestHSLImage);
 
-void TestHSLmage::tearDown(void)
+void TestHSLImage::tearDown(void)
 {
 	getHilaris().resetCamera();
 }
 
-void TestHSLmage::testDebayerFastH()
+void TestHSLImage::testDebayerFastH()
 {
 	getHilaris().resetCamera();
 	Camera* camera = getHilaris().getCamera(new DebayerComponentH());
@@ -26,7 +25,7 @@ void TestHSLmage::testDebayerFastH()
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_HUE);
 }
 
-void TestHSLmage::testDebayerFastS()
+void TestHSLImage::testDebayerFastS()
 {
 	getHilaris().resetCamera();
 	Camera* camera = getHilaris().getCamera(new DebayerComponentS());
@@ -42,7 +41,7 @@ void TestHSLmage::testDebayerFastS()
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_HUE);
 }
 
-void TestHSLmage::testDebayerFastL()
+void TestHSLImage::testDebayerFastL()
 {
 	getHilaris().resetCamera();
 	Camera* camera = getHilaris().getCamera(new DebayerComponentL());

@@ -31,6 +31,12 @@
 #include "DebayerGreyscaleHalfsize.h"
 #include "DebayerGreyscaleVector.h"
 #include "DebayerYUV422Fast.h"
+#include "DebayerComponentY.h"
+#include "DebayerComponentU.h"
+#include "DebayerComponentV.h"
+#include "DebayerComponentH.h"
+#include "DebayerComponentS.h"
+#include "DebayerComponentL.h"
 
 // include system classes
 #include "Debug.h"

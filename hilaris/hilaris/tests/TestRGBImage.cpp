@@ -17,7 +17,7 @@ void TestRGBImage::testCreate(void)
 	bool loopTest = true;
 	
 	// create a red image
-	RGBImage image = RGBImageFactory::create(width, height, 255, 0, 0);
+	RGBImage image(width, height, 255, 0, 0);
 	
 	CPPUNIT_ASSERT(image.getWidth() == width);
 	CPPUNIT_ASSERT(image.getHeight() == height);

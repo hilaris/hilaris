@@ -4,6 +4,8 @@
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
+#include "Hilaris.h"
+
 extern Hilaris& getHilaris();
 
 class TestBinaryImage : public CppUnit::TestFixture
