@@ -69,6 +69,10 @@ class RGBImage : public Image
 		 *  @see RGBImage::pixel
 		 */
 		uint8& operator()(const uint16 x, const uint16, enum RGBImage::Pixel component);
+		
+		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true);
+		GreyscaleImage* convert(GreyscaleImage* grey);
+		BGRImage* convert(BGRImage* bgr);
 	
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT * 3];

@@ -77,7 +77,7 @@ class BGRImage : public Image
 		 */
 		uint8& operator()(const uint16 x, const uint16, enum BGRImage::Pixel component);
 		
-		BinaryImage* convert(BinaryImage* binary, uint8 threshold, bool darkIsForeground);
+		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true);
 		GreyscaleImage* convert(GreyscaleImage* grey);
 		RGBImage* convert(RGBImage* rgb);
 	

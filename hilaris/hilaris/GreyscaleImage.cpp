@@ -103,3 +103,41 @@ Histogram* GreyscaleImage::histogram()
 	
 	return this->hist;
 }
+
+BGRImage* GreyscaleImage::convert(BGRImage* bgr)
+{
+	for(int i = 0; i < bgr->getHeight(); i ++)
+	{
+		for(int j = 0; j < bgr->getWidth(); j ++)
+		{
+			bgr->pixel(i, j, BGRImage::RED)   = this->pixel(i, j);
+			bgr->pixel(i, j, BGRImage::GREEN) = this->pixel(i, j);
+			bgr->pixel(i, j, BGRImage::BLUE)  = this->pixel(i, j);
+		}
+	}
+	
+	return bgr;
+}
+
+RGBImage* GreyscaleImage::convert(RGBImage* rgb)
+{	
+	for(int i = 0; i < rgb->getHeight(); i ++)
+	{
+		for(int j = 0; j < rgb->getWidth(); j ++)
+		{
+			rgb->pixel(i, j, RGBImage::RED)   = this->pixel(i, j);
+			rgb->pixel(i, j, RGBImage::GREEN) = this->pixel(i, j);
+			rgb->pixel(i, j, RGBImage::BLUE)  = this->pixel(i, j);
+		}
+	}
+	
+	return rgb;
+}
+
+BinaryImage* GreyscaleImage::convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true)
+{
+	OscVisGrey2BW(&this->getOscarContext(), &binary->getOscarContext(), threshold, darkIsForeground);
+	
+	return binary;
+}
+

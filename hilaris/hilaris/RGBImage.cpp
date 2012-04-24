@@ -70,3 +70,44 @@ void RGBImage::save(char* path, enum ImageEncoding enc)
 	
 	this->saveContext(bgr.getOscarContext(), path);
 }
+
+BinaryImage* RGBImage::convert(BinaryImage* binary)
+{
+	// create a local bgr image
+	BGRImage bgr(binary->getWidth(), binary->getHeight());
+	
+	// convert to bgr image
+	this->convert(&bgr);
+	
+	return bgr.convert(binary);
+}
+
+GreyscaleImage* RGBImage::convert(GreyscaleImage* grey)
+{
+	// create a local bgr image
+	BGRImage bgr(grey->getWidth(), grey->getHeight());
+	
+	// convert to bgr image
+	this->convert(&bgr);
+	
+	return bgr.convert(grey);
+	
+}
+
+BGRImage* RGBImage::convert(BGRImage* bgr)
+{
+	for(int i = 0; i < bgr->getHeight(); i ++)
+	{
+		for(int j = 0; j < bgr->getWidth(); j ++)
+		{
+			// RGB -> BGR
+			// swap colors
+			bgr->pixel(i, j, BGRImage::RED)   = this->pixel(i, j, RGBImage::RED);
+			bgr->pixel(i, j, BGRImage::GREEN) = this->pixel(i, j, RGBImage::GREEN);
+			bgr->pixel(i, j, BGRImage::BLUE)  = this->pixel(i, j, RGBImage::BLUE);
+			
+		}
+	}
+	
+	return bgr;
+}

@@ -76,6 +76,10 @@ class GreyscaleImage : public Image
 		uint8& operator()(const uint16 x, const uint16 y);
 		
 		Histogram* histogram();
+		
+		BGRImage* convert(BGRImage* bgr);
+		RGBImage* convert(RGBImage* rgb);
+		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true);
 	
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];
