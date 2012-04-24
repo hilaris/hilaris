@@ -7,7 +7,6 @@
 #include "Image.h"
 #include "RawImage.h"
 #include "ComponentSImage.h"
-#include "ComponentSImageFactory.h"
 #include "Debayer.h"
 
 class DebayerComponentS : public Debayer

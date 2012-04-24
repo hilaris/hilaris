@@ -17,9 +17,5 @@ ComponentSImage* DebayerComponentS::getObject(uint16 width, uint16 height)
 
 bool DebayerComponentS::debayer(RawImage* raw, Image* image)
 {
-	ComponentSImage b = ComponentSImageFactory::getFastDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	
-	return true;
+	return raw->debayerFast((ComponentSImage*)image);
 }

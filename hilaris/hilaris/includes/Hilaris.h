@@ -24,7 +24,7 @@
 #include "BGRImageFactory.h"
 #include "GreyscaleImageFactory.h"
 #include "RGBImageFactory.h"
-#include "YUV422ImageFactory.h"
+//#include "YUV422ImageFactory.h"
 
 // include debayer
 #include "Debayer.h"
