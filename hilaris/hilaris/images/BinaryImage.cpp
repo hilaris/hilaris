@@ -198,6 +198,7 @@ void BinaryImage::subtract(BinaryImage* img)
 	{
 		for(int j = 0; j < this->getWidth(); j ++)
 		{
+			/*
 			// XOR
 			bool a = this->pixel(i, j) > 0;
 			bool b = img->pixel(i, j)  > 0;
@@ -206,6 +207,12 @@ void BinaryImage::subtract(BinaryImage* img)
 			bool r = (a && !b) || (!a && b);
 			
 			(*this)(i, j) = r ? 255 : 0;
+			*/
+			uint8 fg = this->pixel(i,j);
+			uint8 bg = img->pixel(i,j);
+			
+			if(fg==bg) this->pixel(i,j) = 0;
+			else this->pixel(i,j) = fg > 0 ? 255 : 0 ;
 		} 
 	}
 }
