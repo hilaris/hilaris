@@ -1,6 +1,5 @@
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "Hilaris.h"
 #include "TestCamera.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestCamera);

@@ -16,7 +16,7 @@ void TestGreyscaleImage::testCreate(void)
 	uint16 height = 32;
 	bool loopTest = true;
 	
-	GreyscaleImage image = GreyscaleImageFactory::create(width, height, 127);
+	GreyscaleImage image(width, height, 127);
 	
 	CPPUNIT_ASSERT(image.getWidth() == width);
 	CPPUNIT_ASSERT(image.getHeight() == height);

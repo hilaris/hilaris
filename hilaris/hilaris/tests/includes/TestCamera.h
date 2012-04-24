@@ -1,6 +1,8 @@
 #ifndef _TESTCAMERA_H_
 #define _TESTCAMERA_H_
 
+#include "Hilaris.h"
+
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 

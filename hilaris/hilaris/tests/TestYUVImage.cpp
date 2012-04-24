@@ -1,6 +1,5 @@
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "Hilaris.h"
 #include "TestYUVImage.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(TestYUVImage);
@@ -23,7 +22,7 @@ void TestYUVImage::testDebayerFast()
 	
 	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
 	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
-	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_YUV422);
+	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_YUV_422);
 }
 
 void TestYUVImage::testDebayerFastY()
