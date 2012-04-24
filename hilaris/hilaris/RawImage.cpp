@@ -107,4 +107,33 @@ bool RawImage::debayerFast(YUV422Image* image)
 	return (OscVisFastDebayerYUV422(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
 }
 
+bool RawImage::debayerFast(BinaryImage* image, uint8 threshold, bool blackIsForeground)
+{
+	// do the debayering
+	uint8 bg = blackIsForeground ? 255 : 0;
+	uint8 fg = blackIsForeground ? 0 : 255;
+	
+	uint16 x,y;
+	uint32 outPos=0;
+	uint8 *in  = (uint8 *)this->getDataPtr();
+	uint8 *out = (uint8 *)image->getDataPtr();
+
+	for (y=0; y<this->getHeight(); y += 2)
+	{
+		for (x=0; x<this->getWidth(); x += 2)
+		{
+			out[outPos++] = ((uint8)
+			(
+				(
+					(uint16)in[y*this->getWidth()+x]       + 
+					(uint16)in[y*this->getWidth()+x+1]     + 
+					(uint16)in[(y+1)*this->getWidth()+x]   +
+					(uint16)in[(y+1)*this->getWidth()+x+1]
+				)
+			>> 2)) >= threshold ? fg : bg;
+		}
+	}
+	return true;
+}
+
 
