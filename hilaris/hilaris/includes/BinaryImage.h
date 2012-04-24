@@ -3,6 +3,8 @@
 
 #include <string.h>
 
+class GreyscaleImage;
+
 #include "oscar.h"
 #include "Image.h"
 #include "GreyscaleImage.h"
@@ -156,6 +158,8 @@ class BinaryImage : public Image
 		bool sobel(uint8 exp = 10);
 		
 		void subtract(BinaryImage* img);
+		
+		GreyscaleImage* convert(GreyscaleImage* grey);
 	
 	protected:
 		
