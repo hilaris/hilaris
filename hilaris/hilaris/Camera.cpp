@@ -111,9 +111,6 @@ bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer
 	// create an image
 	this->image = debayer->getObject(width, height);
 	this->rawImage = new RawImage(this->aoi.width, this->aoi.height);
-	
-	//initialize processors
-	this->processor = NULL;
 		
 	int mb = this->isMultiBuffered ? OSC_CAM_MULTI_BUFFER : 0;
 	
@@ -227,7 +224,7 @@ bool Camera::destroyBuffers()
 
 bool Camera::addFrameProcessor(FrameProcessor* proc)
 {
-	this->processor = proc;
+	this->processors.push_back(proc);
 	
 	return true;
 }
@@ -343,10 +340,10 @@ Image* Camera::captureImage()
 			printf("Got a debayered image\n");
 		}
 		
-		if(this->processor != NULL)
+		for(unsigned int i = 0; i<this->processors.size();i++)
 		{
 			printf("before process\n");
-			this->processor->process(this->image);
+			this->processors.at(i)->process(this->image);
 			printf("after process\n");
 		}
 		

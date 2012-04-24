@@ -299,8 +299,7 @@ class Camera {
 		 *  @brief The current frameprocessor
 		 *  @todo Make this a vector.
 		 */
-		FrameProcessor* processor;
-		
+				
 		uint16 getRegister(const uint32 reg);
 		bool setRegister(const uint32 reg, const uint16 value);
 
@@ -314,6 +313,7 @@ class Camera {
 		Image* image;
 		RawImage* rawImage;
 		Debayer* debayer;
+		std::vector<FrameProcessor*> processors;
 		uint8 bufferSize;
 		uint8* buffer;
 		uint8* bufferIds;
