@@ -3,6 +3,10 @@
 
 #include "oscar.h"
 #include "Image.h"
+#include "BinaryImage.h"
+#include "GreyscaleImage.h"
+#include "RBGImage.h"
+
 /**
  *  @brief A BGR-encoded colored Image.
  *
@@ -72,6 +76,10 @@ class BGRImage : public Image
 		 *  @see BGRImage::pixel
 		 */
 		uint8& operator()(const uint16 x, const uint16, enum BGRImage::Pixel component);
+		
+		BinaryImage* convert(BinaryImage* binary, uint8 threshold, bool darkIsForeground);
+		GreyscaleImage* convert(GreyscaleImage* grey);
+		RGBImage* convert(RGBImage* rgb);
 	
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT * 3];

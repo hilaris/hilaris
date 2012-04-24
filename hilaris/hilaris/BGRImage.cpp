@@ -63,3 +63,35 @@ uint8& BGRImage::operator()(const uint16 x, const uint16 y, enum BGRImage::Pixel
 {
 	return this->pixel(x, y, component);
 }
+
+BinaryImage* BGRImage::convert(BinaryImage* binary, uint8 threshold, bool darkIsForeground)
+{
+	OscVisBGR2BW(&this->getOscarContext(), &binary->getOscarContext(), threshold, darkIsForeground);
+	
+	return binary;
+}
+
+GreyscaleImage* BGRImage::convert(GreyscaleImage* grey)
+{
+	OscVisBGR2Grey(&this->getOscarContext(), &grey->getOscarContext());
+	
+	return grey;
+}
+
+RGBImage* BGRImage::convert(RGBImage* rgb)
+{
+	for(int i = 0; i < rgb->getHeight(); i ++)
+	{
+		for(int j = 0; j < rgb->getWidth(); j ++)
+		{
+			// BGR -> RGB
+			// swap colors
+			rgb->pixel(i, j, RGBImage::RED)   = this->pixel(i, j, BGRImage::RED);
+			rgb->pixel(i, j, RGBImage::GREEN) = this->pixel(i, j, BGRImage::GREEN);
+			rgb->pixel(i, j, RGBImage::BLUE)  = this->pixel(i, j, BGRImage::BLUE);
+			
+		}
+	}
+	
+	return rgb;
+}
