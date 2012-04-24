@@ -42,12 +42,6 @@ bool DebayerBinaryDirect::debayer(RawImage* raw, Image* image)
 		}
 	}
 	
-	/*
-	BinaryImage b = BinaryImageFactory::getDirectDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	*/
-	
 	return true;
 }
 

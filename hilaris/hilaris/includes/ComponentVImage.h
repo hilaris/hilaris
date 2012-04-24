@@ -1,5 +1,5 @@
-#ifndef _COMPONENT_S_IMAGE_
-#define _COMPONENT_S_IMAGE_
+#ifndef _COMPONENT_V_IMAGE_
+#define _COMPONENT_V_IMAGE_
 
 #include "oscar.h"
 #include "Image.h"

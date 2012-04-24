@@ -36,9 +36,12 @@ uint8* BinaryImage::getDataPtr()
 
 void BinaryImage::save(char* path, enum ImageEncoding enc)
 {
-	GreyscaleImage grey = GreyscaleImageFactory::getFromBinaryImage(*this);
+	/*
+	GreyscaleImage grey(this->getWidth, this->getHeight());// = GreyscaleImageFactory::getFromBinaryImage(*this);
 	
+	this->convert(&grey);
 	this->saveContext(grey.getOscarContext(), path);
+	*/
 }
 
 void BinaryImage::invert()

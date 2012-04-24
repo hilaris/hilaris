@@ -5,6 +5,8 @@ class Histogram;
 
 #include "oscar.h"
 #include "Image.h"
+#include "BGRImage.h"
+#include "RGBImage.h"
 #include "Histogram.h"
 
 /**

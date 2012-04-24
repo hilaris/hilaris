@@ -6,7 +6,6 @@
 #include "oscar.h"
 #include "Image.h"
 #include "GreyscaleImage.h"
-#include "GreyscaleImageFactory.h"
 
 /**
  *  @brief A binary image.

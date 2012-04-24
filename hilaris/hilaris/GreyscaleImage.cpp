@@ -134,7 +134,7 @@ RGBImage* GreyscaleImage::convert(RGBImage* rgb)
 	return rgb;
 }
 
-BinaryImage* GreyscaleImage::convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true)
+BinaryImage* GreyscaleImage::convert(BinaryImage* binary, uint8 threshold, bool darkIsForeground)
 {
 	OscVisGrey2BW(&this->getOscarContext(), &binary->getOscarContext(), threshold, darkIsForeground);
 	

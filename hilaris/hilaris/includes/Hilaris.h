@@ -19,13 +19,6 @@
 #include "BinaryImage.h"
 #include "YUV422Image.h"
 
-// include factories
-#include "BinaryImageFactory.h"
-#include "BGRImageFactory.h"
-#include "GreyscaleImageFactory.h"
-#include "RGBImageFactory.h"
-//#include "YUV422ImageFactory.h"
-
 // include debayer
 #include "Debayer.h"
 #include "DebayerBinaryDirect.h"

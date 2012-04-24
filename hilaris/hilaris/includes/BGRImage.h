@@ -1,11 +1,14 @@
 #ifndef _BGRIMAGE_H_
 #define _BGRIMAGE_H_
 
+class RGBImage;
+
 #include "oscar.h"
 #include "Image.h"
 #include "BinaryImage.h"
 #include "GreyscaleImage.h"
-#include "RBGImage.h"
+#include "RGBImage.h"
+#include "BGRImage.h"
 
 /**
  *  @brief A BGR-encoded colored Image.
