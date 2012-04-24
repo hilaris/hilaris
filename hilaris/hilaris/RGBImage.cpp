@@ -66,11 +66,10 @@ uint8& RGBImage::operator()(const uint16 x, const uint16 y, enum RGBImage::Pixel
 
 void RGBImage::save(char* path, enum ImageEncoding enc)
 {
-	/*
-	BGRImage bgr = BGRImageFactory::getFromRGBImage(*this);
+	BGRImage bgr(this->getWidth(), this->getHeight());
 	
-	this->saveContext(bgr.getOscarContext(), path);
-	*/
+	this->convert(&bgr);
+	bgr.saveContext(bgr.getOscarContext(), path);
 }
 
 BinaryImage* RGBImage::convert(BinaryImage* binary, uint8 threshold, bool darkIsForeground)

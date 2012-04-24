@@ -104,6 +104,15 @@ class Image {
 		 */
 		static const int MAX_HEIGHT = OSC_CAM_MAX_IMAGE_HEIGHT;
 		
+		/**
+		 *  @brief Save an Oscar Context to a given path
+		 *
+		 *  @param pic The OSC_PICTURE struct which contains the data.
+		 *  @param path Where to save this image.
+		 *  @see Image::save will call this function.
+		 */
+		void saveContext(struct OSC_PICTURE pic, char* path);
+		
 	protected:
 	
 		/**
@@ -126,15 +135,6 @@ class Image {
 		 *  @see Image::getOscarContext, Image::setOscarContext
 		 */
 		OSC_PICTURE oscarContext;
-		
-		/**
-		 *  @brief Save an Oscar Context to a given path
-		 *
-		 *  @param pic The OSC_PICTURE struct which contains the data.
-		 *  @param path Where to save this image.
-		 *  @see Image::save will call this function.
-		 */
-		void saveContext(struct OSC_PICTURE pic, char* path);
 };
 
 #endif 
