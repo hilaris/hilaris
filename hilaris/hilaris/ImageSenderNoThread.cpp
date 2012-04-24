@@ -43,7 +43,6 @@ void ImageSenderNoThread::run()
 		//accept pending client connections
 		if(this->readable(this->srvSocket) && this->clients.size() <= MAX_CLIENTS)
 		{
-			//printf("readable!!\n");
 			this->clients.insert(this->clients.begin() + this->connected, accept(this->srvSocket, NULL, 0));
 			if(this->clients.at(this->connected)==SOCK_ERROR)
 			{
@@ -52,7 +51,6 @@ void ImageSenderNoThread::run()
 			}
 			else
 			{
-				//printf("connected client %d\n", this->connected);
 				this->connected++;
 			}
 		}
@@ -73,20 +71,18 @@ void ImageSenderNoThread::run()
 			if(this->writeable(this->clients.at(i)))
 			{
 				len = send(this->clients.at(i), img, this->imgSize, 0);
-				OscLog(DEBUG, "sent %d bytes\n", len);
 			}
 			
 			if(this->readable(this->clients.at(i)))
 			{
 				int err;
 				char dummy[100];
-				//printf("readable disconnecting\n");
+				
 				err=read(this->clients.at(i), &dummy, sizeof(dummy)-1);
-				if (err==0) {
-					//printf("disconnecting client %d\n", i);
+				if (err==0)
+				{
 					this->clients.erase(this->clients.begin() + i);
 					this->connected--;
-					//printf("disconnected client %d\n", i);
 				}
 			}			
 		}
@@ -106,8 +102,7 @@ bool ImageSenderNoThread::readable(int fd)
 	FD_SET(fd, &r);
 	retval = select(fd+1, &r, NULL, NULL, &timeout);
 
-	if (retval == -1) 
-		OscLog(ERROR, "Select Error\n");
+	if (retval == -1) Debug::log(Debug::ERROR, "Select Error\n");
 
 	if ((retval>0) && FD_ISSET(fd, &r)) 
 		return TRUE;
@@ -127,8 +122,7 @@ bool ImageSenderNoThread::writeable(int fd)
 	FD_SET(fd, &w);
 	retval = select(fd+1, NULL, &w, NULL, &timeout);
 
-	if (retval == -1) 
-		OscLog(ERROR, "Select Error\n");
+	if (retval == -1) Debug::log(Debug::ERROR, "Select Error\n");
 
 	if ((retval>0) && FD_ISSET(fd, &w)) 
 		return TRUE;

@@ -24,7 +24,6 @@ void Thread::join()
 
 void Thread::stop()
 {
-	printf("cancel thread\n");
 	this->cancel = 1;
 }
 

@@ -80,7 +80,6 @@ bool GreyscaleImage::filter(struct OSC_VIS_FILTER_KERNEL *kernel)
 bool GreyscaleImage::sobel(uint8 exp)
 {
 	OSC_ERR err;
-	printf("%d x %d\n", this->getWidth() , this->getHeight());
 	uint8 outData[this->getWidth() * this->getHeight()];
 	
 	if((err = OscVisSobel(this->getDataPtr(), outData, this->getWidth(), this->getHeight(), exp)) != SUCCESS)

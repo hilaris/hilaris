@@ -45,7 +45,6 @@ void ImageBuffer::insert(uint8* img)
 		if(this->count == this->bufferSize)
 		{
 			this->start = (this->start + 1) % this->bufferSize;
-			printf("full\n");
 		}
 		else
 		{

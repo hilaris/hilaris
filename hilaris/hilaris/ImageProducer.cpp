@@ -8,7 +8,7 @@ void ImageProducer::run()
 		uint8* data = img->getDataPtr();
 		
 		this->buffer->insert(data);
-		//printf("img count %d\n", ++count);
+		
 		usleep(2000);
 	}
 }

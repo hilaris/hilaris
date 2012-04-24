@@ -16,6 +16,7 @@
 #include "oscar.h"
 #include "Thread.h"
 #include "ImageBuffer.h"
+#include "Debug.h"
 
 class ImageSender : public Thread
 {
