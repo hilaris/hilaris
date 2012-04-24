@@ -10,6 +10,23 @@ GreyscaleImage::GreyscaleImage(uint16 width, uint16 height)
 	this->setOscarContext();
 }
 
+GreyscaleImage::GreyscaleImage(uint16 width, uint16 height, uint8 color)
+{
+	this->hist = NULL;
+	this->width = width;
+	this->height = height;
+	
+	for(int i = 0; i < this->getHeight(); i++)
+	{
+		for(int j = 0; j < this->getWidth(); j++)
+		{
+			this->pixel(i, j) = color;
+		}
+	}
+	
+	this->setOscarContext();
+}
+
 GreyscaleImage::~GreyscaleImage()
 {
 	if(this->hist != NULL)

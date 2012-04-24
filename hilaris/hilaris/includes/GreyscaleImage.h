@@ -27,6 +27,7 @@ class GreyscaleImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		GreyscaleImage(uint16 width, uint16 height);
+		GreyscaleImage(uint16 width, uint16 height, uint8 color);
 		
 		~GreyscaleImage();
 		
