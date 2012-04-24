@@ -26,7 +26,7 @@ BGRImage::BGRImage(uint16 width, uint16 height, uint32 color)
 	this->setOscarContext();
 }
 
-BGRImage::BGRImage(uint16 width, uint16 height, uint8 red, uint16 green, uint16 blue)
+BGRImage::BGRImage(uint16 width, uint16 height, uint8 blue, uint16 green, uint16 red)
 {
 	this->width = width;
 	this->height = height;
