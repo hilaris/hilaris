@@ -12,7 +12,7 @@ long unsigned int DebayerComponentH::getSize()
 
 ComponentHImage* DebayerComponentH::getObject(uint16 width, uint16 height)
 {
-	return new ComponentHImage(width, height);
+	return new ComponentHImage(width / 2, height / 2);
 }
 
 bool DebayerComponentH::debayer(RawImage* raw, Image* image)
