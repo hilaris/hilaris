@@ -178,3 +178,21 @@ bool BinaryImage::sobel(uint8 exp)
 	
 	return true;
 }
+
+void BinaryImage::subtract(BinaryImage* img)
+{
+	for(int i = 0; i < this->getHeight(); i ++)
+	{
+		for(int j = 0; j < this->getWidth(); j ++)
+		{
+			// XOR
+			bool a = this->pixel(i, j) > 0;
+			bool b = img->pixel(i, j)  > 0;
+			
+			// Result
+			bool r = (a && !b) || (!a && b);
+			
+			(*this)(i, j) = r ? 255 : 0;
+		} 
+	}
+}

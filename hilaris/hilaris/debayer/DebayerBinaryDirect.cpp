@@ -17,9 +17,36 @@ BinaryImage* DebayerBinaryDirect::getObject(uint16 width, uint16 height)
 
 bool DebayerBinaryDirect::debayer(RawImage* raw, Image* image)
 {
+	// do the debayering
+	uint8 bg = true ? 255 : 0;
+	uint8 fg = true ? 0 : 255;
+	
+	uint16 x,y;
+	uint32 outPos=0;
+	uint8 *in  = (uint8 *)raw->getDataPtr();
+	uint8 *out = (uint8 *)image->getDataPtr();
+
+	for (y=0; y<raw->getHeight(); y += 2)
+	{
+		for (x=0; x<raw->getWidth(); x += 2)
+		{
+			out[outPos++] = ((uint8)
+			(
+				(
+					(uint16)in[y*raw->getWidth()+x]       + 
+					(uint16)in[y*raw->getWidth()+x+1]     + 
+					(uint16)in[(y+1)*raw->getWidth()+x]   +
+					(uint16)in[(y+1)*raw->getWidth()+x+1]
+				)
+			>> 2)) >= 100 ? fg : bg;
+		}
+	}
+	
+	/*
 	BinaryImage b = BinaryImageFactory::getDirectDebayered(raw);
 	
 	memcpy(image, &b, sizeof(b));
+	*/
 	
 	return true;
 }

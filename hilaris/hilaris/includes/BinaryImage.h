@@ -150,6 +150,8 @@ class BinaryImage : public Image
 		bool getInvertedBackground();
 		
 		bool sobel(uint8 exp = 10);
+		
+		void subtract(BinaryImage* img);
 	
 	protected:
 		
