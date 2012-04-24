@@ -7,7 +7,6 @@
 #include "Image.h"
 #include "RawImage.h"
 #include "RGBImage.h"
-#include "RGBImageFactory.h"
 #include "Debayer.h"
 
 /**

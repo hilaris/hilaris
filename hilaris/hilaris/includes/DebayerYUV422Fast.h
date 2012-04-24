@@ -7,7 +7,6 @@
 #include "Image.h"
 #include "RawImage.h"
 #include "YUV422Image.h"
-#include "YUV422ImageFactory.h"
 #include "Debayer.h"
 
 /**

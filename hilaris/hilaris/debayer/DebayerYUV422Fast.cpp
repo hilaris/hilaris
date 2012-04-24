@@ -17,10 +17,6 @@ YUV422Image* DebayerYUV422Fast::getObject(uint16 width, uint16 height)
 
 bool DebayerYUV422Fast::debayer(RawImage* raw, Image* image)
 {
-	YUV422Image y = YUV422ImageFactory::getFastDebayered(raw);
-	
-	memcpy(image, &y, sizeof(y));
-	
-	return true;
+	return raw->debayerFast((YUV422Image*)image);
 }
 

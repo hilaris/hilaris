@@ -8,7 +8,6 @@
 #include "Image.h"
 #include "RawImage.h"
 #include "GreyscaleImage.h"
-#include "GreyscaleImageFactory.h"
 
 /**
  *  @brief Fast Debayer for GreyscaleImage.

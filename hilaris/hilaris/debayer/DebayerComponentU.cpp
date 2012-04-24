@@ -2,7 +2,7 @@
 
 EnOscPictureType DebayerComponentU::getType()
 {
-	return OSC_PICTURE_HUE;
+	return OSC_PICTURE_CHROM_U;
 }
 
 long unsigned int DebayerComponentU::getSize()
@@ -17,9 +17,5 @@ ComponentUImage* DebayerComponentU::getObject(uint16 width, uint16 height)
 
 bool DebayerComponentU::debayer(RawImage* raw, Image* image)
 {
-	ComponentUImage b = ComponentUImageFactory::getFastDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	
-	return true;
+	return raw->debayerFast((ComponentUImage*)image);
 }

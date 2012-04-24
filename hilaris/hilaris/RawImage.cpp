@@ -72,3 +72,39 @@ bool RawImage::debayerFast(RGBImage* image)
 	return OscVisFastDebayerRGB(&this->getOscarContext(), &image->getOscarContext());
 }
 
+bool RawImage::debayerFast(ComponentHImage* image)
+{
+	return (OscVisFastDebayerHSL_H(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerFast(ComponentSImage* image)
+{
+	return (OscVisFastDebayerHSL_S(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerFast(ComponentLImage* image)
+{
+	return (OscVisFastDebayerHSL_L(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerFast(ComponentYImage* image)
+{
+	return (OscVisFastDebayerLumY(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerFast(ComponentUImage* image)
+{
+	return (OscVisFastDebayerChromU(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerFast(ComponentVImage* image)
+{
+	return (OscVisFastDebayerChromV(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerFast(YUV422Image* image)
+{
+	return (OscVisFastDebayerYUV422(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+

@@ -6,6 +6,13 @@
 #include "BGRImage.h"
 #include "RGBImage.h"
 #include "GreyscaleImage.h"
+#include "ComponentHImage.h"
+#include "ComponentSImage.h"
+#include "ComponentLImage.h"
+#include "ComponentYImage.h"
+#include "ComponentUImage.h"
+#include "ComponentVImage.h"
+#include "YUV422Image.h"
 
 /**
  *  @brief A RawImage captured directly from the Camera.
@@ -41,6 +48,14 @@ class RawImage : public Image
 		bool debayerHalfsize(BGRImage* image);
 		
 		bool debayerFast(RGBImage* image);
+		
+		bool debayerFast(ComponentHImage* image);
+		bool debayerFast(ComponentSImage* image);
+		bool debayerFast(ComponentLImage* image);
+		bool debayerFast(ComponentYImage* image);
+		bool debayerFast(ComponentUImage* image);
+		bool debayerFast(ComponentVImage* image);
+		bool debayerFast(YUV422Image* image);
 		
 		
 	private:

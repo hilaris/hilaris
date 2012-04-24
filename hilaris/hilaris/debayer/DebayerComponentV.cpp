@@ -2,7 +2,7 @@
 
 EnOscPictureType DebayerComponentV::getType()
 {
-	return OSC_PICTURE_HUE;
+	return OSC_PICTURE_CHROM_V;
 }
 
 long unsigned int DebayerComponentV::getSize()
@@ -17,9 +17,5 @@ ComponentVImage* DebayerComponentV::getObject(uint16 width, uint16 height)
 
 bool DebayerComponentV::debayer(RawImage* raw, Image* image)
 {
-	ComponentVImage b = ComponentVImageFactory::getFastDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	
-	return true;
+	return raw->debayerFast((ComponentVImage*)image);
 }
