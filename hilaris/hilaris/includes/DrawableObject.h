@@ -10,7 +10,7 @@ class DrawableObject
 		
 		// from http://www.gotw.ca/publications/mill18.htm
 		// Guideline #4: A base class destructor should be either public and virtual, or protected and nonvirtual.
-		virtual ~DrawableObject();
+		virtual ~DrawableObject(){}
 };
 
 #endif

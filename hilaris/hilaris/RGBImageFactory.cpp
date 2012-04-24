@@ -1,5 +1,6 @@
 #include "RGBImageFactory.h"
 
+/* deprecated, use raw->debayerHalfsize(BGRImage* image) instead! */
 RGBImage RGBImageFactory::getFastDebayered(RawImage* raw)
 {
 	RGBImage image(raw->getWidth() / 2, raw->getHeight() / 2);

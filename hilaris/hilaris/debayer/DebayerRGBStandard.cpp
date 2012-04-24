@@ -17,9 +17,5 @@ RGBImage* DebayerRGBStandard::getObject(uint16 width, uint16 height)
 
 bool DebayerRGBStandard::debayer(RawImage* raw, Image* image)
 {
-	RGBImage b = RGBImageFactory::getFastDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	
-	return true;
+	return raw->debayerFast((RGBImage*)image);
 }

@@ -1,8 +1,12 @@
 #ifndef BINARYIMAGE_H
 #define BINARYIMAGE_H
 
+#include <string.h>
+
 #include "oscar.h"
 #include "Image.h"
+#include "GreyscaleImage.h"
+#include "GreyscaleImageFactory.h"
 
 /**
  *  @brief A binary image.

@@ -16,18 +16,6 @@ BGRImage* DebayerBGRHalfsize::getObject(uint16 width, uint16 height)
 }
 
 bool DebayerBGRHalfsize::debayer(RawImage* raw, Image* image)
-{
-	/*
-	BGRImage b = BGRImageFactory::getHalfsizeDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	*/
-	
-	enum EnBayerOrder order;
-	OscCamGetBayerOrder(&order, 0, 0);
-	
-	OscVisDebayerHalfSize(raw->getDataPtr(), raw->getWidth(), raw->getHeight(), order, image->getDataPtr());
-	
-	
-	return true;
+{	
+	return raw->debayerHalfsize((BGRImage*)image);
 }

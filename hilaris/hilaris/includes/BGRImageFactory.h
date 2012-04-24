@@ -2,6 +2,7 @@
 #define _BGRIMAGEFACTORY_H_
 
 class RGBImage;
+class RawImage;
 
 #include "oscar.h"
 #include "BGRImage.h"

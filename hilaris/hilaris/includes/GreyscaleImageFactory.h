@@ -1,6 +1,8 @@
 #ifndef _GREYSCALEIMAGEFACTORY_H_
 #define _GREYSCALEIMAGEFACTORY_H_
 
+class BinaryImage;
+
 #include "oscar.h"
 #include "GreyscaleImage.h"
 #include "RawImage.h"

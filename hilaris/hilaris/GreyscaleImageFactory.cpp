@@ -2,6 +2,7 @@
 
 GreyscaleImage GreyscaleImageFactory::getFastDebayered(RawImage* raw)
 {
+	/* deprecated, use raw->debayerFast(GreyscaleImage* image) instead! */
 	GreyscaleImage image(raw->getWidth() / 2, raw->getHeight() / 2);
 
 	OscVisFastDebayerGrey(&raw->getOscarContext(), &image.getOscarContext());
@@ -10,6 +11,7 @@ GreyscaleImage GreyscaleImageFactory::getFastDebayered(RawImage* raw)
 
 GreyscaleImage GreyscaleImageFactory::getVectorDebayered(RawImage* raw)
 {
+	/* deprecated, use raw->debayerVector(GreyscaleImage* image) instead! */
 	GreyscaleImage image(raw->getWidth() / 2, raw->getHeight() / 2);
 	
 	OscVisVectorDebayerGrey(&raw->getOscarContext(), &image.getOscarContext());
@@ -19,6 +21,7 @@ GreyscaleImage GreyscaleImageFactory::getVectorDebayered(RawImage* raw)
 
 GreyscaleImage GreyscaleImageFactory::getHalfsizeDebayered(RawImage* raw)
 {
+	/* deprecated, use raw->debayerHalfsize(GreyscaleImage* image) instead! */
 	GreyscaleImage image(raw->getWidth() / 2, raw->getHeight() / 2);
 	
 	enum EnBayerOrder order;

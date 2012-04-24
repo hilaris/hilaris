@@ -1,8 +1,4 @@
 #include "BinaryImage.h"
-#include "GreyscaleImage.h"
-#include "GreyscaleImageFactory.h"
-
-#include <string.h>
 
 BinaryImage::BinaryImage(uint16 width, uint16 height)
 {

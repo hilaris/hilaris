@@ -4,6 +4,7 @@
 #include "oscar.h"
 #include "Image.h"
 #include "BGRImage.h"
+#include "RGBImage.h"
 #include "GreyscaleImage.h"
 
 /**
@@ -30,8 +31,17 @@ class RawImage : public Image
 		EnOscPictureType getType();
 		uint8* getDataPtr();
 		
-		bool debayerFast(BGRImage* image);
 		bool debayerFast(GreyscaleImage* image);
+		bool debayerVector(GreyscaleImage* image);
+		bool debayerHalfsize(GreyscaleImage* image);
+		
+		bool debayerFast(BGRImage* image);
+		bool debayerBilinear(BGRImage* image);
+		bool debayerStandard(BGRImage* image);
+		bool debayerHalfsize(BGRImage* image);
+		
+		bool debayerFast(RGBImage* image);
+		
 		
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];

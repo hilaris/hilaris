@@ -17,15 +17,58 @@ EnOscPictureType RawImage::getType()
 	return OSC_PICTURE_BGR_24;;
 }
 
+bool RawImage::debayerFast(GreyscaleImage* image)
+{
+	return OscVisFastDebayerGrey(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS;
+}
+
+bool RawImage::debayerVector(GreyscaleImage* image)
+{
+	return (OscVisVectorDebayerGrey(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS);
+}
+
+bool RawImage::debayerHalfsize(GreyscaleImage* image)
+{	
+	enum EnBayerOrder order;
+	OscCamGetBayerOrder(&order, 0, 0);
+	
+	return (OscVisDebayerGreyscaleHalfSize(this->getDataPtr(), this->getWidth(), this->getHeight(), order, image->getDataPtr()) == SUCCESS);
+}
+
 bool RawImage::debayerFast(BGRImage* image)
 {
 	return OscVisFastDebayerBGR(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS;
 }
 
-bool RawImage::debayerFast(GreyscaleImage* image)
+bool RawImage::debayerBilinear(BGRImage* image)
 {
-	printf("%d x %d\n",this->getOscarContext().width, this->getOscarContext().height);
-	return OscVisFastDebayerGrey(&this->getOscarContext(), &image->getOscarContext()) == SUCCESS;
+	enum EnBayerOrder order;
+	OscCamGetBayerOrder(&order, 0, 0);
+	
+	uint8 pTemp[this->getWidth() * 4];
+	
+	return (OscVisDebayerBilinearBGR(image->getDataPtr(), this->getDataPtr(), this->getWidth(), this->getHeight(), pTemp, order) == SUCCESS);
 }
 
+bool RawImage::debayerStandard(BGRImage* image)
+{
+	enum EnBayerOrder order;
+	OscCamGetBayerOrder(&order, 0, 0);
+	
+	return (OscVisDebayer(this->getDataPtr(), this->getWidth(), this->getHeight(), order, image->getDataPtr()) == SUCCESS);	
+}
+
+bool RawImage::debayerHalfsize(BGRImage* image)
+{
+	enum EnBayerOrder order;
+	OscCamGetBayerOrder(&order, 0, 0);
+	
+	return (OscVisDebayerHalfSize(this->getDataPtr(), this->getWidth(), this->getHeight(), order, image->getDataPtr()) == SUCCESS);
+}
+
+
+bool RawImage::debayerFast(RGBImage* image)
+{
+	return OscVisFastDebayerRGB(&this->getOscarContext(), &image->getOscarContext());
+}
 

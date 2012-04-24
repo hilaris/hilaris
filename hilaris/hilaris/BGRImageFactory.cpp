@@ -1,5 +1,6 @@
 #include "BGRImageFactory.h"
 
+/* deprecated, use raw->debayerFast(BGRImage* image) instead! */
 BGRImage BGRImageFactory::getFastDebayered(RawImage* raw)
 {
 	BGRImage image(raw->getWidth() / 2, raw->getHeight() / 2);
@@ -9,6 +10,7 @@ BGRImage BGRImageFactory::getFastDebayered(RawImage* raw)
 	return image;
 }
 
+/* deprecated, use raw->debayerBilinear(BGRImage* image) instead! */
 BGRImage BGRImageFactory::getBilinearDebayered(RawImage* raw)
 {
 	BGRImage image(raw->getWidth(), raw->getHeight());
@@ -23,6 +25,7 @@ BGRImage BGRImageFactory::getBilinearDebayered(RawImage* raw)
 	return image;
 }
 
+/* deprecated, use raw->debayerStandard(BGRImage* image) instead! */
 BGRImage BGRImageFactory::getDebayered(RawImage* raw)
 {
 	BGRImage image(raw->getWidth(), raw->getHeight());
@@ -35,6 +38,7 @@ BGRImage BGRImageFactory::getDebayered(RawImage* raw)
 	return image;
 }
 
+/* deprecated, use raw->debayerHalfsize(BGRImage* image) instead! */
 BGRImage BGRImageFactory::getHalfsizeDebayered(RawImage* raw)
 {
 	BGRImage image(raw->getWidth() / 2, raw->getHeight() / 2);
