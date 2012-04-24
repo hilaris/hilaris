@@ -18,8 +18,8 @@ BinaryImage* DebayerBinaryDirect::getObject(uint16 width, uint16 height)
 bool DebayerBinaryDirect::debayer(RawImage* raw, Image* image)
 {
 	// do the debayering
-	uint8 bg = true ? 255 : 0;
-	uint8 fg = true ? 0 : 255;
+	uint8 bg = false ? 255 : 0;
+	uint8 fg = false ? 0 : 255;
 	
 	uint16 x,y;
 	uint32 outPos=0;

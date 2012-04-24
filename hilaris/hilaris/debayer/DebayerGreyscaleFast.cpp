@@ -17,13 +17,5 @@ GreyscaleImage* DebayerGreyscaleFast::getObject(uint16 width, uint16 height)
 
 bool DebayerGreyscaleFast::debayer(RawImage* raw, Image* image)
 {
-	/*
-	GreyscaleImage b = GreyscaleImageFactory::getFastDebayered(raw);
-	
-	memcpy(image, &b, sizeof(b));
-	*/
-	
-	OscVisFastDebayerGrey(&raw->getOscarContext(), &image->getOscarContext());	
-	
-	return true;
+	return raw->debayerFast((GreyscaleImage*)image);
 }

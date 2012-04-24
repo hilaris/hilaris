@@ -3,6 +3,8 @@
 
 #include "oscar.h"
 #include "Image.h"
+#include "BGRImage.h"
+#include "GreyscaleImage.h"
 
 /**
  *  @brief A RawImage captured directly from the Camera.
@@ -27,6 +29,9 @@ class RawImage : public Image
 		
 		EnOscPictureType getType();
 		uint8* getDataPtr();
+		
+		bool debayerFast(BGRImage* image);
+		bool debayerFast(GreyscaleImage* image);
 		
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];
