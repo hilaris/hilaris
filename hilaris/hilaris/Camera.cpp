@@ -56,7 +56,6 @@ Camera::Camera(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* d
 
 bool Camera::init(uint16 lowX, uint16 lowY, uint16 width, uint16 height, Debayer* debayer, uint8 bufferSize)
 {
-	//printf("init cam width %d height %d\n", width, height);
 	this->initialized = false;
 	
 	// setting sane default values
@@ -323,10 +322,8 @@ Image* Camera::captureImage()
 	{
 		usleep(4000);
 	
-		if(OscCamSetupCapture(mb) != SUCCESS)
-			printf("Failed to setup capture\n");
-		if(OscGpioTriggerImage() != SUCCESS)
-			printf("GPIO trigger image failed\n");
+		if(OscCamSetupCapture(mb) != SUCCESS) Debug::log(Debug::ERROR, "Failed to setup capture\n");
+		if(OscGpioTriggerImage() != SUCCESS)  Debug::log(Debug::ERROR, "GPIO trigger image failed\n");
 			
 			
 		memcpy(this->rawImage->getDataPtr(), rawPic, this->aoi.width * this->aoi.height);
@@ -335,16 +332,12 @@ Image* Camera::captureImage()
 		
 		if(this->debayer != NULL)
 		{
-			printf("Debayering rawdata\n");
 			this->debayer->debayer(this->rawImage, this->image);
-			printf("Got a debayered image\n");
 		}
 		
 		for(unsigned int i = 0; i<this->processors.size();i++)
 		{
-			printf("before process\n");
 			this->processors.at(i)->process(this->image);
-			printf("after process\n");
 		}
 		
 		return this->image;

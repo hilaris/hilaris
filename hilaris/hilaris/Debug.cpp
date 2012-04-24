@@ -1,12 +1,18 @@
 #include "Debug.h"
 
+int Debug::BUFFER_MAX = 256;
+
 void Debug::log(const char* strFormat, ...)
 {
 	// create dynamic argument list
 	va_list ap;
+	char buffer[Debug::BUFFER_MAX];
 
 	va_start(ap, strFormat);
-	OscLog((EnOscLogLevel)INFO, strFormat, ap);
+	vsprintf (buffer, strFormat, ap);
+	
+	// pass to osc log	
+	OscLog((EnOscLogLevel)INFO, buffer);
 	va_end(ap);
 }
 
@@ -14,9 +20,13 @@ void Debug::log(enum Debug::Level level, const char* strFormat, ...)
 {
 	// create dynamic argument list
 	va_list ap;
+	char buffer[Debug::BUFFER_MAX];
 
 	va_start(ap, strFormat);
-	OscLog(Debug::switchOscar(level), strFormat, ap);
+	vsprintf (buffer, strFormat, ap);
+	
+	// pass to osc log
+	OscLog(Debug::switchOscar(level), buffer);
 	va_end(ap);
 }
 
@@ -24,8 +34,12 @@ void Debug::fatal(const char * strFormat, ...)
 {
 	// create dynamic argument list
 	va_list ap;
+	char buffer[Debug::BUFFER_MAX];
 
 	va_start(ap, strFormat);
+	vsprintf (buffer, strFormat, ap);
+	
+	// pass to osc fatal
 	OscFatalErr(strFormat, ap);
 	va_end(ap);
 }

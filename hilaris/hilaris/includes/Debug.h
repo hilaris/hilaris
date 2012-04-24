@@ -80,6 +80,8 @@ class Debug
 		 */
 		static void fatal(const char * strFormat, ...);
 		
+		static int BUFFER_MAX;
+		
 	private:
 		static EnOscLogLevel switchOscar(Debug::Level level);
 };
