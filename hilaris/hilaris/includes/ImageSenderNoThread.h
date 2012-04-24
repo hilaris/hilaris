@@ -34,7 +34,9 @@ class ImageSenderNoThread
 		bool writeable(int fd);
 	public:
 		ImageSenderNoThread(Camera* cam, int port, int imgSize);
-		
+		// from http://www.gotw.ca/publications/mill18.htm
+		// Guideline #4: A base class destructor should be either public and virtual, or protected and nonvirtual.
+		virtual ~ImageSenderNoThread();
 		virtual void run();
 };
 
