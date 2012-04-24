@@ -20,14 +20,14 @@ uint16 Image::getHeight()
 	return this->height;
 }
 
-void Image::save(char* path, enum ImageEncoding enc)
+void Image::save(const char* path, enum ImageEncoding enc)
 {
 	struct OSC_PICTURE pic = this->getOscarContext();
 	
 	this->saveContext(pic, path);
 }
 
-void Image::saveContext(struct OSC_PICTURE pic, char* path)
+void Image::saveContext(struct OSC_PICTURE pic, const char* path)
 {
 	OSC_ERR err;
 	

@@ -64,7 +64,7 @@ uint8& RGBImage::operator()(const uint16 x, const uint16 y, enum RGBImage::Pixel
 	return this->pixel(x, y, component);
 }
 
-void RGBImage::save(char* path, enum ImageEncoding enc)
+void RGBImage::save(const char* path, enum ImageEncoding enc)
 {
 	BGRImage bgr(this->getWidth(), this->getHeight());
 	
