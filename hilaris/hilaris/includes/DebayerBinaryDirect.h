@@ -49,8 +49,11 @@ class DebayerBinaryDirect : public Debayer
 		 */
 		long unsigned int getSize();
 		
-		DebayerBinaryDirect(){}
+		DebayerBinaryDirect(uint8 threshold = 127, bool blackIsForegound = false):threshold(threshold), blackIsForegound(blackIsForegound){}
 		virtual ~DebayerBinaryDirect() {};
+	private:
+		uint8 threshold;
+		bool blackIsForegound;
 };
 
 #endif

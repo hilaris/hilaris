@@ -57,6 +57,8 @@ class RawImage : public Image
 		bool debayerFast(ComponentVImage* image);
 		bool debayerFast(YUV422Image* image);
 		
+		bool debayerFast(BinaryImage* image, uint8 threshold = 127, bool blackIsForeground = false);
+		
 		
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];
