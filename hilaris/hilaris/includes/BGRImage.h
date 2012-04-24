@@ -34,6 +34,8 @@ class BGRImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		BGRImage(uint16 width, uint16 height);
+		BGRImage(uint16 width, uint16 height, uint32 color);
+		BGRImage(uint16 width, uint16 height, uint8 red, uint16 green, uint16 blue);
 		
 		/**
 		 *  @brief Get the image type.
