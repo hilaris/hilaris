@@ -2,7 +2,6 @@
 
 void Text::draw(Image* image)
 {
-	ov_init();
 	ov_text(&image->getOscarContext(), this->x, this->y, this->size, this->text, this->fgColor, this->bgColor);
 }
 
