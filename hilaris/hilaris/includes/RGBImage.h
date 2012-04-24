@@ -38,6 +38,8 @@ class RGBImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		RGBImage(uint16 width, uint16 height);
+		RGBImage(uint16 width, uint16 height, uint32 color);
+		RGBImage(uint16 width, uint16 height, uint8 red, uint16 green, uint16 blue);
 		
 		EnOscPictureType getType();
 		uint8* getDataPtr();
