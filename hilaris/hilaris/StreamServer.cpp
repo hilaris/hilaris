@@ -20,7 +20,7 @@ StreamServer::StreamServer(Camera* camera, int port): camera(camera), port(port)
 	this->imgSize = this->camera->getDebayeredImageSize();
 	
 	//create a circular image buffer 
-	this->buffer = new ImageBuffer(this->imgSize, 3);
+	this->buffer = new ImageBuffer(this->imgSize, 6);
 	
 	//create ImageProducer and ImageSender threads
 	StreamServer::imgProducer = new ImageProducer(this->camera, this->buffer);

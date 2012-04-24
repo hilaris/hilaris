@@ -13,8 +13,6 @@ class Ellipse : public DrawableObject
 		~Ellipse() {}
 		
 		void draw(Image* image);
-		
-	private:
 	
 		uint16 x1;
 		uint16 x2;
