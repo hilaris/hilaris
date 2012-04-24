@@ -8,6 +8,22 @@ BinaryImage::BinaryImage(uint16 width, uint16 height)
 	this->setOscarContext();
 }
 
+BinaryImage::BinaryImage(uint16 width, uint16 height, uint8 color)
+{
+	this->width = width;
+	this->height = height;
+	
+	for(int i = 0; i < this->getHeight(); i++)
+	{
+		for(int j = 0; j < this->getWidth(); j++)
+		{
+			this->pixel(i, j) = color && 1;
+		}
+	}
+	
+	this->setOscarContext();
+}
+
 EnOscPictureType BinaryImage::getType()
 {
 	return OSC_PICTURE_BINARY;

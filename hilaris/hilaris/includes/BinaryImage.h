@@ -28,6 +28,7 @@ class BinaryImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		BinaryImage(uint16 width, uint16 height);
+		BinaryImage(uint16 width, uint16 height, uint8 color);
 		
 		/**
 		 *  @brief Get the image type.
