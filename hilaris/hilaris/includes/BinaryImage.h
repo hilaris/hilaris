@@ -73,7 +73,7 @@ class BinaryImage : public Image
 		 *  @warning It is currently not possible to save a BinaryImage directly.
 		 *   It will first be converted to a BGRImage which is known to be saveable.
 		 */
-		void save(char* path, enum ImageEncoding enc = BMP);
+		void save(const char* path, enum ImageEncoding enc = BMP);
 		
 		/**
 		 *  @brief Erode this image with a given structuring element.

@@ -34,7 +34,7 @@ uint8* BinaryImage::getDataPtr()
 	return this->data;
 }
 
-void BinaryImage::save(char* path, enum ImageEncoding enc)
+void BinaryImage::save(const char* path, enum ImageEncoding enc)
 {
 	GreyscaleImage grey(this->getWidth(), this->getHeight());
 	

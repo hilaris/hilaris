@@ -66,7 +66,7 @@ class Image {
 		 *  @warning It is only possible to save BGRImages at this time. Therefore
 		 *   a BinaryImage has to override this function in order to be storeable.
 		 */
-		virtual void save(char* path, enum ImageEncoding enc = BMP);
+		virtual void save(const char* path, enum ImageEncoding enc = BMP);
 		
 		virtual void drawOverlay(Overlay* overlay);
 		
@@ -111,7 +111,7 @@ class Image {
 		 *  @param path Where to save this image.
 		 *  @see Image::save will call this function.
 		 */
-		void saveContext(struct OSC_PICTURE pic, char* path);
+		void saveContext(struct OSC_PICTURE pic, const char* path);
 		
 	protected:
 	

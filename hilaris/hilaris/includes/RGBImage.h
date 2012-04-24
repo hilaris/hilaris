@@ -49,7 +49,7 @@ class RGBImage : public Image
 		EnOscPictureType getType();
 		uint8* getDataPtr();
 		
-		void save(char* path, enum ImageEncoding enc = BMP);
+		void save(const char* path, enum ImageEncoding enc = BMP);
 		
 		/**
 		 *  @brief Get a reference to a single pixel component.
