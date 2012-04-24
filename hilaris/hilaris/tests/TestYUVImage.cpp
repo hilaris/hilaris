@@ -19,7 +19,7 @@ void TestYUVImage::testDebayerFast()
 	
 	// capture image
 	YUV422Image* image = (YUV422Image*)camera->captureImage();
-	
+		
 	CPPUNIT_ASSERT(image->getHeight() == (height / 2));
 	CPPUNIT_ASSERT(image->getWidth()  == (width  / 2));
 	CPPUNIT_ASSERT(image->getType()   == OSC_PICTURE_YUV_422);
