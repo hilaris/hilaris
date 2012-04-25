@@ -5,6 +5,15 @@ class Image;
 
 #include "leanXoverlay.h"
 
+/**
+ *  @brief Base class for all kind of DrawableObject.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class DrawableObject
 {
 	public:

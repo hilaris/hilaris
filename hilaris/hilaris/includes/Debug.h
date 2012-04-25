@@ -4,6 +4,15 @@
 #include <cstdarg>
 #include "oscar.h"
 
+/**
+ *  @brief Debug class including logging functionality.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class Debug
 {
 	friend class Hilaris;

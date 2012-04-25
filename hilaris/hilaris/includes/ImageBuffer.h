@@ -18,10 +18,32 @@
 class ImageBuffer
 {
 	public:
+		
+		/**
+		 *  @brief Create an ImageBuffer.
+		 *
+		 *  @param dataSize The size of the images.
+		 *  @param bufferSize The width of this Buffer.
+		 */
 		ImageBuffer(int dataSize, int bufferSize);
 		~ImageBuffer();
+		
+		/**
+		 *  @brief Check wheter the ImageBuffer is empty.
+		 *  @return True if Buffer is empty, false otherwise.
+		 */
 		bool isEmpty();
+		
+		/**
+		 *  @brief Insert a new Image.
+		 *  @param img The Image data.
+		 */
 		void insert(uint8* img);
+		
+		/**
+		 *  @brief Get the current image data according to a RingBuffer rule.
+		 *  @return uint8-Array containing Image data.
+		 */
 		uint8* get();
 	
 	private:

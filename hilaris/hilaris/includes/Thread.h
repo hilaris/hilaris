@@ -5,19 +5,19 @@
 #include <signal.h>
 #include <stdio.h>
 
+/**
+ *  @brief Thread base class.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class Thread
 {
 	friend class StreamServer;
-	private:
-		pthread_t thread;
-		static void* dispatch(void *);
-		volatile sig_atomic_t cancel;
-	protected:
-		/**
-		 *  @brief This method is the main run method of the Thread. Has to be
-		 *  implemented by subinstance.
-		 */
-		virtual void run() = 0;
+		
 	public:
 		/**
 		 *  @brief Create a Thread. This is a constructor.
@@ -43,6 +43,18 @@ class Thread
 		 * @brief Stop this Thread.
 		 */
 		void stop();
+		
+	protected:
+		/**
+		 *  @brief This method is the main run method of the Thread. Has to be
+		 *  implemented by subinstance.
+		 */
+		virtual void run() = 0;
+	
+	private:
+		pthread_t thread;
+		static void* dispatch(void *);
+		volatile sig_atomic_t cancel;
 };
 
 #endif

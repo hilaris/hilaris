@@ -23,8 +23,8 @@ class Text : public DrawableObject
 	    /**
 		 *  @brief Constructor for creating Text.
 		 *
-		 *  @param x1 X-Component of the start point.
-		 *  @param y1 Y-Component of the start point.
+		 *  @param x X-Component of the start point.
+		 *  @param y Y-Component of the start point.
 		 *  @param size The size of the text. 1 is the smallest possible value, but readable.
 		 *  @param text The text which should be drawn to the Image.
 		 *  @param fgColor A uint32 representing the foreground color.
