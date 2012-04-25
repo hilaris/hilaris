@@ -4,6 +4,15 @@
 #include "oscar.h"
 #include "Image.h"
 
+/**
+ *  @brief A YUV422-encoded colored Image.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since April 2012
+ */
 class YUV422Image : public Image
 {
 	public:
