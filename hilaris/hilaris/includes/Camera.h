@@ -309,11 +309,15 @@ class Camera {
 		Debayer* getDebayer();
 		
 		/**
-		 *  @brief The current frameprocessor
-		 *  @todo Make this a vector.
+		 *  @brief Get the value of a register on the Camera.
+		 *  @return reg An uint32 representation of the register.
 		 */
-				
 		uint16 getRegister(const uint32 reg);
+		
+		/**
+		 *  @brief Set a register on the Camera.
+		 *  @return Success status.
+		 */
 		bool setRegister(const uint32 reg, const uint16 value);
 
 	private:
