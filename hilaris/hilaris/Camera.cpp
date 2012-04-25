@@ -221,10 +221,15 @@ bool Camera::destroyBuffers()
 	return success;
 }
 
-bool Camera::addFrameProcessor(FrameProcessor* proc)
+bool Camera::addFrameProcessor(std::string name, FrameProcessor* proc)
 {
-	this->processors.push_back(proc);
-	
+	this->fp[name] = proc;
+	return true;
+}
+
+bool Camera::removeFrameProcessor(std::string name)
+{
+	this->fp.erase(name);
 	return true;
 }
 
@@ -335,9 +340,10 @@ Image* Camera::captureImage()
 			this->debayer->debayer(this->rawImage, this->image);
 		}
 		
-		for(unsigned int i = 0; i<this->processors.size();i++)
+		std::map<std::string,FrameProcessor*>::iterator iter;   
+		for( iter = this->fp.begin(); iter != this->fp.end(); iter++ ) 
 		{
-			this->processors.at(i)->process(this->image);
+			iter->second->process(this->image);
 		}
 		
 		return this->image;

@@ -2,9 +2,11 @@
 #define _CAMERA_H_
 
 #include <vector>
+#include <map>
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <unistd.h>
+#include <iostream>
 
 #include "oscar.h"
 #include "Debug.h"
@@ -285,9 +287,20 @@ class Camera {
 		
 		/**
 		 *  @brief Add an instance of a FrameProcessor.
+		 *
+		 *  @param name The processors name which can be used to remove it.
+		 *  @param proc A pointer to address of the FrameProcessor
 		 *  @return Success status.
-		 */
-		bool addFrameProcessor(FrameProcessor* proc);
+		 */		
+		bool addFrameProcessor(std::string name, FrameProcessor* proc);
+		
+		/**
+		 *  @brief Remove a FrameProcessor by its name.
+		 *
+		 *  @param name The processors name which was used to add it.
+		 *  @return Success status.
+		 */		
+		bool removeFrameProcessor(std::string name);
 		
 		/**
 		 *  @brief Get the Debayer which will be used to debayer the RawImage.
@@ -314,6 +327,7 @@ class Camera {
 		RawImage* rawImage;
 		Debayer* debayer;
 		std::vector<FrameProcessor*> processors;
+		std::map<std::string, FrameProcessor*> fp;
 		uint8 bufferSize;
 		uint8* buffer;
 		uint8* bufferIds;
