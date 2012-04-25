@@ -57,6 +57,12 @@ class Image {
 		void setOscarContext();
 		
 		/**
+		 *  @bried Copies image data from specified pointer address into this Image
+		 *  @param data Pointer to image data
+		 */
+		void copyData(uint8* data);
+		
+		/**
 		 *  @brief Save this image.
 		 *
 		 *  @param path A path where to save this image.

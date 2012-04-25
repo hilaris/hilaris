@@ -288,19 +288,18 @@ class Camera {
 		/**
 		 *  @brief Add an instance of a FrameProcessor.
 		 *
-		 *  @param name The processors name which can be used to remove it.
 		 *  @param proc A pointer to address of the FrameProcessor
 		 *  @return Success status.
 		 */		
-		bool addFrameProcessor(std::string name, FrameProcessor* proc);
+		bool addFrameProcessor(FrameProcessor* proc);
 		
 		/**
 		 *  @brief Remove a FrameProcessor by its name.
 		 *
-		 *  @param name The processors name which was used to add it.
+		 *  @param fpPtr A pointer to the address of the FrameProcessor.
 		 *  @return Success status.
 		 */		
-		bool removeFrameProcessor(std::string name);
+		bool removeFrameProcessor(FrameProcessor* fpPtr);
 		
 		/**
 		 *  @brief Get the Debayer which will be used to debayer the RawImage.
@@ -330,7 +329,7 @@ class Camera {
 		Image* image;
 		RawImage* rawImage;
 		Debayer* debayer;
-		std::map<std::string, FrameProcessor*> fp;
+		std::vector<FrameProcessor*> fp;
 		uint8 bufferSize;
 		uint8* buffer;
 		uint8* bufferIds;

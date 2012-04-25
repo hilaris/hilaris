@@ -221,16 +221,26 @@ bool Camera::destroyBuffers()
 	return success;
 }
 
-bool Camera::addFrameProcessor(std::string name, FrameProcessor* proc)
+bool Camera::addFrameProcessor(FrameProcessor* proc)
 {
-	this->fp[name] = proc;
+	this->fp.push_back(proc);
 	return true;
 }
 
-bool Camera::removeFrameProcessor(std::string name)
+bool Camera::removeFrameProcessor(FrameProcessor* fpPtr)
 {
-	this->fp.erase(name);
-	return true;
+	std::vector<FrameProcessor*>::iterator iter;
+	int i = 0;
+	for( iter = this->fp.begin(); iter != this->fp.end(); iter++ ) 
+	{
+		if(this->fp.at(i) == fpPtr)
+		{
+			this->fp.erase(iter);
+			return true;
+		}
+		i++;
+	}
+	return false;
 }
 
 bool Camera::setShutterWidth(uint32 width)
@@ -340,10 +350,10 @@ Image* Camera::captureImage()
 			this->debayer->debayer(this->rawImage, this->image);
 		}
 		
-		std::map<std::string,FrameProcessor*>::iterator iter;   
-		for( iter = this->fp.begin(); iter != this->fp.end(); iter++ ) 
+		
+		for(unsigned int i = 0;i<this->fp.size();i++) 
 		{
-			iter->second->process(this->image);
+			this->fp.at(i)->process(this->image);
 		}
 		
 		return this->image;
