@@ -80,6 +80,12 @@ class Debug
 		 */
 		static void fatal(const char * strFormat, ...);
 		
+		/**
+		 *  @brief The size of the Buffer which is used to parse the input of a
+		 *    log message.
+		 *
+		 *  @see Debug::log, Debug::fatal
+		 */
 		static int BUFFER_MAX;
 		
 	private:
