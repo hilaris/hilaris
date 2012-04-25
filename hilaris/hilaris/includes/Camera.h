@@ -326,7 +326,6 @@ class Camera {
 		Image* image;
 		RawImage* rawImage;
 		Debayer* debayer;
-		std::vector<FrameProcessor*> processors;
 		std::map<std::string, FrameProcessor*> fp;
 		uint8 bufferSize;
 		uint8* buffer;
