@@ -29,6 +29,15 @@ class BinaryImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		BinaryImage(uint16 width, uint16 height);
+		
+		/**
+		 *  @brief A constructor. Will create a BinaryImage with the specified width
+		 *   and height using a specified color to fill the Image with.
+		 *
+		 *  @param width  The width of this Image.
+		 *  @param height The height of this Image.
+		 *  @param color Either 1 or 0.
+		 */
 		BinaryImage(uint16 width, uint16 height, uint8 color);
 		
 		/**
@@ -134,7 +143,7 @@ class BinaryImage : public Image
 		/**
 		 *  @brief Substract @b in from this image. The pixel values will wrap up.
 		 *
-		 *  @param right The second BinaryImage.
+		 *  @param in The second BinaryImage.
 		 *
 		 *  @todo Add correct error handling. Images must be of the same size.
 		 *  @todo Image should share the same foregroundColor.
@@ -155,10 +164,37 @@ class BinaryImage : public Image
 		 */
 		bool getInvertedBackground();
 		
+		/**
+		 *  @brief Sobel edge detection.
+		 *
+		 *  This function calculates the sobel operator in x and y direction and combines
+		 *  the resulting gradients to a saturated 8-Bit gradient magnitude. Instead of 
+		 *  the usual magnitude formula G = sqrt(GxB2 + GyB2) with the resource consuming
+		 *  square root function, a simple division by a power of two is used: G = (GxB2 + GyB2) * 2^(-exp).
+		 *
+		 *  @param exp The exponent for the calculation.
+		 *  @return The success status.
+		 *
+		 *  @note This function leaves a one pixel wide border of the output image untouched.
+		 *   Unless these pixels are treated outside this function, they might be in an undefined state.
+		 */
 		bool sobel(uint8 exp = 10);
 		
+		/**
+		 *  @brief Substract another BinaryImage from this Image.
+		 *  @param img A pointer to the resulting BinaryImage.
+		 */
 		void subtract(BinaryImage* img);
 		
+		/**
+		 *  @brief Convert this BinaryImage into a given GreyscaleImage.
+		 *
+		 *  @param grey The GreyscaleImage where all the data should be copied to.
+		 *  @return A pointer to the GreyscaleImage.
+		 *
+		 *  @note This is used by Binary::save() because its only possible to
+		 *   save images with the type of the GreyscaleImage.
+		 */
 		GreyscaleImage* convert(GreyscaleImage* grey);
 	
 	protected:

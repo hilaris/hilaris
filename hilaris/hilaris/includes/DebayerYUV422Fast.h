@@ -49,6 +49,9 @@ class DebayerYUV422Fast : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerYUV422Fast(){}
 		virtual ~DebayerYUV422Fast() {};
 };

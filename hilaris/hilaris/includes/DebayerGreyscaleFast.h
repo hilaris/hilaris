@@ -49,6 +49,9 @@ class DebayerGreyscaleFast : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerGreyscaleFast(){}
 		virtual ~DebayerGreyscaleFast() {};
 };

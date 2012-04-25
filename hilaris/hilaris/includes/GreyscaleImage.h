@@ -29,6 +29,15 @@ class GreyscaleImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		GreyscaleImage(uint16 width, uint16 height);
+		
+		/**
+		 *  @brief A constructor. Will create a GreyscaleImage with the specified
+		 *   width and height using a specified color to fill the Image with.
+		 *
+		 *  @param width  The width of this Image.
+		 *  @param height The height of this Image.
+		 *  @param color An uint8 representation of a color.
+		 */
 		GreyscaleImage(uint16 width, uint16 height, uint8 color);
 		
 		~GreyscaleImage();
@@ -63,6 +72,12 @@ class GreyscaleImage : public Image
 		 */
 		bool filter(struct OSC_VIS_FILTER_KERNEL *kernel);
 		
+		/**
+		 *  @brief Sobel edge detection.
+		 *
+		 *  @param exp The exponent used in the calculations.
+		 *  @return Success status.
+		 */
 		bool sobel(uint8 exp = 10);
 		
 		/**
@@ -77,10 +92,41 @@ class GreyscaleImage : public Image
 		 */
 		uint8& operator()(const uint16 x, const uint16 y);
 		
+		
+		/**
+		 *  @brief Retrieve a Histogram pointer.
+		 *
+		 *  @return A pointer to the Histogram of this GreyscaleImage.
+		 *
+		 *  @note  This will call Histogram::init()
+		 */
 		Histogram* histogram();
 		
+		/**
+		 *  @brief Convert this GreyscaleImage into a given BGRImage.
+		 *
+		 *  @param bgr The BGRImage where all the data should be copied to.
+		 *  @return A pointer to the BGRImage.
+		 */
 		BGRImage* convert(BGRImage* bgr);
+		
+		/**
+		 *  @brief Convert this GreyscaleImage into a given RGBImage.
+		 *
+		 *  @param rgb The RGBImage where all the data should be copied to.
+		 *  @return A pointer to the RGBImage.
+		 */
 		RGBImage* convert(RGBImage* rgb);
+		
+		/**
+		 *  @brief Convert this GreyscaleImage into a given BinaryImage.
+		 *
+		 *  @param binary The BinaryImage where all the data should be copied to.
+		 *  @param threshold A threshold value to use for the conversion.
+		 *  @param darkIsForeground Is black or white the foreground color.
+		 *
+		 *  @return A pointer to the BinaryImage.
+		 */
 		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true);
 	
 	private:

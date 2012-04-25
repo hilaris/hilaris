@@ -49,6 +49,9 @@ class DebayerBGRHalfsize : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerBGRHalfsize(){}
 		virtual ~DebayerBGRHalfsize() {};
 };

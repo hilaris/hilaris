@@ -6,8 +6,24 @@
 #include "oscar.h"
 #include "Mutex.h"
 
+/**
+ *  @brief The ImageBuffer. Will be used while streaming.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class ImageBuffer
 {
+	public:
+		ImageBuffer(int dataSize, int bufferSize);
+		~ImageBuffer();
+		bool isEmpty();
+		void insert(uint8* img);
+		uint8* get();
+	
 	private:
 		Mutex mutex;
 		int dataSize;
@@ -16,12 +32,6 @@ class ImageBuffer
 		int count;
 		uint8* data;
 		uint8* currentImg;
-	public:
-		ImageBuffer(int dataSize, int bufferSize);
-		~ImageBuffer();
-		bool isEmpty();
-		void insert(uint8* img);
-		uint8* get();
 };
 
 #endif

@@ -49,6 +49,9 @@ class DebayerRGBStandard : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerRGBStandard(){}
 		virtual ~DebayerRGBStandard() {};
 };

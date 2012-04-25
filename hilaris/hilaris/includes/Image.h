@@ -68,6 +68,10 @@ class Image {
 		 */
 		virtual void save(const char* path, enum ImageEncoding enc = BMP);
 		
+		/**
+		 *  @brief Draw a given Overlay to the Image.
+		 *  @param overlay The overlay including the DrawableObjects.
+		 */
 		virtual void drawOverlay(Overlay* overlay);
 		
 		/**

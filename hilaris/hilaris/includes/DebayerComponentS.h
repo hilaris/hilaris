@@ -9,6 +9,15 @@
 #include "ComponentSImage.h"
 #include "Debayer.h"
 
+/**
+ *  @brief Debayer for the S-Component of a HSL-Image.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since April 2012
+ */
 class DebayerComponentS : public Debayer
 {
 	public:
@@ -40,6 +49,9 @@ class DebayerComponentS : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerComponentS(){}
 		virtual ~DebayerComponentS() {};
 };

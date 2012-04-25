@@ -41,8 +41,28 @@ class BGRImage : public Image
 		 *  @param height The height of this Image.
 		 */
 		BGRImage(uint16 width, uint16 height);
+		
+		/**
+		 *  @brief A constructor. Will create a BGRImage with the specified width
+		 *    and height using a specified color to fill the Image with.
+		 *
+		 *  @param width  The width of this Image.
+		 *  @param height The height of this Image.
+		 *  @param color An uint32 representation of a color.
+		 */
 		BGRImage(uint16 width, uint16 height, uint32 color);
-		BGRImage(uint16 width, uint16 height, uint8 red, uint16 green, uint16 blue);
+		
+		/**
+		 *  @brief A constructor. Will create a BGRImage with the specified width
+		 *    and height using a specified color to fill the Image with.
+		 *
+		 *  @param width  The width of this Image.
+		 *  @param height The height of this Image.
+		 *  @param blue Blue component of the color.
+		 *  @param green Green component of the color.
+		 *  @param red Red component of the color.
+		 */
+		BGRImage(uint16 width, uint16 height, uint8 blue, uint16 green, uint16 red);
 		
 		/**
 		 *  @brief Get the image type.
@@ -80,8 +100,31 @@ class BGRImage : public Image
 		 */
 		uint8& operator()(const uint16 x, const uint16, enum BGRImage::Pixel component);
 		
+		/**
+		 *  @brief Convert this BGRImage into a given BinaryImage.
+		 *
+		 *  @param binary The BinaryImage where all the data should be copied to.
+		 *  @param threshold A threshold value to use for the conversion.
+		 *  @param darkIsForeground Is black or white the foreground color.
+		 *
+		 *  @return A pointer to the BinaryImage.
+		 */
 		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true);
+		
+		/**
+		 *  @brief Convert this BGRImage into a given GreyscaleImage.
+		 *
+		 *  @param grey The GreyscaleImage where all the data should be copied to.
+		 *  @return A pointer to the GreyscaleImage.
+		 */
 		GreyscaleImage* convert(GreyscaleImage* grey);
+		
+		/**
+		 *  @brief Convert this BGRImage into a given RGBImage.
+		 *
+		 *  @param rgb The RGBImage where all the data should be copied to.
+		 *  @return A pointer to the RGBImage.
+		 */
 		RGBImage* convert(RGBImage* rgb);
 	
 	private:

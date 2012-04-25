@@ -49,6 +49,9 @@ class DebayerBGRStandard : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerBGRStandard(){}
 		virtual ~DebayerBGRStandard() {};
 };

@@ -220,9 +220,16 @@ class Hilaris {
 		 */
 		void setRemoveOnCleanup(bool remove);
 		
-		// usage: *this->getOscarVersion();
+		/**
+		 *  @brief Get the version of the interal used Oscar Framework.
+		 *  @return A char pointer including the version.
+		 */
 		char* getOscarVersion();
 		
+		/**
+		 *  @brief Get an access layer to GPIO (General Purpose Input/Output)
+		 *  @return An instance of IO.
+		 */		
 		IO* io();
 		
 	private:
