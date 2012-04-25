@@ -6,8 +6,8 @@
 #include "RawImage.h"
 
 /**
- *  @brief Abstract representation of a Debayer. Must be extended by every single
- *   Debayer implementation.
+ *  @brief Abstract representation of a Debayer.
+ *
  *
  *  @author Jim Schmid
  *  @author Michael Kreis
