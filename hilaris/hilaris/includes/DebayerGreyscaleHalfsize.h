@@ -49,6 +49,9 @@ class DebayerGreyscaleHalfsize : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerGreyscaleHalfsize(){}
 		virtual ~DebayerGreyscaleHalfsize() {}
 };

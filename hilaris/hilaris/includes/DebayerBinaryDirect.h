@@ -10,7 +10,7 @@
 #include "Debayer.h"
 
 /**
- *  @brief Bilinear Debayer for BGRImage.
+ *  @brief Direct Debayer for BinaryImage.
  *
  *  @author Jim Schmid
  *  @author Michael Kreis
@@ -49,6 +49,12 @@ class DebayerBinaryDirect : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 *
+		 *  @param threshold The threshold used for debayering image.
+		 *  @param blackIsForegound Is black or white the foreground.
+		 */
 		DebayerBinaryDirect(uint8 threshold = 127, bool blackIsForegound = false):threshold(threshold), blackIsForegound(blackIsForegound){}
 		virtual ~DebayerBinaryDirect() {};
 	private:

@@ -10,7 +10,7 @@
 #include "Debayer.h"
 
 /**
- *  @brief Bilinear Debayer for BGRImage.
+ *  @brief Fast Debayer for BGRImage.
  *
  *  @author Jim Schmid
  *  @author Michael Kreis
@@ -49,6 +49,9 @@ class DebayerBGRFast : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerBGRFast(){}
 		virtual ~DebayerBGRFast() {};
 };

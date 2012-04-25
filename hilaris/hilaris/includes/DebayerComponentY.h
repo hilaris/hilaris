@@ -9,6 +9,15 @@
 #include "ComponentYImage.h"
 #include "Debayer.h"
 
+/**
+ *  @brief Debayer for the Y-Component of a YUV-Image.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since April 2012
+ */
 class DebayerComponentY : public Debayer
 {
 	public:
@@ -40,6 +49,9 @@ class DebayerComponentY : public Debayer
 		 */
 		long unsigned int getSize();
 		
+		/**
+		 *  @brief Create a Debayer instance.
+		 */
 		DebayerComponentY(){}
 		virtual ~DebayerComponentY() {};
 };
