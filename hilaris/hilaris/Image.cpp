@@ -20,6 +20,11 @@ uint16 Image::getHeight()
 	return this->height;
 }
 
+void Image::copyData(uint8* data)
+{
+	memcpy(this->getDataPtr(), data, this->width * this->height * (OSC_PICTURE_TYPE_COLOR_DEPTH(this->getType())/8));
+}
+
 void Image::save(const char* path, enum ImageEncoding enc)
 {
 	struct OSC_PICTURE pic = this->getOscarContext();
