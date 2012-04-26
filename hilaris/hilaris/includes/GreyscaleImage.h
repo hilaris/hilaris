@@ -101,6 +101,9 @@ class GreyscaleImage : public Image
 		 *  @return A pointer to the Histogram of this GreyscaleImage.
 		 *
 		 *  @note  This will call Histogram::init()
+		 *
+		 *  @image html greyscale.bmp Before.
+		 *  @image html histogram.bmp After calling greyscaleImage->histogram()->equalize()
 		 */
 		Histogram* histogram();
 		
