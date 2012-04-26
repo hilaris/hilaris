@@ -53,13 +53,38 @@ class DebayerBinaryDirect : public Debayer
 		 *  @brief Create a Debayer instance.
 		 *
 		 *  @param threshold The threshold used for debayering image.
-		 *  @param blackIsForegound Is black or white the foreground.
+		 *  @param blackIsForeground Is black or white the foreground.
 		 */
-		DebayerBinaryDirect(uint8 threshold = 127, bool blackIsForegound = false):threshold(threshold), blackIsForegound(blackIsForegound){}
+		DebayerBinaryDirect(uint8 threshold = 127, bool blackIsForeground = false):threshold(threshold), blackIsForeground(blackIsForeground){}
 		virtual ~DebayerBinaryDirect() {};
+		
+		/**
+		 *  @brief Set threshold value.
+		 *  @param value The threshold value. Between 0 and 255.
+		 */
+		void setThreshold(uint8 value);
+		
+		/**
+		 *  @brief Define de back- and foreground color.
+		 *  @param value True for black as foreground, false otherwise.
+		 */
+		void setBlackIsForeground(bool value);
+		
+		/**
+		 *  @brief Get the threshold value.
+		 *  @return The threshold value.
+		 */
+		uint8 getThreshold();
+		
+		/**
+		 *  @brief Get the foreground color.
+		 *  @return True if black is foreground color, false otherwise.
+		 */
+		bool getBlackIsForeground();
+		
 	private:
 		uint8 threshold;
-		bool blackIsForegound;
+		bool blackIsForeground;
 };
 
 #endif

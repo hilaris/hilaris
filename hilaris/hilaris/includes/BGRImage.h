@@ -18,6 +18,8 @@ class RGBImage;
  *
  *  @version 1.0
  *  @since March 2012
+ *
+ *  @image html bgr.bmp A sample BGRImage.
  */
 class BGRImage : public Image
 {

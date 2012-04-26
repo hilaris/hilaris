@@ -17,6 +17,8 @@ class GreyscaleImage;
  *
  *  @version 1.0
  *  @since March 2012
+ *
+ *  @image html binary.bmp A sample BinaryImage.
  */
 class BinaryImage : public Image
 {

@@ -17,6 +17,25 @@ BinaryImage* DebayerBinaryDirect::getObject(uint16 width, uint16 height)
 
 bool DebayerBinaryDirect::debayer(RawImage* raw, Image* image)
 {	
-	return raw->debayerFast((BinaryImage*)image, this->threshold, this->blackIsForegound);
+	return raw->debayerFast((BinaryImage*)image, this->threshold, this->blackIsForeground);
 }
 
+void DebayerBinaryDirect::setThreshold(uint8 value)
+{
+	this->threshold = value;
+}
+
+void DebayerBinaryDirect::setBlackIsForeground(bool value)
+{
+	this->blackIsForeground = value;
+}
+
+uint8 DebayerBinaryDirect::getThreshold()
+{
+	return this->threshold;
+}
+
+bool DebayerBinaryDirect::getBlackIsForeground()
+{
+	return this->blackIsForeground;
+}

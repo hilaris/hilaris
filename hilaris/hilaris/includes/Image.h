@@ -57,7 +57,7 @@ class Image {
 		void setOscarContext();
 		
 		/**
-		 *  @bried Copies image data from specified pointer address into this Image
+		 *  @brief Copies image data from specified pointer address into this Image
 		 *  @param data Pointer to image data
 		 */
 		void copyData(uint8* data);

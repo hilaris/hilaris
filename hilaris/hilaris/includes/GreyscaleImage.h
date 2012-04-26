@@ -17,6 +17,8 @@ class Histogram;
  *
  *  @version 1.0
  *  @since March 2012
+ *
+ *  @image html greyscale.bmp A sample GreyscaleImage.
  */
 class GreyscaleImage : public Image
 {
