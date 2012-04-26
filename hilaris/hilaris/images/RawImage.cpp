@@ -14,7 +14,7 @@ uint8* RawImage::getDataPtr()
 EnOscPictureType RawImage::getType()
 {
 	// strunzwurscht
-	return OSC_PICTURE_BGR_24;;
+	return OSC_PICTURE_BGR_24;
 }
 
 bool RawImage::debayerFast(GreyscaleImage* image)

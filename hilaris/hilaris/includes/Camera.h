@@ -2,7 +2,6 @@
 #define _CAMERA_H_
 
 #include <vector>
-#include <map>
 #include <stdio.h>
 #include <string>
 #include <unistd.h>
