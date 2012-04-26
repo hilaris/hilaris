@@ -37,6 +37,7 @@
 #include "DebayerComponentH.h"
 #include "DebayerComponentS.h"
 #include "DebayerComponentL.h"
+#include "DebayerRaw.h"
 
 // include system classes
 #include "Debug.h"
