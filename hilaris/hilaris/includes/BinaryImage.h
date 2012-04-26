@@ -157,6 +157,9 @@ class BinaryImage : public Image
 		
 		/**
 		 *  @brief Invert this image. Black will become white and vice versa.
+		 *
+		 *  @image html binary.bmp Before.
+		 *  @image html inverted.bmp After.
 		 */
 		void invert();
 		
