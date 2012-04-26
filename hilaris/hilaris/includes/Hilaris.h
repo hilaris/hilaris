@@ -43,9 +43,7 @@
 #include "Debug.h"
 #include "Camera.h"
 #include "FrameProcessor.h"
-#include "StreamClient.h"
 #include "StreamServer.h"
-#include "StreamServerNoThread.h"
 #include "Led.h"
 #include "IO.h"
 

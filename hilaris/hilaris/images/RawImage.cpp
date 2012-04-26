@@ -13,7 +13,6 @@ uint8* RawImage::getDataPtr()
 
 EnOscPictureType RawImage::getType()
 {
-	// strunzwurscht
 	return OSC_PICTURE_GREYSCALE;
 }
 
