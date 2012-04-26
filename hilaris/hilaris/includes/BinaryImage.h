@@ -179,6 +179,8 @@ class BinaryImage : public Image
 		 *
 		 *  @note This function leaves a one pixel wide border of the output image untouched.
 		 *   Unless these pixels are treated outside this function, they might be in an undefined state.
+		 *
+		 *  @image html sobel.bmp The BinaryImage after calling BinaryImage::sobel();
 		 */
 		bool sobel(uint8 exp = 10);
 		
