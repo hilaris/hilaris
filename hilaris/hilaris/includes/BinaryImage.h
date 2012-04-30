@@ -91,6 +91,9 @@ class BinaryImage : public Image
 		 *
 		 *  @param strel The structuring element.
 		 *  @param repetitions How many times it should be eroded.
+		 *
+		 *  @image html binary.bmp Before.
+		 *  @image html erode.bmp After. Called with DISK2 as structuring element.
 		 */
 		bool erode(struct OSC_VIS_STREL *strel, uint8 repetitions = 1);
 		
@@ -99,6 +102,9 @@ class BinaryImage : public Image
 		 *
 		 *  @param strel The structuring element.
 		 *  @param repetitions How many times it should be dilated.
+		 *
+		 *  @image html binary.bmp Before.
+		 *  @image html dilate.bmp After. Called with DISK2 as structuring element.
 		 */
 		bool dilate(struct OSC_VIS_STREL *strel, uint8 repetitions = 1);
 		
