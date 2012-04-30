@@ -53,6 +53,7 @@
 #include "Text.h"
 #include "Box.h"
 #include "Line.h"
+#include "Ellipse.h"
 
 /**
  *  @mainpage

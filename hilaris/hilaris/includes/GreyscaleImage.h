@@ -132,7 +132,7 @@ class GreyscaleImage : public Image
 		 *
 		 *  @return A pointer to the BinaryImage.
 		 */
-		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = true);
+		BinaryImage* convert(BinaryImage* binary, uint8 threshold = 127, bool darkIsForeground = false);
 	
 	private:
 		uint8 data[Image::MAX_WIDTH * Image::MAX_HEIGHT];

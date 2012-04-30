@@ -45,7 +45,7 @@ class Text : public DrawableObject
 		 *
 		 *  @param text The text which should be drawn to the Image.
 		 */
-		void setText(char* text);
+		void setText(const char* text);
 		
 	private:
 	
