@@ -81,6 +81,12 @@ class Image {
 		virtual void drawOverlay(Overlay* overlay);
 		
 		/**
+		 *  @brief Draw a given DrawableObject to the Image.
+		 *  @param object The Drawableobject which should be drawn.
+		 */
+		virtual void drawObject(DrawableObject* object);
+		
+		/**
 		 *  @brief Get the width of the Image.
 		 *  @return The image width.
 		 */

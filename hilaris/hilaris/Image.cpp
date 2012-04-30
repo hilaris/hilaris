@@ -63,3 +63,8 @@ void Image::drawOverlay(Overlay* overlay)
 		overlay->get(i)->draw(this);
 	}
 }
+
+void Image::drawObject(DrawableObject* object)
+{
+	object->draw(this);
+}

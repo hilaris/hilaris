@@ -9,3 +9,8 @@ Text::Text(uint16 x, uint16 y, uint8 size, const char* text, uint32 fgColor, uin
 {
 	strcpy(this->text, text);
 }
+
+void Text::setText(char* text)
+{
+	strcpy(this->text, text);
+}

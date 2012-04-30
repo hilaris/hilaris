@@ -40,6 +40,13 @@ class Text : public DrawableObject
 		 */
 		void draw(Image* image);
 		
+		/**
+		 *  @brief Changes the text of a text drawable
+		 *
+		 *  @param text The text which should be drawn to the Image.
+		 */
+		void setText(char* text);
+		
 	private:
 	
 		uint16 x;
