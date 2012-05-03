@@ -1,6 +1,6 @@
 #include "ImageSender.h"
 
-ImageSender::ImageSender(ImageBuffer* buffer, int port, int imgSize): buffer(buffer), imgSize(imgSize), cancel(false), port(port)
+ImageSender::ImageSender(ImageBuffer* buffer, std::queue<std::string>* commands, int port, int imgSize): buffer(buffer), commands(commands), imgSize(imgSize), cancel(false), port(port)
 {
 	this->clients.reserve(MAX_CLIENTS);
 	this->connected = 0;
@@ -76,13 +76,22 @@ void ImageSender::run()
 			if(this->readable(this->clients.at(i)))
 			{
 				int err;
-				char dummy[100];
+				char command[100];
 				
-				err=read(this->clients.at(i), &dummy, sizeof(dummy)-1);
+				err=read(this->clients.at(i), &command, sizeof(command)-1);
+				
+				//zero indicated end of file
 				if (err==0)
 				{
 					this->clients.erase(this->clients.begin() + i);
 					this->connected--;
+				}
+				else if(err>0)
+				{
+					//terminate the command
+					command[err] = '\0';
+					//insert command into command queue
+					this->commands->push(std::string(command));
 				}
 			}			
 		}

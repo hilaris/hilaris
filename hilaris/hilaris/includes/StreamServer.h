@@ -9,6 +9,7 @@
 #define CAM_REG_CHIP_CONTROL 0x07
 
 #include <signal.h>
+#include <string>
 
 #include "Thread.h"
 #include "ImageBuffer.h"
@@ -52,6 +53,8 @@ class StreamServer {
 		
 		ImageBuffer* buffer;
 		Camera* camera;
+		
+		std::queue<std::string> commands;
 		
 		static volatile sig_atomic_t cancel;
 		

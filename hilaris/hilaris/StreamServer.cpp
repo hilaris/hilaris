@@ -22,7 +22,7 @@ StreamServer::StreamServer(Camera* camera, int port): camera(camera), port(port)
 	this->buffer = new ImageBuffer(this->imgSize, 6);
 	
 	//create mageSender thread
-	StreamServer::imgSender = new ImageSender(this->buffer, this->port, this->imgSize);
+	StreamServer::imgSender = new ImageSender(this->buffer, &this->commands, this->port, this->imgSize);
 }
 
 void StreamServer::start()
@@ -32,6 +32,16 @@ void StreamServer::start()
 	
 	while(!StreamServer::cancel)
 	{
+		while(!this->commands.empty())
+		{
+			std::string c = this->commands.front();
+			printf("execute command: %s\n",c.c_str());
+			this->commands.pop();
+			
+			if(c=="exit")
+				StreamServer::stop(0);
+		}
+	
 		Image* img = this->camera->captureImage();
 		uint8* data = img->getDataPtr();
 		
@@ -45,7 +55,6 @@ void StreamServer::start()
 
 void StreamServer::stop(int signum)
 {
-	//pthread_cancel(StreamServer::imgProducer->thread);
 	StreamServer::cancel = 1;
 	pthread_cancel(StreamServer::imgSender->thread);
 }
