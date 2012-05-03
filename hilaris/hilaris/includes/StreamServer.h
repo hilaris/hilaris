@@ -10,6 +10,7 @@
 
 #include <signal.h>
 #include <string>
+#include <stdlib.h>
 
 #include "Thread.h"
 #include "ImageBuffer.h"

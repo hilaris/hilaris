@@ -35,11 +35,26 @@ void StreamServer::start()
 		while(!this->commands.empty())
 		{
 			std::string c = this->commands.front();
-			printf("execute command: %s\n",c.c_str());
 			this->commands.pop();
 			
-			if(c=="exit")
-				StreamServer::stop(0);
+			int pos;
+			if((pos = c.find_first_of(":"))>0)
+			{
+				std::string command = c.substr(0, pos);
+				std::string param = c.substr(pos+1, c.length()-pos);
+				
+				if(command=="shutter")
+				{
+					this->camera->setShutterWidth(atoi(param.c_str()));
+				} 
+			}
+			else
+			{
+				if(c=="exit")
+				{
+					StreamServer::stop(0);
+				}
+			}
 		}
 	
 		Image* img = this->camera->captureImage();
