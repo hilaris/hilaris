@@ -45,6 +45,7 @@ void StreamServer::start()
 				
 				if(command=="shutter")
 				{
+					printf("shutterwidth: %d\n", atoi(param.c_str()));
 					this->camera->setShutterWidth(atoi(param.c_str()));
 				} 
 			}
