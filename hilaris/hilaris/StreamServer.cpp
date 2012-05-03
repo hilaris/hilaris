@@ -1,6 +1,5 @@
 #include "StreamServer.h"
 
-Thread* StreamServer::imgProducer;
 Thread* StreamServer::imgSender;
 
 volatile sig_atomic_t StreamServer::cancel = 0; 
@@ -22,15 +21,13 @@ StreamServer::StreamServer(Camera* camera, int port): camera(camera), port(port)
 	//create a circular image buffer 
 	this->buffer = new ImageBuffer(this->imgSize, 6);
 	
-	//create ImageProducer and ImageSender threads
-	StreamServer::imgProducer = new ImageProducer(this->camera, this->buffer);
+	//create mageSender thread
 	StreamServer::imgSender = new ImageSender(this->buffer, this->port, this->imgSize);
 }
 
 void StreamServer::start()
 {
-	//start threads
-	//StreamServer::imgProducer->start();
+	//start thread
 	StreamServer::imgSender->start();
 	
 	while(!StreamServer::cancel)
@@ -42,8 +39,7 @@ void StreamServer::start()
 		usleep(2000);
 	}
 	
-	//wait for threads to end
-	//StreamServer::imgProducer->join();
+	//wait for sender thread to end
 	StreamServer::imgSender->join();
 }
 

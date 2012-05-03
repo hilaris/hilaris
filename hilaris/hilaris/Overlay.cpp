@@ -15,7 +15,7 @@ DrawableObject* Overlay::get(int i)
 	return this->objects.at(i);
 }
 
-void Overlay::pop()
+void Overlay::removeAtPos(int i)
 {
-	this->objects.erase(this->objects.begin());
+	this->objects.erase(this->objects.begin()+i);
 }

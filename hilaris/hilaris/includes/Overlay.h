@@ -25,16 +25,17 @@ class Overlay
 		void addObject(DrawableObject* object);
 		
 		/**
+		 *  @brief removes the object at a specific position
+		 *  
+		 *  @param i index of the object which should be removed
+		 */
+		void removeAtPos(int i);
+		
+		/**
 		 *  @brief Get the number of DrawableObject elements on this Overlay.
 		 *  @return The size of this Overlay.
 		 */
 		int size();
-		
-		/**
-		 *  @brief Pops the next DrawableObject.
-		 *  @todo A bit more sense please :D
-		 */
-		void pop();
 		
 		/**
 		 *  @brief Get a specific DrawableObject which is bound to this Overlay.
