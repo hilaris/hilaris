@@ -47,7 +47,11 @@ void StreamServer::start()
 				{
 					printf("shutterwidth: %d\n", atoi(param.c_str()));
 					this->camera->setShutterWidth(atoi(param.c_str()));
-				} 
+				}
+				else if(command=="perspective")
+				{
+					this->camera->setPerspective(Camera::HORIZONTAL_MIRROR);
+				}
 			}
 			else
 			{
