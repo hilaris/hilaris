@@ -16,6 +16,8 @@ class GreyscaleImage;
  *
  *  @version 1.0
  *  @since March 2012
+ *
+ *  @todo Getter for values of the histogram
  */
 class Histogram
 {

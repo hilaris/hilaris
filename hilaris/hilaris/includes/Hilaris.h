@@ -105,14 +105,14 @@ class Hilaris {
 		 *
 		 *  @param level A member of EnOscLogLevel
 		 */
-		void setConsoleLogLevel(const enum EnOscLogLevel level) const;
+		void setConsoleLogLevel(const enum Debug::Level level) const;
 		
 		/**
 		 *  @brief Set the system-wide file output level
 		 *
 		 *  @param level A member of EnOscLogLevel
 		 */
-		void setFileLogLevel(const enum EnOscLogLevel level) const;
+		void setFileLogLevel(const enum Debug::Level level) const;
 		
 		/**
 		 *  @brief Get a Camera instance.

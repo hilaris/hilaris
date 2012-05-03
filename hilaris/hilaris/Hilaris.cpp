@@ -75,14 +75,14 @@ void Hilaris::setRemoveOnCleanup(bool remove)
 	this->removeOnCleanup = remove;
 }
 
-void Hilaris::setConsoleLogLevel(const enum EnOscLogLevel level) const
+void Hilaris::setConsoleLogLevel(const enum Debug::Level level) const
 {
-	OscLogSetConsoleLogLevel(level);
+	OscLogSetConsoleLogLevel(Debug::switchOscar(level));
 }
 
-void Hilaris::setFileLogLevel(const enum EnOscLogLevel level) const
+void Hilaris::setFileLogLevel(const enum Debug::Level level) const
 {
-	OscLogSetFileLogLevel(level);
+	OscLogSetFileLogLevel(Debug::switchOscar(level));
 }
 
 void Hilaris::setFrameBufferSize(int size)

@@ -21,30 +21,6 @@ class FrameProcessor {
 		 */
 		virtual Image* process(Image* image) = 0;
 		
-		/**
-		 *  @brief A callback function which will be executed after the constructor
-		 *   has been called.
-		 */
-		virtual void setUp() {};
-		
-		/**
-		 *  @brief A callback function which will be executed before the deconstructor
-		 *   will be called.
-		 */
-		virtual void tearDown() {};
-		
-		/**
-		 *  @brief A callback function which will be executed before the image
-		 *   will be processed.
-		 */
-		virtual void beforeProcess() {};
-		
-		/**
-		 *  @brief A callback function which will be executed after the image
-		 *   has been processed.
-		 */
-		virtual void afterProcess() {};
-		
 		virtual ~FrameProcessor() {};
 };
 

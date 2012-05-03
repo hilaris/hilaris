@@ -64,7 +64,7 @@ class BGRImage : public Image
 		 *  @param green Green component of the color.
 		 *  @param red Red component of the color.
 		 */
-		BGRImage(uint16 width, uint16 height, uint8 blue, uint16 green, uint16 red);
+		BGRImage(uint16 width, uint16 height, uint8 blue, uint8 green, uint8 red);
 		
 		/**
 		 *  @brief Get the image type.
