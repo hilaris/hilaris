@@ -27,6 +27,10 @@ StreamServer::StreamServer(Camera* camera, int port): camera(camera), port(port)
 
 void StreamServer::start()
 {
+	//register used commands
+	CommandCollection::registerCommand("shutter", new ShutterWidthCommand(this->camera));
+	
+
 	//start thread
 	StreamServer::imgSender->start();
 	
@@ -37,29 +41,7 @@ void StreamServer::start()
 			std::string c = this->commands.front();
 			this->commands.pop();
 			
-			int pos;
-			if((pos = c.find_first_of(":"))>0)
-			{
-				std::string command = c.substr(0, pos);
-				std::string param = c.substr(pos+1, c.length()-pos);
-				
-				if(command=="shutter")
-				{
-					printf("shutterwidth: %d\n", atoi(param.c_str()));
-					this->camera->setShutterWidth(atoi(param.c_str()));
-				}
-				else if(command=="perspective")
-				{
-					this->camera->setPerspective(Camera::HORIZONTAL_MIRROR);
-				}
-			}
-			else
-			{
-				if(c=="exit")
-				{
-					StreamServer::stop(0);
-				}
-			}
+			CommandCollection::execute(c);
 		}
 	
 		Image* img = this->camera->captureImage();

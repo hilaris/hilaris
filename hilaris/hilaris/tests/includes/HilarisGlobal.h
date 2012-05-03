@@ -7,8 +7,8 @@ Hilaris& getHilaris()
 {
     static Hilaris hilaris;
     
-    hilaris.setFileLogLevel(NONE);
-    hilaris.setConsoleLogLevel(NONE);
+    hilaris.setFileLogLevel(Debug::NONE);
+    hilaris.setConsoleLogLevel(Debug::NONE);
     
     return hilaris;
 }

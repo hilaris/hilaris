@@ -17,6 +17,8 @@
 #include "ImageProducer.h"
 #include "ImageSender.h"
 #include "Camera.h"
+#include "ShutterWidthCommand.h"
+#include "CommandCollection.h"
 
 /**
  *  @brief Streaming Server for streaming debayered Images over the network.

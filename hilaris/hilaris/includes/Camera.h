@@ -293,7 +293,7 @@ class Camera {
 		bool addFrameProcessor(FrameProcessor* proc);
 		
 		/**
-		 *  @brief Remove a FrameProcessor by its name.
+		 *  @brief Remove a FrameProcessor by the pointer to its address.
 		 *
 		 *  @param fpPtr A pointer to the address of the FrameProcessor.
 		 *  @return Success status.
