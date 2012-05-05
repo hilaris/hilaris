@@ -18,6 +18,7 @@
 #include "ImageSender.h"
 #include "Camera.h"
 #include "ShutterWidthCommand.h"
+#include "PerspectiveCommand.h"
 #include "CommandCollection.h"
 
 /**
