@@ -29,6 +29,7 @@ void StreamServer::start()
 {
 	//register used commands
 	CommandCollection::registerCommand("shutter", new ShutterWidthCommand(this->camera));
+	CommandCollection::registerCommand("perspective", new PerspectiveCommand(this->camera));
 	
 
 	//start thread
