@@ -1,5 +1,5 @@
-#ifndef _SHUTTERWIDTH_COMMAND_H_
-#define _SHUTTERWIDTH_COMMAND_H_
+#ifndef _PERSPECTIVE_COMMAND_H_
+#define _PERSPECTIVE_COMMAND_H_
 
 #include <stdlib.h>
 
@@ -7,16 +7,15 @@
 #include "Camera.h"
 #include "Command.h"
 
-class ShutterWidthCommand : public Command
+class PerspectiveCommand : public Command
 {
 	public:
-		ShutterWidthCommand(Camera* camera):camera(camera){}
+		PerspectiveCommand(Camera* camera):camera(camera){}
 		virtual void execute();
 		virtual void setParams(std::string params);
 	private:
 		Camera* camera;
-		uint32 shutterwidth;
-		bool autoExp;
+		enum Camera::Perspective perspective;
 
 };
 

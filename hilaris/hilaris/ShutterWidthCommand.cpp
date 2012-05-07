@@ -2,10 +2,26 @@
 
 void ShutterWidthCommand::execute()
 {
-	this->camera->setShutterWidth(this->shutterwidth);
+	if(this->autoExp)
+	{
+		this->camera->setAutoExposure(true);
+	}
+	else
+	{
+		this->camera->setAutoExposure(true);
+		this->camera->setShutterWidth(this->shutterwidth);
+	}	
 }
 
 void ShutterWidthCommand::setParams(std::string params)
 {
-	this->shutterwidth = atoi(params.c_str());
+	if(atoi(params.c_str())<0)
+	{
+		this->autoExp = true;
+	}
+	else
+	{
+		this->autoExp = false;
+		this->shutterwidth = atoi(params.c_str());
+	}
 }
