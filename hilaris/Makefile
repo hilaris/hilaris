@@ -1,8 +1,8 @@
 CC_HOST = g++
 CC_TARGET = bfin-uclinux-g++
 
-CCFLAG_T = -Wall -c -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_TARGET
-CCFLAG_H = -Wall -c -m32 -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_HOST -g
+CCFLAG_T = -Wall -c -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_TARGET -02
+CCFLAG_H = -Wall -c -m32 -Ihilaris/oscar/includes -Ihilaris/includes -DOSC_HOST
 
 AR_HOST := ar -rcs
 AR_TARGET := bfin-uclinux-ar -rcs
