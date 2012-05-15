@@ -5,8 +5,6 @@ Hilaris::Hilaris()
 	this->camera = NULL;
 	this->setRemoveOnCleanup(true);
 	
-	this->gpio = new IO();
-	
 	// check wheter gpio-file exists
 	// if not, create it and fill it with
 	// a default text
@@ -27,6 +25,8 @@ Hilaris::Hilaris()
 	  &OscModule_vis,
 	  &OscModule_gpio
 	);
+	
+	this->gpio = new IO();
 	
 	#if defined(OSC_HOST)
 	
