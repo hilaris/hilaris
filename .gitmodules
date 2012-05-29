@@ -1,0 +1,6 @@
+[submodule "client"]
+	path = client
+	url = git@github.com:hilaris/client.git
+[submodule "hilaris/app"]
+	path = hilaris/app
+	url = git@github.com:hilaris/app.git
