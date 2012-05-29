@@ -16,14 +16,15 @@ Hilaris::Hilaris()
 	fclose(file);
 	
 	OSC_ERR err;
-	
+		
 	err = OscCreate(
 	  &OscModule_log, 
 	  &OscModule_sup, 
 	  &OscModule_bmp, 
 	  &OscModule_cam,  
 	  &OscModule_vis,
-	  &OscModule_gpio
+	  &OscModule_gpio,
+	  &OscModule_ipc
 	);
 	
 	this->gpio = new IO();
