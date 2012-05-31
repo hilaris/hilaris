@@ -24,7 +24,14 @@ Hilaris::Hilaris()
 	  &OscModule_cam,  
 	  &OscModule_vis,
 	  &OscModule_gpio,
-	  &OscModule_ipc
+	  &OscModule_ipc,
+	  &OscModule_dspl,
+	  &OscModule_hsm,
+	  &OscModule_cfg,
+	  &OscModule_jpg,
+	  &OscModule_sup,
+	  &OscModule_frd,
+	  &OscModule_dma
 	);
 	
 	this->gpio = new IO();
