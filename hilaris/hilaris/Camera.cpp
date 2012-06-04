@@ -212,10 +212,12 @@ bool Camera::destroyBuffers()
 	
 	success = success && (OscCamDeleteMultiBuffer() == SUCCESS);
 	
+	
 	// remove all buffers
 	for(int i = 0; i < this->bufferSize; i++)
 	{
 		success = success && (OscCamSetFrameBuffer(i, 0, NULL, true) == SUCCESS);
+		usleep(10000);
 	}
 	
 	return success;
@@ -296,7 +298,15 @@ bool Camera::getAutoExposure() const
 
 bool Camera::presetRegisters()
 {
-	return (this->lastError = OscCamPresetRegs()) != SUCCESS;
+	//set registers to default values
+	this->lastError = OscCamPresetRegs();
+	
+	/*
+	 * enables continuous capturing, no sleep between readpicture and setupcapture needed
+	 * about 10ms shorter capturing time in average
+	 */
+	this->lastError = OscCamSetRegisterValue(0x07, 0x388);
+	return  this->lastError == SUCCESS;
 }
 
 bool Camera::setPerspective(enum Camera::Perspective perspective)
@@ -335,8 +345,6 @@ Image* Camera::captureImage()
 	
 	if(OscCamReadPicture(mb, &rawPic,0,0) == SUCCESS)
 	{
-		usleep(4000);
-	
 		if(OscCamSetupCapture(mb) != SUCCESS) Debug::log(Debug::ERROR, "Failed to setup capture\n");
 		if(OscGpioTriggerImage() != SUCCESS)  Debug::log(Debug::ERROR, "GPIO trigger image failed\n");
 			

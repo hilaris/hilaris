@@ -21,6 +21,21 @@ class Debayer
 	
 		/**
 		 *  @brief Get the image type. The return value is part of the EnOscPictureType enum.
+		 *
+		 *  The enum EnOscPictureType is an enumeration which is used from the oscar framework.
+		 *  It contains the following elements: 
+		 *  @li OSC_PICTURE_GREYSCALE
+		 *  @li OSC_PICTURE_YUV_444
+		 *  @li OSC_PICTURE_YUV_422
+		 *  @li OSC_PICTURE_YUV_420
+		 *  @li OSC_PICTURE_YUV_400
+		 *  @li OSC_PICTURE_CHROM_U
+		 *  @li OSC_PICTURE_CHROM_V
+		 *  @li OSC_PICTURE_HUE
+		 *  @li OSC_PICTURE_BGR_24
+		 *  @li OSC_PICTURE_RGB_24
+		 *  @li OSC_PICTURE_BINARY
+		 *
 		 *  @return Returns the type of the debayered Image.
 		 */
 		virtual enum EnOscPictureType getType() = 0;
