@@ -56,19 +56,6 @@
 #include "Ellipse.h"
 
 /**
- *  @mainpage
- *  
- *  @section hello Hello
- *  Introduction
- *
- *  @section foo Foo
- *  Meep
- *  @code
- *  printf("foo");
- *  @endcode
- */
-
-/**
  *  @brief The Hilaris-Framework. Your entry point to the Camera.
  *
  *  This is the main class of the framework. It is the starting

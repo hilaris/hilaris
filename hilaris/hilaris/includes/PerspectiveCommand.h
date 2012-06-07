@@ -7,9 +7,24 @@
 #include "Camera.h"
 #include "Command.h"
 
+/**
+ *  @brief Command to adjust perspective.
+ *
+ *  @author Jim Schmid
+ *  @author Michael Kreis
+ *
+ *  @version 1.0
+ *  @since March 2012
+ */
 class PerspectiveCommand : public Command
 {
 	public:
+	
+		/**
+		 *  @brief A constructor. Will construct this Command.
+		 *
+		 *  @param camera Camera Pointer to adjust its perspective
+		 */
 		PerspectiveCommand(Camera* camera):camera(camera){}
 		virtual void execute();
 		virtual void setParams(std::string params);

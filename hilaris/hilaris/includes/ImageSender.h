@@ -37,6 +37,7 @@ class ImageSender : public Thread
 		 *  @brief Create an ImageSender.
 		 *
 		 *  @param buffer A pointer to an ImageBuffer.
+		 *  @param commands queue with Commands to execute
 		 *  @param port Which port should this ImageSender use. Standard is 9003.
 		 *  @param imgSize The size of the Images which will be sent.
 		 */

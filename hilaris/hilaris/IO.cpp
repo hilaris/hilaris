@@ -58,6 +58,9 @@ enum EnGpios IO::getOscarIO(enum IO::Pin pin)
 		case OUT2:
 			oscarIO = GPIO_OUT2;
 		break;
+		
+		default:
+			oscarIO = GPIO_OUT1;			
 	}
 	
 	return oscarIO;

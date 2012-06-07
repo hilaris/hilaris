@@ -331,6 +331,10 @@ bool Camera::setPerspective(enum Camera::Perspective perspective)
 		case ROTATE_180DEG:
 			oscPerspective = OSC_CAM_PERSPECTIVE_180DEG_ROTATE;
 		break;
+		
+		default:
+			oscPerspective = OSC_CAM_PERSPECTIVE_DEFAULT;
+		break;
 	}
 	
 	return (this->lastError = OscCamSetupPerspective(oscPerspective)) != SUCCESS;

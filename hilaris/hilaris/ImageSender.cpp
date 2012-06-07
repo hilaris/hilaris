@@ -28,7 +28,8 @@ ImageSender::ImageSender(ImageBuffer* buffer, std::queue<std::string>* commands,
 	err = bind(this->srvSocket, (struct sockaddr*)&this->addr, sizeof(this->addr));
 	if (this->srvSocket==SOCK_ERROR)
 	{
-		perror("Could bind socket\n");
+		perror("Could bind socket");
+		printf("errornr: %d\n", err);
 	}
 
 	err = listen(this->srvSocket, MAX_CLIENTS);
@@ -66,11 +67,9 @@ void ImageSender::run()
 		//send data to all connected clients
 		for(int i=0;i < this->connected;i++)
 		{
-			int len;
-			
 			if(this->writeable(this->clients.at(i)))
 			{
-				len = send(this->clients.at(i), img, this->imgSize, 0);
+				send(this->clients.at(i), img, this->imgSize, 0);
 			}
 			
 			if(this->readable(this->clients.at(i)))

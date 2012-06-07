@@ -57,7 +57,7 @@ struct AreaOfInterest
  *  @version 1.0
  *  @since March 2012
  *
- *  @warning While Hilarious is creating Camera the first time, it will call the
+ *  @warning While Hilaris is creating Camera the first time, it will call the
  *           Oscar-internal function presetRegister. It is possible that you have
  *           to reset some stuff which is made there.
  */
